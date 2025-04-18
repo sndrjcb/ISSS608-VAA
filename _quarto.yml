@@ -5,13 +5,24 @@ website:
   title: "ISSS608-VAA"
   navbar:
     left:
+    - text: "Hands On Exercise"
+      menu: 
+        - text: "Hands On Exercise 1"
+          href: "Hands-on_Ex/Hands-on_Ex01/Hands-on_Ex01.html"
+    right: 
       - href: index.qmd
         text: Home
       - about.qmd
 
 format:
   html:
-    theme: cosmo
+    theme: lux
+    backgroundcolor: black
+    title-block-banner: true
+    title-block-banner-color: white
+    fontcolor: grey
+    date: 04/18/2025
+    date-format: long
     css: styles.css
     toc: true
 
