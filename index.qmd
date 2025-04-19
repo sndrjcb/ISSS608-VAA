@@ -1,5 +1,7 @@
 ---
-title: "ISSS608-VAA"
+title: "Visual Analytics & Applications"
 ---
 
-Welcome to **ISSS608 Visual Analytics & Applications**! This is the homepage so you are safe here. In this website, you will find my coursework.
+Welcome to **ISSS608 Visual Analytics & Applications**! This subject focuses on the use of tools like Quarto and Tableau to create visualizations to analyze datasets. Basically, data analytics plus visualizations.
+
+This is the homepage, so you are safe here. You will find my coursework in this website over the coming weeks.

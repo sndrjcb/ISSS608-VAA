@@ -6,7 +6,6 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Sandra Jacob">
 <meta name="dcterms.date" content="2025-04-18">
 
 <title>Hands On Exercise 1 – ISSS608-VAA</title>
@@ -116,6 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
       .quarto-title-block .quarto-title-banner {
         color: white;
+background: black;
       }
 </style>
 
@@ -141,10 +141,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-hands-on-exercise" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Hands On Exercise</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-hands-on-exercises" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Hands On Exercises</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-hands-on-exercise">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-hands-on-exercises">    
         <li>
     <a class="dropdown-item" href="../../HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html">
  <span class="dropdown-text">Hands On Exercise 1</span></a>
@@ -179,12 +179,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
   <div class="quarto-title-meta">
 
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>Sandra Jacob </p>
-            </div>
-    </div>
       
       <div>
       <div class="quarto-title-meta-heading">Published</div>
@@ -221,17 +215,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="getting-started" class="level1">
-<h1>Getting Started</h1>
-<section id="install-and-launching-r-packages" class="level2">
-<h2 class="anchored" data-anchor-id="install-and-launching-r-packages">Install and Launching R Packages</h2>
+<section id="getting-started" class="level1" style="color: white">
+<h1 style="color: white">Getting Started</h1>
+<section id="install-and-launching-r-packages" class="level2" style="color: white">
+<h2 style="color: white" class="anchored" data-anchor-id="install-and-launching-r-packages">Install and Launching R Packages</h2>
 <p>The code chunk below uses p_load() of pacman package to check if tidyverse packages are installed in the computer. If they are, then they will be launched into R.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="importing-data" class="level2">
-<h2 class="anchored" data-anchor-id="importing-data">Importing Data</h2>
+<section id="importing-data" class="level2" style="color: white">
+<h2 style="color: white" class="anchored" data-anchor-id="importing-data">Importing Data</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>exam_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/Exam_data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -247,8 +241,8 @@ dbl (3): ENGLISH, MATHS, SCIENCE
 </div>
 </section>
 </section>
-<section id="plotting-a-bar-chart" class="level1">
-<h1>Plotting a Bar Chart</h1>
+<section id="plotting-a-bar-chart" class="level1" style="color: white">
+<h1 style="color: white">Plotting a Bar Chart</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> exam_data,</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> RACE)) <span class="sc">+</span> </span>

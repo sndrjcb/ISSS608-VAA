@@ -5,7 +5,7 @@ website:
   title: "ISSS608-VAA"
   navbar:
     left:
-    - text: "Hands On Exercise"
+    - text: "Hands On Exercises"
       menu: 
         - text: "Hands On Exercise 1"
           href: "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html"
@@ -18,11 +18,9 @@ format:
   html:
     theme: lux
     backgroundcolor: black
-    title-block-banner: true
+    title-block-banner: black
     title-block-banner-color: white
     fontcolor: grey
-    date: 04/18/2025
-    date-format: long
     css: styles.css
     toc: true
 
