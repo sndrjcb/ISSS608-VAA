@@ -17,10 +17,12 @@ website:
 format:
   html:
     theme: lux
-    backgroundcolor: black
-    title-block-banner: black
+    light: flatly
+    dark: darkly
+    # backgroundcolor: black
+    title-block-banner: '#300713'
     title-block-banner-color: white
-    fontcolor: grey
+    # fontcolor: grey
     css: styles.css
     toc: true
 

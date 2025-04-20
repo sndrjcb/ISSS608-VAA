@@ -4,9 +4,9 @@ date: 04/18/2025
 date-format: long
 ---
 
-# Getting Started {style="color: white"}
+# Getting Started
 
-## Install and Launching R Packages {style="color: white"}
+## Install and Launching R Packages
 
 The code chunk below uses p_load() of pacman package to check if tidyverse packages are installed in the computer. If they are, then they will be launched into R.
 
@@ -15,14 +15,14 @@ pacman::p_load(tidyverse)
 
 ```
 
-## Importing Data {style="color: white"}
+## Importing Data
 
 ```{r}
 exam_data <- read_csv("data/Exam_data.csv")
 
 ```
 
-# Plotting a Bar Chart {style="color: white"}
+# Plotting a Bar Chart
 
 ```{r}
 ggplot(data = exam_data,
