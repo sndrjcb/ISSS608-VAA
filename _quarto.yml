@@ -12,7 +12,15 @@ website:
     right: 
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: about.qmd
+        text: About
+    tools:
+      - icon: github
+        href: "https://github.com/sndrjcb/ISSS608-VAA"
+      - icon: linkedin
+        href: "https://www.linkedin.com/in/sandrajacob99/"
+      - icon: telegram
+        href: "https://t.me/sndrjcb"
 
 format:
   html:

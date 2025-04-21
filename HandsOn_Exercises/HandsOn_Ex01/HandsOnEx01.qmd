@@ -2,13 +2,14 @@
 title: "Hands On Exercise 1"
 date: 04/18/2025
 date-format: long
+date-modified: last-modified
 ---
 
 # Getting Started
 
-## Install and Launching R Packages
+## Installing R Packages
 
-The code chunk below uses p_load() of pacman package to check if tidyverse packages are installed in the computer. If they are, then they will be launched into R.
+The code below uses p_load() of pacman package to check if tidyverse packages are installed in the computer. If they are, then they will be launched into R.
 
 ```{r}
 pacman::p_load(tidyverse)
@@ -19,8 +20,51 @@ pacman::p_load(tidyverse)
 
 ```{r}
 exam_data <- read_csv("data/Exam_data.csv")
+show_col_types = FALSE
+head(exam_data, n = 5)
 
 ```
+
+# What is ggplot2?
+
+Applied to visualizations, **grammar of graphics** is a grammar used to describe and create a wide range of statistical graphics. This layered approach is implemented in **ggplot2**, an R package for creating data-driven graphics. It has become the go-to tool for making plots flexibly in R.
+
+![](images/clipboard-950964217.png){fig-align="center" width="472"}
+
+-   **Data**: The dataset being plotted.
+
+-   **Aesthetics** take attributes of the data and use them to influence visual characteristics, such as position, colours, size, shape, or transparency.
+
+-   **Geometrics**: The visual elements used for our data, such as point, bar or line.
+
+-   **Facets** split the data into subsets to create multiple variations of the same graph (paneling, multiple plots).
+
+-   **Statistics**, statiscal transformations that summarise data (e.g. mean, confidence intervals).
+
+-   **Coordinate systems** define the plane on which data are mapped on the graphic.
+
+-   **Themes** modify all non-data components of a plot, such as main title, sub-title, y-aixs title, or legend background.
+
+# **Essential Grammatical Elements in ggplot2**
+
+Let's examine the first three essential layers for making a plot - Data, Aesthetics and Geometries.
+
+## **Data**
+
+First, let's call the ggplot() function using the below code.
+
+```{r}
+ggplot(data=exam_data)
+```
+
+## Aesthetic mappings
+
+```{r}
+ggplot(data=exam_data, 
+       aes(x= MATHS))
+```
+
+## Geom
 
 # Plotting a Bar Chart
 
@@ -30,3 +74,5 @@ ggplot(data = exam_data,
   geom_bar()
 
 ```
+
+![](images/clipboard-950964217.png){width="468"}

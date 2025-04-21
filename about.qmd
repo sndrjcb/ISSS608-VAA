@@ -1,9 +1,7 @@
 ---
-title: "About"
+title: "Sandra Jacob"
 ---
 
-My name is Sandra Jacob. I am currently working as a business analyst, and would like to pivot into data science in the near future. My hobbies are gymming, painting and travelling.
-
-Feel free to reach out!
-
-Linkedin: [linkedin.com/in/sandrajacob99](http://www.linkedin.com/in/sandrajacob99)
+::: {layout-ncol="2"}
+Hey there! I am a full-time business analyst, part-time MITB student, and I am looking forward to pivot into data science in the near future. My hobbies are gymming, painting and travelling. Feel free to reach out!
+:::

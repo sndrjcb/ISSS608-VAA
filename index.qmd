@@ -1,5 +1,6 @@
 ---
 title: "Visual Analytics & Applications"
+text-align: center
 ---
 
 Welcome to **ISSS608 Visual Analytics & Applications**! This subject focuses on the use of tools like Quarto and Tableau to create visualizations to analyze datasets. Basically, data analytics plus visualizations.
