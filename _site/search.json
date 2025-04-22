@@ -4,21 +4,14 @@
     "href": "index.html",
     "title": "Visual Analytics & Applications",
     "section": "",
-    "text": "Welcome to ISSS608 Visual Analytics & Applications! This subject focuses on the use of tools like Quarto and Tableau to create visualizations to analyze datasets. Basically, data analytics plus visualizations.\nThis is the homepage, so you are safe here. You will find my coursework in this website over the coming weeks."
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Sandra Jacob",
-    "section": "",
-    "text": "Hey there! I am a full-time business analyst, part-time MITB student, and I am looking forward to pivot into data science in the near future. My hobbies are gymming, painting and travelling. Feel free to reach out!"
+    "text": "Welcome to ISSS608 Visual Analytics & Applications! This subject focuses on the use of tools like Quarto and Tableau to create visualizations to analyze datasets. This course is taught by Prof Tin Seong Kam for the AY2024-25 April term, so you will find my coursework on this website over the coming weeks.\nI am a full-time business analyst, part-time MITB student, and I am looking forward to pivot into data science in the near future. My hobbies are gymming, painting and travelling. Feel free to reach out to me through the links provided in the navigation bar!"
   },
   {
     "objectID": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html",
     "href": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html",
     "title": "Hands On Exercise 1",
     "section": "",
-    "text": "The code below uses p_load() of pacman package to check if tidyverse packages are installed in the computer. If they are, then they will be launched into R.\n\npacman::p_load(tidyverse)\n\n\n\n\n\nexam_data &lt;- read_csv(\"data/Exam_data.csv\")\n\nRows: 322 Columns: 7\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (4): ID, CLASS, GENDER, RACE\ndbl (3): ENGLISH, MATHS, SCIENCE\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nshow_col_types = FALSE\nhead(exam_data, n = 5)\n\n# A tibble: 5 × 7\n  ID         CLASS GENDER RACE    ENGLISH MATHS SCIENCE\n  &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;\n1 Student321 3I    Male   Malay        21     9      15\n2 Student305 3I    Female Malay        24    22      16\n3 Student289 3H    Male   Chinese      26    16      16\n4 Student227 3F    Male   Chinese      27    77      31\n5 Student318 3I    Male   Malay        27    11      25"
+    "text": "The code below uses p_load() of pacman package to check if tidyverse packages are installed in the computer. If they are, then they will be launched into R.\n\npacman::p_load(tidyverse)\n\n\n\n\n\nexam_data &lt;- read_csv(\"data/Exam_data.csv\")\n\nRows: 322 Columns: 7\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (4): ID, CLASS, GENDER, RACE\ndbl (3): ENGLISH, MATHS, SCIENCE\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nshow_col_types = FALSE\n\nknitr::kable(head(exam_data))\n\n\n\n\nID\nCLASS\nGENDER\nRACE\nENGLISH\nMATHS\nSCIENCE\n\n\n\n\nStudent321\n3I\nMale\nMalay\n21\n9\n15\n\n\nStudent305\n3I\nFemale\nMalay\n24\n22\n16\n\n\nStudent289\n3H\nMale\nChinese\n26\n16\n16\n\n\nStudent227\n3F\nMale\nChinese\n27\n77\n31\n\n\nStudent318\n3I\nMale\nMalay\n27\n11\n25\n\n\nStudent306\n3I\nFemale\nMalay\n31\n16\n16"
   },
   {
     "objectID": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#installing-r-packages",
@@ -32,7 +25,7 @@
     "href": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#importing-data",
     "title": "Hands On Exercise 1",
     "section": "",
-    "text": "exam_data &lt;- read_csv(\"data/Exam_data.csv\")\n\nRows: 322 Columns: 7\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (4): ID, CLASS, GENDER, RACE\ndbl (3): ENGLISH, MATHS, SCIENCE\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nshow_col_types = FALSE\nhead(exam_data, n = 5)\n\n# A tibble: 5 × 7\n  ID         CLASS GENDER RACE    ENGLISH MATHS SCIENCE\n  &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;\n1 Student321 3I    Male   Malay        21     9      15\n2 Student305 3I    Female Malay        24    22      16\n3 Student289 3H    Male   Chinese      26    16      16\n4 Student227 3F    Male   Chinese      27    77      31\n5 Student318 3I    Male   Malay        27    11      25"
+    "text": "exam_data &lt;- read_csv(\"data/Exam_data.csv\")\n\nRows: 322 Columns: 7\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (4): ID, CLASS, GENDER, RACE\ndbl (3): ENGLISH, MATHS, SCIENCE\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nshow_col_types = FALSE\n\nknitr::kable(head(exam_data))\n\n\n\n\nID\nCLASS\nGENDER\nRACE\nENGLISH\nMATHS\nSCIENCE\n\n\n\n\nStudent321\n3I\nMale\nMalay\n21\n9\n15\n\n\nStudent305\n3I\nFemale\nMalay\n24\n22\n16\n\n\nStudent289\n3H\nMale\nChinese\n26\n16\n16\n\n\nStudent227\n3F\nMale\nChinese\n27\n77\n31\n\n\nStudent318\n3I\nMale\nMalay\n27\n11\n25\n\n\nStudent306\n3I\nFemale\nMalay\n31\n16\n16"
   },
   {
     "objectID": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#data",
@@ -53,6 +46,13 @@
     "href": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#geom",
     "title": "Hands On Exercise 1",
     "section": "Geom",
-    "text": "Geom"
+    "text": "Geom\nGeometric objects are the actual marks we put on a plot. A plot must have at least one geom and there is no upper limit. You can add a geom to a plot using the + operator.\nExamples include:\n\ngeom_point() for drawing individual points (e.g., a scatter plot)\ngeom_line() for drawing lines (e.g., for a line charts)\ngeom_bar() for drawing bars (e.g., for bar charts)\ngeom_jitter() to add a small amount of random variation to the location of each point\ngeom_map() for drawing polygons in the shape of a map!"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex02/HandsOnEx02.html",
+    "href": "HandsOn_Exercises/HandsOn_Ex02/HandsOnEx02.html",
+    "title": "Hands On Exercise 2",
+    "section": "",
+    "text": "There are several ggplot2 extensions for creating more elegant and effective statistical graphics. Let’s explore these features!\n\nGetting Started\nBesides tidyverse, four R packages will be used.\n\nggrepel: to provide geoms for ggplot2 to repel overlapping text labels\nggthemes: to provide extra themes, geoms, and scales for ‘ggplot2’\nhrbrthemes: for typography-centric themes and theme components for ggplot2\npatchwork: for preparing composite figure created using ggplot2\n\nTo check if these packages have been installed and to load them into your working R environment, run the below code.\n\npacman::p_load(ggrepel, patchwork, ggthemes, hrbrthemes, tidyverse)"
   }
 ]

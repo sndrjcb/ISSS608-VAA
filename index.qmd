@@ -1,8 +1,8 @@
 ---
 title: "Visual Analytics & Applications"
-text-align: center
+subtitle: "Sandra Jacob"
 ---
 
-Welcome to **ISSS608 Visual Analytics & Applications**! This subject focuses on the use of tools like Quarto and Tableau to create visualizations to analyze datasets. Basically, data analytics plus visualizations.
+Welcome to **ISSS608 Visual Analytics & Applications**! This subject focuses on the use of tools like Quarto and Tableau to create visualizations to analyze datasets. This course is taught by Prof Tin Seong Kam for the AY2024-25 April term, so you will find my coursework on this website over the coming weeks.
 
-This is the homepage, so you are safe here. You will find my coursework in this website over the coming weeks.
+I am a full-time business analyst, part-time MITB student, and I am looking forward to pivot into data science in the near future. My hobbies are gymming, painting and travelling. Feel free to reach out to me through the links provided in the navigation bar!

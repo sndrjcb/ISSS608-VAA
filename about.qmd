@@ -1,7 +1,3 @@
 ---
 title: "Sandra Jacob"
 ---
-
-::: {layout-ncol="2"}
-Hey there! I am a full-time business analyst, part-time MITB student, and I am looking forward to pivot into data science in the near future. My hobbies are gymming, painting and travelling. Feel free to reach out!
-:::

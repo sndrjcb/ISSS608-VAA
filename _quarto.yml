@@ -3,17 +3,16 @@ project:
 
 website:
   title: "ISSS608-VAA"
+  google-analytics: "G-8R61GXQYCW"
   navbar:
     left:
     - text: "Hands On Exercises"
       menu: 
         - text: "Hands On Exercise 1"
           href: "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html"
-    right: 
-      - href: index.qmd
-        text: Home
-      - href: about.qmd
-        text: About
+        - text: "Hands On Exercise 2"
+          href: "HandsOn_Exercises/HandsOn_Ex02/HandsOnEx02.html"
+    
     tools:
       - icon: github
         href: "https://github.com/sndrjcb/ISSS608-VAA"
@@ -27,10 +26,9 @@ format:
     theme: lux
     light: flatly
     dark: darkly
-    # backgroundcolor: black
+    highlight-style: monokai
     title-block-banner: '#300713'
     title-block-banner-color: white
-    # fontcolor: grey
     css: styles.css
     toc: true
 

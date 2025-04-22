@@ -1,5 +1,6 @@
 ---
 title: "Hands On Exercise 1"
+subtitle: "A Layered Grammar of Graphics: Methods in ggplot2"
 date: 04/18/2025
 date-format: long
 date-modified: last-modified
@@ -21,8 +22,8 @@ pacman::p_load(tidyverse)
 ```{r}
 exam_data <- read_csv("data/Exam_data.csv")
 show_col_types = FALSE
-head(exam_data, n = 5)
 
+knitr::kable(head(exam_data))
 ```
 
 # What is ggplot2?
@@ -54,6 +55,7 @@ Let's examine the first three essential layers for making a plot - Data, Aesthet
 First, let's call the ggplot() function using the below code.
 
 ```{r}
+#| eval: false
 ggplot(data=exam_data)
 ```
 
@@ -66,6 +68,20 @@ ggplot(data=exam_data,
 
 ## Geom
 
+Geometric objects are the actual marks we put on a plot. A plot must have at least one geom and there is no upper limit. You can add a geom to a plot using the **+** operator.
+
+Examples include:
+
+-   ***geom_point()*** for drawing individual points (e.g., a scatter plot)
+
+-   ***geom_line()*** for drawing lines (e.g., for a line charts)
+
+-   ***geom_bar()*** for drawing bars (e.g., for bar charts)
+
+-   ***geom_jitter()*** to add a small amount of random variation to the location of each point
+
+-   ***geom_map()*** for drawing polygons in the shape of a map!
+
 # Plotting a Bar Chart
 
 ```{r}
@@ -75,4 +91,62 @@ ggplot(data = exam_data,
 
 ```
 
-![](images/clipboard-950964217.png){width="468"}
+# Plotting a Dot Plot
+
+```{r}
+ggplot(data = exam_data,
+       aes(x = RACE,
+           y = SCIENCE)) + 
+  geom_point()
+```
+
+# Plotting a Histogram
+
+```{r}
+ggplot(data=exam_data, 
+       aes(x= ENGLISH)) +
+  geom_histogram(bins=20,            
+                 color="black",      
+                 fill="#630e27") 
+
+```
+
+# Plotting a Jitter Plot
+
+```{r}
+ggplot(data=exam_data, 
+       aes(x= GENDER, 
+           y= SCIENCE)) +
+  geom_jitter(width = 0.5, height = 0.5,
+              bins=20, 
+              aes(colour = "#630e27"))
+```
+
+# Plotting a Scatter Plot Smoothing
+
+```{r}
+ggplot(data=exam_data, 
+       aes(x=MATHS, 
+           y=ENGLISH)) +
+  geom_point() +
+  geom_smooth(linewidth=0.5)
+```
+
+# Plotting a Box Plot
+
+```{r}
+ggplot(data=exam_data, 
+       aes(y = MATHS, x= GENDER)) +
+  geom_boxplot()
+```
+
+# **Combining *geom* objects**
+
+```{r}
+ggplot(data=exam_data,
+       aes(y=MATHS,
+           x=GENDER)) +
+  geom_boxplot() +
+  geom_point(position="jitter",
+             size=0.5)
+```

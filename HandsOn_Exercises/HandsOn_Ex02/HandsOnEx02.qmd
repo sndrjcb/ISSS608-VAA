@@ -1,0 +1,27 @@
+---
+title: "Hands On Exercise 2"
+subtitle: "Beyond ggplot2 Fundamentals"
+date: 04/22/2025
+date-format: long
+date-modified: last-modified
+---
+
+There are several ggplot2 extensions for creating more elegant and effective statistical graphics. Let's explore these features!
+
+# Getting Started
+
+Besides tidyverse, four R packages will be used.
+
+-   ggrepel: to provide geoms for ggplot2 to repel overlapping text labels
+
+-   ggthemes: to provide extra themes, geoms, and scales for ‘ggplot2’
+
+-   hrbrthemes: for typography-centric themes and theme components for ggplot2
+
+-   patchwork: for preparing composite figure created using ggplot2
+
+To check if these packages have been installed and to load them into your working R environment, run the below code.
+
+```{r}
+pacman::p_load(ggrepel, patchwork, ggthemes, hrbrthemes, tidyverse)
+```
