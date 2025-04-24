@@ -53,6 +53,13 @@
     "href": "HandsOn_Exercises/HandsOn_Ex02/HandsOnEx02.html",
     "title": "Hands On Exercise 2",
     "section": "",
-    "text": "There are several ggplot2 extensions for creating more elegant and effective statistical graphics. Let’s explore these features!\n\nGetting Started\nBesides tidyverse, four R packages will be used.\n\nggrepel: to provide geoms for ggplot2 to repel overlapping text labels\nggthemes: to provide extra themes, geoms, and scales for ‘ggplot2’\nhrbrthemes: for typography-centric themes and theme components for ggplot2\npatchwork: for preparing composite figure created using ggplot2\n\nTo check if these packages have been installed and to load them into your working R environment, run the below code.\n\npacman::p_load(ggrepel, patchwork, ggthemes, hrbrthemes, tidyverse)"
+    "text": "There are several ggplot2 extensions for creating more elegant and effective statistical graphics. Let’s explore these features!"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex02/HandsOnEx02.html#importing-data",
+    "href": "HandsOn_Exercises/HandsOn_Ex02/HandsOnEx02.html#importing-data",
+    "title": "Hands On Exercise 2",
+    "section": "Importing Data",
+    "text": "Importing Data\nThe code chunk below imports exam_data.csv into R environment by using read_csv() function of readr package. \n\nexam_data &lt;- read_csv(\"Exam_data.csv\")\n\nRows: 322 Columns: 7\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (4): ID, CLASS, GENDER, RACE\ndbl (3): ENGLISH, MATHS, SCIENCE\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nshow_col_types = FALSE\nknitr::kable(head(exam_data))\n\n\n\n\nID\nCLASS\nGENDER\nRACE\nENGLISH\nMATHS\nSCIENCE\n\n\n\n\nStudent321\n3I\nMale\nMalay\n21\n9\n15\n\n\nStudent305\n3I\nFemale\nMalay\n24\n22\n16\n\n\nStudent289\n3H\nMale\nChinese\n26\n16\n16\n\n\nStudent227\n3F\nMale\nChinese\n27\n77\n31\n\n\nStudent318\n3I\nMale\nMalay\n27\n11\n25\n\n\nStudent306\n3I\nFemale\nMalay\n31\n16\n16"
   }
 ]

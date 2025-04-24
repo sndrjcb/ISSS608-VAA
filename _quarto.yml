@@ -26,7 +26,7 @@ format:
     theme: lux
     light: flatly
     dark: darkly
-    highlight-style: monokai
+    highlight-style: dracula
     title-block-banner: '#300713'
     title-block-banner-color: white
     css: styles.css

@@ -20,8 +20,135 @@ Besides tidyverse, four R packages will be used.
 
 -   patchwork: for preparing composite figure created using ggplot2
 
-To check if these packages have been installed and to load them into your working R environment, run the below code.
+To check if these packages have been installed and to load them into your working R environment, run the code below.
 
 ```{r}
 pacman::p_load(ggrepel, patchwork, ggthemes, hrbrthemes, tidyverse)
+```
+
+## Importing Data
+
+The code chunk below imports *exam_data.csv* into R environment by using *read_csv()* function of [**readr**](#0) package. 
+
+```{r}
+exam_data <- read_csv("Exam_data.csv")
+show_col_types = FALSE
+knitr::kable(head(exam_data))
+```
+
+# What is ggrepel?
+
+One of the challenge in plotting statistical graph is annotation, especially with large number of data points. Take a look below and see it for yourself.
+
+```{r}
+ggplot(data=exam_data, 
+       aes(x= MATHS, 
+           y=ENGLISH)) +
+  geom_point() +
+  geom_smooth(method=lm, 
+              size=0.5) +  
+  geom_label(aes(label = ID), 
+             hjust = .5, 
+             vjust = -.5) +
+  coord_cartesian(xlim=c(0,100),
+                  ylim=c(0,100)) +
+  ggtitle("English scores versus Maths scores for Primary 3")
+```
+
+ggrepel is an extension of ggplot2 package which provides geoms for ggplot2 to repel overlapping text.
+
+```{r}
+ggplot(data=exam_data, 
+       aes(x= MATHS, 
+           y=ENGLISH)) +
+  geom_point() +
+  geom_smooth(method=lm, 
+              size=0.5) +  
+  geom_label_repel(aes(label = ID), 
+                   fontface = "bold") +
+  coord_cartesian(xlim=c(0,100),
+                  ylim=c(0,100)) +
+  ggtitle("English scores versus Maths scores for Primary 3")
+```
+
+# Themes
+
+ggplot2 comes with eight [built-in themes](https://ggplot2.tidyverse.org/reference/ggtheme.html), they are: `theme_gray()`, `theme_bw()`, `theme_classic()`, `theme_dark()`, `theme_light()`, `theme_linedraw()`, `theme_minimal()`, and `theme_void().`
+
+```{r}
+ggplot(data=exam_data, 
+             aes(x = MATHS)) +
+  geom_histogram(bins=20, 
+                 boundary = 100,
+                 color="grey25", 
+                 fill="grey90") +
+  theme_dark() +
+  ggtitle("Distribution of Maths Scores") 
+```
+
+```{r}
+ggplot(data=exam_data, 
+             aes(x = MATHS)) +
+  geom_histogram(bins=20, 
+                 boundary = 100,
+                 color="grey25", 
+                 fill="grey90") +
+  ggtitle("Distribution of Maths scores") +
+  theme_ipsum()
+
+```
+
+# Combining Graphs
+
+Let's create three graphs named p1, p2 and p3.
+
+```{r}
+p1 <- ggplot(data=exam_data, 
+             aes(x = MATHS)) +
+  geom_histogram(bins=20, 
+                 boundary = 100,
+                 color="grey25", 
+                 fill="grey90") + 
+  coord_cartesian(xlim=c(0,100)) +
+  ggtitle("Distribution of Maths scores")
+
+```
+
+```{r}
+p2 <- ggplot(data=exam_data, 
+             aes(x = ENGLISH)) +
+  geom_histogram(bins=20, 
+                 boundary = 100,
+                 color="grey25", 
+                 fill="grey90") +
+  coord_cartesian(xlim=c(0,100)) +
+  ggtitle("Distribution of English scores")
+```
+
+```{r}
+p3 <- ggplot(data=exam_data, 
+             aes(x= MATHS, 
+                 y=ENGLISH)) +
+  geom_point() +
+  geom_smooth(method=lm, 
+              size=0.5) +  
+  coord_cartesian(xlim=c(0,100),
+                  ylim=c(0,100)) +
+  ggtitle("English scores versus Maths scores for Primary 3")
+
+```
+
+“/” operator to stack two ggplot2 graphs, “\|” operator to place the plots beside each other, “()” operator the define the sequence of the plotting.
+
+```{r}
+p1 + p2
+```
+
+```{r}
+(p1 / p2) | p3
+```
+
+```{r}
+patchwork <- (p1 / p2) | p3
+patchwork
 ```
