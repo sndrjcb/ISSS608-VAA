@@ -12,13 +12,13 @@ There are several ggplot2 extensions for creating more elegant and effective sta
 
 Besides tidyverse, four R packages will be used.
 
--   ggrepel: to provide geoms for ggplot2 to repel overlapping text labels
+-   [**ggrepel**](https://ggrepel.slowkow.com/): to provide geoms for ggplot2 to repel overlapping text labels
 
--   ggthemes: to provide extra themes, geoms, and scales for ‘ggplot2’
+-   [**ggthemes**](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/): to provide extra themes, geoms, and scales for ‘ggplot2’
 
--   hrbrthemes: for typography-centric themes and theme components for ggplot2
+-   [**hrbrthemes**](https://r-graph-gallery.com/package/hrbrthemes.html): for typography-centric themes and theme components for ggplot2
 
--   patchwork: for preparing composite figure created using ggplot2
+-   [**patchwork**](https://r-graph-gallery.com/package/patchwork.html): for preparing composite figure created using ggplot2
 
 To check if these packages have been installed and to load them into your working R environment, run the code below.
 
@@ -53,6 +53,7 @@ ggplot(data=exam_data,
   coord_cartesian(xlim=c(0,100),
                   ylim=c(0,100)) +
   ggtitle("English scores versus Maths scores for Primary 3")
+knitr::opts_chunk$set()
 ```
 
 ggrepel is an extension of ggplot2 package which provides geoms for ggplot2 to repel overlapping text.
@@ -69,6 +70,7 @@ ggplot(data=exam_data,
   coord_cartesian(xlim=c(0,100),
                   ylim=c(0,100)) +
   ggtitle("English scores versus Maths scores for Primary 3")
+knitr::opts_chunk$set()
 ```
 
 # Themes
@@ -95,7 +97,7 @@ ggplot(data=exam_data,
                  fill="grey90") +
   ggtitle("Distribution of Maths scores") +
   theme_ipsum()
-
+knitr::opts_chunk$set()
 ```
 
 # Combining Graphs
@@ -111,6 +113,7 @@ p1 <- ggplot(data=exam_data,
                  fill="grey90") + 
   coord_cartesian(xlim=c(0,100)) +
   ggtitle("Distribution of Maths scores")
+knitr::opts_chunk$set()
 
 ```
 
@@ -123,6 +126,7 @@ p2 <- ggplot(data=exam_data,
                  fill="grey90") +
   coord_cartesian(xlim=c(0,100)) +
   ggtitle("Distribution of English scores")
+knitr::opts_chunk$set()
 ```
 
 ```{r}
@@ -135,10 +139,16 @@ p3 <- ggplot(data=exam_data,
   coord_cartesian(xlim=c(0,100),
                   ylim=c(0,100)) +
   ggtitle("English scores versus Maths scores for Primary 3")
-
+knitr::opts_chunk$set()
 ```
 
-“/” operator to stack two ggplot2 graphs, “\|” operator to place the plots beside each other, “()” operator the define the sequence of the plotting.
+***Patchwork*** is a ggplot2 extension designed to combine separate ggplot2 graphs into a single figure. Here's the syntax.
+
+-   “/” operator to stack two ggplot2 graphs
+
+-   “\|” operator to place the plots beside each other
+
+-   “()” operator the define the sequence of the plotting
 
 ```{r}
 p1 + p2
