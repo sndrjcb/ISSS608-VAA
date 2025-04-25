@@ -53,7 +53,7 @@ ggplot(data=exam_data,
   coord_cartesian(xlim=c(0,100),
                   ylim=c(0,100)) +
   ggtitle("English scores versus Maths scores for Primary 3")
-knitr::opts_chunk$set()
+knitr::opts_chunk$set(warning = FALSE)
 ```
 
 ggrepel is an extension of ggplot2 package which provides geoms for ggplot2 to repel overlapping text.
@@ -70,7 +70,7 @@ ggplot(data=exam_data,
   coord_cartesian(xlim=c(0,100),
                   ylim=c(0,100)) +
   ggtitle("English scores versus Maths scores for Primary 3")
-knitr::opts_chunk$set()
+knitr::opts_chunk$set(warning = FALSE)
 ```
 
 # Themes
@@ -83,9 +83,10 @@ ggplot(data=exam_data,
   geom_histogram(bins=20, 
                  boundary = 100,
                  color="grey25", 
-                 fill="grey90") +
+                 fill="#630e27") +
   theme_dark() +
   ggtitle("Distribution of Maths Scores") 
+knitr::opts_chunk$set(warning = FALSE)
 ```
 
 ```{r}
@@ -94,10 +95,10 @@ ggplot(data=exam_data,
   geom_histogram(bins=20, 
                  boundary = 100,
                  color="grey25", 
-                 fill="grey90") +
+                 fill="#630e27") +
   ggtitle("Distribution of Maths scores") +
   theme_ipsum()
-knitr::opts_chunk$set()
+knitr::opts_chunk$set(warning = FALSE)
 ```
 
 # Combining Graphs
@@ -110,10 +111,10 @@ p1 <- ggplot(data=exam_data,
   geom_histogram(bins=20, 
                  boundary = 100,
                  color="grey25", 
-                 fill="grey90") + 
+                 fill="#630e27") + 
   coord_cartesian(xlim=c(0,100)) +
   ggtitle("Distribution of Maths scores")
-knitr::opts_chunk$set()
+knitr::opts_chunk$set(warning = FALSE)
 
 ```
 
@@ -123,10 +124,10 @@ p2 <- ggplot(data=exam_data,
   geom_histogram(bins=20, 
                  boundary = 100,
                  color="grey25", 
-                 fill="grey90") +
+                 fill="black") +
   coord_cartesian(xlim=c(0,100)) +
   ggtitle("Distribution of English scores")
-knitr::opts_chunk$set()
+knitr::opts_chunk$set(warning = FALSE)
 ```
 
 ```{r}
@@ -139,7 +140,7 @@ p3 <- ggplot(data=exam_data,
   coord_cartesian(xlim=c(0,100),
                   ylim=c(0,100)) +
   ggtitle("English scores versus Maths scores for Primary 3")
-knitr::opts_chunk$set()
+knitr::opts_chunk$set(warning = FALSE)
 ```
 
 ***Patchwork*** is a ggplot2 extension designed to combine separate ggplot2 graphs into a single figure. Here's the syntax.

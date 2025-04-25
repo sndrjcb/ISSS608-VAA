@@ -20,12 +20,13 @@ website:
         href: "https://www.linkedin.com/in/sandrajacob99/"
       - icon: telegram
         href: "https://t.me/sndrjcb"
-
+  page-footer: 
+    background: '#300713'
+    border: false
+    right: "Copyright 2025, Sandra Jacob" 
 format:
   html:
     theme: lux
-    light: flatly
-    dark: darkly
     highlight-style: dracula
     title-block-banner: '#300713'
     title-block-banner-color: white

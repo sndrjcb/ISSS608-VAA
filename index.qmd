@@ -1,6 +1,8 @@
 ---
 title: "Visual Analytics & Applications"
 subtitle: "Sandra Jacob"
+title-block-banner: "images/clipboard-4193214095.png"
+title-block-banner-color: "#ffffff"
 ---
 
 Welcome to **ISSS608 Visual Analytics & Applications**! This subject focuses on the use of tools like Quarto and Tableau to create visualizations to analyze datasets. This course is taught by Prof Tin Seong Kam for the AY2024-25 April term, so you will find my coursework on this website over the coming weeks.
