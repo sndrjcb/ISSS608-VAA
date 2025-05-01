@@ -12,6 +12,11 @@ website:
           href: "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html"
         - text: "Hands On Exercise 2"
           href: "HandsOn_Exercises/HandsOn_Ex02/HandsOnEx02.html"
+        - text: "Hands On Exercise 3"
+          href: "HandsOn_Exercises/HandsOn_Ex03/HandsOnEx03.html"
+        - text: "Hands On Exercise 4"
+          href: "HandsOn_Exercises/HandsOn_Ex04/HandsOnEx04.html"
+          
     
     tools:
       - icon: github
@@ -23,13 +28,19 @@ website:
   page-footer: 
     background: '#300713'
     border: false
+    left: "Tracked by Google Analytics"
     right: "Copyright 2025, Sandra Jacob" 
+
 format:
   html:
     theme: lux
     highlight-style: dracula
     title-block-banner: '#300713'
     title-block-banner-color: white
+    fontcolor: black
+    linkcolor: '#300713'
+    footer-fg: "#ffffff"
+    page-layout: full
     css: styles.css
     toc: true
 

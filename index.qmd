@@ -1,7 +1,7 @@
 ---
 title: "Visual Analytics & Applications"
 subtitle: "Sandra Jacob"
-title-block-banner: "images/clipboard-4193214095.png"
+title-block-banner: "images/clipboard-4193214095-01.png"
 title-block-banner-color: "#ffffff"
 ---
 

@@ -1,9 +1,16 @@
 ---
 title: "Hands On Exercise 1"
 subtitle: "A Layered Grammar of Graphics: Methods in ggplot2"
+format: html
 date: 04/18/2025
 date-format: long
 date-modified: last-modified
+editor: visual
+execute:
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
 ---
 
 # Getting Started

@@ -1,9 +1,16 @@
 ---
 title: "Hands On Exercise 2"
 subtitle: "Beyond ggplot2 Fundamentals"
+format: html
 date: 04/22/2025
 date-format: long
 date-modified: last-modified
+editor: visual
+execute:
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
 ---
 
 There are several ggplot2 extensions for creating more elegant and effective statistical graphics. Let's explore these features!
@@ -26,7 +33,7 @@ To check if these packages have been installed and to load them into your workin
 pacman::p_load(ggrepel, patchwork, ggthemes, hrbrthemes, tidyverse)
 ```
 
-## Importing Data
+# Importing Data
 
 The code chunk below imports *exam_data.csv* into R environment by using *read_csv()* function of [**readr**](#0) package. 
 
@@ -160,6 +167,23 @@ p1 + p2
 ```
 
 ```{r}
+#| fig-width: 12
+#| fig-height: 7
 patchwork <- (p1 / p2) | p3
 patchwork
+```
+
+```{r}
+p3 <- ggplot(data=exam_data, 
+             aes(x= MATHS, 
+                 y=ENGLISH)) +
+  geom_point() +
+  geom_smooth(method=lm, 
+              size=0.5) +  
+  coord_cartesian(xlim=c(0,100),
+                  ylim=c(0,100)) +
+  ggtitle(stringr::str_wrap("English scores versus Maths scores for Primary 3", width = 30)) +
+  theme_wsj() +
+  theme(plot.title = element_text(hjust = 0.5, size = 15, face = "bold"))
+
 ```
