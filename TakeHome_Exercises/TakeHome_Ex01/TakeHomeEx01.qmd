@@ -68,3 +68,16 @@ We first take a look at the data, and check if there are any duplicate entries u
 # 1.5 Exploratory Data Analysis (EDA)
 
 # 1.? References
+
+
+```{r}
+library(leaflet)
+
+lat <- 48
+long <- 350
+
+cat("title=", "World Map at", lat, long)
+
+leaflet() |> addTiles() |> 
+  setView(long, lat, zoom = 2)
+```

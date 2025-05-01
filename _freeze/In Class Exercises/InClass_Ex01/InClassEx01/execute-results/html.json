@@ -1,0 +1,15 @@
+{
+  "hash": "0e4b6848e33b5976e965c80e92222383",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"In Class Exercise 01\"\nsubtitle: \" \"\nformat: html\ndate: 05/02/2025\ndate-format: long\ndate-modified: last-modified\neditor: visual\nexecute:\n  eval: true\n  echo: true\n  warning: false\n  freeze: true\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nhtmltools::tags$iframe(\n  src = \"https://public.tableau.com/views/SuperstoreIn-ClassExercise02/Dashboard1?:language=en-GB&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link\",\n  width = \"1000\",\n  height = \"800\",\n  frameborder = \"0\",\n  allowfullscreen = NA\n)\n```\n\n::: {.cell-output-display}\n\n```{=html}\n<iframe src=\"https://public.tableau.com/views/SuperstoreIn-ClassExercise02/Dashboard1?:language=en-GB&amp;:sid=&amp;:redirect=auth&amp;:display_count=n&amp;:origin=viz_share_link\" width=\"1000\" height=\"800\" frameborder=\"0\" allowfullscreen></iframe>\n```\n\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
