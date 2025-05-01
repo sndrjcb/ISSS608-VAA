@@ -1,5 +1,61 @@
 [
   {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html",
+    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html",
+    "title": "Take Home Exercise 1",
+    "section": "",
+    "text": "Introduction & description of the dataset."
+  },
+  {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#loading-packages",
+    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#loading-packages",
+    "title": "Take Home Exercise 1",
+    "section": "1.3.1 Loading packages",
+    "text": "1.3.1 Loading packages\nWe load the following R packages using the pacman::p_load() function:\n\ntidyverse: Core collection of R packages designed for data science\nhaven: To read in data formats such as SAS and SPSS\nggrepel: to provides geoms for ggplot2 to repel overlapping text labels\nggthemes: to use additional themes for ggplot2\npatchwork: to prepare composite figure created using ggplot2\nggridges: to plot ridgeline plots\nggdist: for visualizations of distributions and uncertainty\nscales: provides the internal scaling infrastructure used by ggplot2"
+  },
+  {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#importing-data",
+    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#importing-data",
+    "title": "Take Home Exercise 1",
+    "section": "1.3.2 Importing Data",
+    "text": "1.3.2 Importing Data\nImporting dataset"
+  },
+  {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#glimpse",
+    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#glimpse",
+    "title": "Take Home Exercise 1",
+    "section": "1.4.1 Glimpse",
+    "text": "1.4.1 Glimpse"
+  },
+  {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#checking-data-structure",
+    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#checking-data-structure",
+    "title": "Take Home Exercise 1",
+    "section": "1.4.2 Checking data structure",
+    "text": "1.4.2 Checking data structure"
+  },
+  {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#checking-for-duplicate-values",
+    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#checking-for-duplicate-values",
+    "title": "Take Home Exercise 1",
+    "section": "1.4.3 Checking for duplicate values",
+    "text": "1.4.3 Checking for duplicate values"
+  },
+  {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#checking-for-missing-values",
+    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#checking-for-missing-values",
+    "title": "Take Home Exercise 1",
+    "section": "1.4.4 Checking for missing values",
+    "text": "1.4.4 Checking for missing values"
+  },
+  {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#filtering-data-for-selected-variables",
+    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#filtering-data-for-selected-variables",
+    "title": "Take Home Exercise 1",
+    "section": "1.4.5 Filtering data for selected variables",
+    "text": "1.4.5 Filtering data for selected variables"
+  },
+  {
     "objectID": "HandsOn_Exercises/HandsOn_Ex04/HandsOnEx04.html",
     "href": "HandsOn_Exercises/HandsOn_Ex04/HandsOnEx04.html",
     "title": "Hands On Exercise 4",
@@ -61,6 +117,55 @@
     "title": "Hands On Exercise 4",
     "section": "4.4.2 Building an animated bubble plot: plot_ly() method",
     "text": "4.4.2 Building an animated bubble plot: plot_ly() method\nIn this sub-section, you will learn how to create an animated bubble plot by using plot_ly() method.\n\nbp &lt;- globalPop %&gt;%\n  plot_ly(x = ~Old, \n          y = ~Young, \n          size = ~Population, \n          color = ~Continent,\n          sizes = c(2, 100),\n          frame = ~Year, \n          text = ~Country, \n          hoverinfo = \"text\",\n          type = 'scatter',\n          mode = 'markers'\n          ) %&gt;%\n  layout(showlegend = FALSE)\nbp"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex02/HandsOnEx02.html",
+    "href": "HandsOn_Exercises/HandsOn_Ex02/HandsOnEx02.html",
+    "title": "Hands On Exercise 2",
+    "section": "",
+    "text": "There are several ggplot2 extensions for creating more elegant and effective statistical graphics. Let’s explore these features!\n\nGetting Started\nBesides tidyverse, four R packages will be used.\n\nggrepel: to provide geoms for ggplot2 to repel overlapping text labels\nggthemes: to provide extra themes, geoms, and scales for ‘ggplot2’\nhrbrthemes: for typography-centric themes and theme components for ggplot2\npatchwork: for preparing composite figure created using ggplot2\n\nTo check if these packages have been installed and to load them into your working R environment, run the code below.\n\npacman::p_load(ggrepel, patchwork, ggthemes, hrbrthemes, tidyverse)\n\n\n\nImporting Data\nThe code chunk below imports exam_data.csv into R environment by using read_csv() function of readr package. \n\nexam_data &lt;- read_csv(\"Exam_data.csv\")\nshow_col_types = FALSE\nknitr::kable(head(exam_data))\n\n\n\n\nID\nCLASS\nGENDER\nRACE\nENGLISH\nMATHS\nSCIENCE\n\n\n\n\nStudent321\n3I\nMale\nMalay\n21\n9\n15\n\n\nStudent305\n3I\nFemale\nMalay\n24\n22\n16\n\n\nStudent289\n3H\nMale\nChinese\n26\n16\n16\n\n\nStudent227\n3F\nMale\nChinese\n27\n77\n31\n\n\nStudent318\n3I\nMale\nMalay\n27\n11\n25\n\n\nStudent306\n3I\nFemale\nMalay\n31\n16\n16\n\n\n\n\n\n\n\nWhat is ggrepel?\nOne of the challenge in plotting statistical graph is annotation, especially with large number of data points. Take a look below and see it for yourself.\n\nggplot(data=exam_data, \n       aes(x= MATHS, \n           y=ENGLISH)) +\n  geom_point() +\n  geom_smooth(method=lm, \n              size=0.5) +  \n  geom_label(aes(label = ID), \n             hjust = .5, \n             vjust = -.5) +\n  coord_cartesian(xlim=c(0,100),\n                  ylim=c(0,100)) +\n  ggtitle(\"English scores versus Maths scores for Primary 3\")\n\n\n\n\n\n\n\nknitr::opts_chunk$set(warning = FALSE)\n\nggrepel is an extension of ggplot2 package which provides geoms for ggplot2 to repel overlapping text.\n\nggplot(data=exam_data, \n       aes(x= MATHS, \n           y=ENGLISH)) +\n  geom_point() +\n  geom_smooth(method=lm, \n              size=0.5) +  \n  geom_label_repel(aes(label = ID), \n                   fontface = \"bold\") +\n  coord_cartesian(xlim=c(0,100),\n                  ylim=c(0,100)) +\n  ggtitle(\"English scores versus Maths scores for Primary 3\")\n\n\n\n\n\n\n\nknitr::opts_chunk$set(warning = FALSE)\n\n\n\nThemes\nggplot2 comes with eight built-in themes, they are: theme_gray(), theme_bw(), theme_classic(), theme_dark(), theme_light(), theme_linedraw(), theme_minimal(), and theme_void().\n\nggplot(data=exam_data, \n             aes(x = MATHS)) +\n  geom_histogram(bins=20, \n                 boundary = 100,\n                 color=\"grey25\", \n                 fill=\"#630e27\") +\n  theme_dark() +\n  ggtitle(\"Distribution of Maths Scores\") \n\n\n\n\n\n\n\nknitr::opts_chunk$set(warning = FALSE)\n\n\nggplot(data=exam_data, \n             aes(x = MATHS)) +\n  geom_histogram(bins=20, \n                 boundary = 100,\n                 color=\"grey25\", \n                 fill=\"#630e27\") +\n  ggtitle(\"Distribution of Maths scores\") +\n  theme_ipsum()\n\n\n\n\n\n\n\nknitr::opts_chunk$set(warning = FALSE)\n\n\n\nCombining Graphs\nLet’s create three graphs named p1, p2 and p3.\n\np1 &lt;- ggplot(data=exam_data, \n             aes(x = MATHS)) +\n  geom_histogram(bins=20, \n                 boundary = 100,\n                 color=\"grey25\", \n                 fill=\"#630e27\") + \n  coord_cartesian(xlim=c(0,100)) +\n  ggtitle(\"Distribution of Maths scores\")\nknitr::opts_chunk$set(warning = FALSE)\n\n\np2 &lt;- ggplot(data=exam_data, \n             aes(x = ENGLISH)) +\n  geom_histogram(bins=20, \n                 boundary = 100,\n                 color=\"grey25\", \n                 fill=\"black\") +\n  coord_cartesian(xlim=c(0,100)) +\n  ggtitle(\"Distribution of English scores\")\nknitr::opts_chunk$set(warning = FALSE)\n\n\np3 &lt;- ggplot(data=exam_data, \n             aes(x= MATHS, \n                 y=ENGLISH)) +\n  geom_point() +\n  geom_smooth(method=lm, \n              size=0.5) +  \n  coord_cartesian(xlim=c(0,100),\n                  ylim=c(0,100)) +\n  ggtitle(\"English scores versus Maths scores for Primary 3\")\nknitr::opts_chunk$set(warning = FALSE)\n\nPatchwork is a ggplot2 extension designed to combine separate ggplot2 graphs into a single figure. Here’s the syntax.\n\n“/” operator to stack two ggplot2 graphs\n“|” operator to place the plots beside each other\n“()” operator the define the sequence of the plotting\n\n\np1 + p2\n\n\n\n\n\n\n\n\n\n(p1 / p2) | p3\n\n\n\n\n\n\n\n\n\npatchwork &lt;- (p1 / p2) | p3\npatchwork\n\n\n\n\n\n\n\n\n\np3 &lt;- ggplot(data=exam_data, \n             aes(x= MATHS, \n                 y=ENGLISH)) +\n  geom_point() +\n  geom_smooth(method=lm, \n              size=0.5) +  \n  coord_cartesian(xlim=c(0,100),\n                  ylim=c(0,100)) +\n  ggtitle(stringr::str_wrap(\"English scores versus Maths scores for Primary 3\", width = 30)) +\n  theme_wsj() +\n  theme(plot.title = element_text(hjust = 0.5, size = 15, face = \"bold\"))"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html",
+    "href": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html",
+    "title": "Hands On Exercise 1",
+    "section": "",
+    "text": "The code below uses p_load() of pacman package to check if tidyverse packages are installed in the computer. If they are, then they will be launched into R.\n\npacman::p_load(tidyverse)\n\n\n\n\n\nexam_data &lt;- read_csv(\"data/Exam_data.csv\")\nshow_col_types = FALSE\n\nknitr::kable(head(exam_data))\n\n\n\n\nID\nCLASS\nGENDER\nRACE\nENGLISH\nMATHS\nSCIENCE\n\n\n\n\nStudent321\n3I\nMale\nMalay\n21\n9\n15\n\n\nStudent305\n3I\nFemale\nMalay\n24\n22\n16\n\n\nStudent289\n3H\nMale\nChinese\n26\n16\n16\n\n\nStudent227\n3F\nMale\nChinese\n27\n77\n31\n\n\nStudent318\n3I\nMale\nMalay\n27\n11\n25\n\n\nStudent306\n3I\nFemale\nMalay\n31\n16\n16"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#installing-r-packages",
+    "href": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#installing-r-packages",
+    "title": "Hands On Exercise 1",
+    "section": "",
+    "text": "The code below uses p_load() of pacman package to check if tidyverse packages are installed in the computer. If they are, then they will be launched into R.\n\npacman::p_load(tidyverse)"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#importing-data",
+    "href": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#importing-data",
+    "title": "Hands On Exercise 1",
+    "section": "",
+    "text": "exam_data &lt;- read_csv(\"data/Exam_data.csv\")\nshow_col_types = FALSE\n\nknitr::kable(head(exam_data))\n\n\n\n\nID\nCLASS\nGENDER\nRACE\nENGLISH\nMATHS\nSCIENCE\n\n\n\n\nStudent321\n3I\nMale\nMalay\n21\n9\n15\n\n\nStudent305\n3I\nFemale\nMalay\n24\n22\n16\n\n\nStudent289\n3H\nMale\nChinese\n26\n16\n16\n\n\nStudent227\n3F\nMale\nChinese\n27\n77\n31\n\n\nStudent318\n3I\nMale\nMalay\n27\n11\n25\n\n\nStudent306\n3I\nFemale\nMalay\n31\n16\n16"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#data",
+    "href": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#data",
+    "title": "Hands On Exercise 1",
+    "section": "Data",
+    "text": "Data\nFirst, let’s call the ggplot() function using the below code.\n\nggplot(data=exam_data)"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#aesthetic-mappings",
+    "href": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#aesthetic-mappings",
+    "title": "Hands On Exercise 1",
+    "section": "Aesthetic mappings",
+    "text": "Aesthetic mappings\n\nggplot(data=exam_data, \n       aes(x= MATHS))"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#geom",
+    "href": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#geom",
+    "title": "Hands On Exercise 1",
+    "section": "Geom",
+    "text": "Geom\nGeometric objects are the actual marks we put on a plot. A plot must have at least one geom and there is no upper limit. You can add a geom to a plot using the + operator.\nExamples include:\n\ngeom_point() for drawing individual points (e.g., a scatter plot)\ngeom_line() for drawing lines (e.g., for a line charts)\ngeom_bar() for drawing bars (e.g., for bar charts)\ngeom_jitter() to add a small amount of random variation to the location of each point\ngeom_map() for drawing polygons in the shape of a map!"
   },
   {
     "objectID": "HandsOn_Exercises/HandsOn_Ex03/HandsOnEx03.html",
@@ -165,6 +270,13 @@
     "href": "index.html",
     "title": "Visual Analytics & Applications",
     "section": "",
-    "text": "Welcome to ISSS608 Visual Analytics & Applications! This subject focuses on the use of tools like Quarto and Tableau to create visualizations to analyze datasets. This course is taught by Prof Tin Seong Kam for the AY2024-25 April term, so you will find my coursework on this website over the coming weeks.\nI am a full-time business analyst, part-time MITB student, and I am looking forward to pivot into data science in the near future. My hobbies are gymming, painting and travelling. Feel free to reach out to me through the links provided in the navigation bar!"
+    "text": "Welcome to ISSS608: Visual Analytics & Applications!\nThis website showcases my learning journey for this course in the AY2024–25 April taught by Professor Kam Tin Seong at SMU. The course explores how visualizations can turn raw data into meaningful insights, using tools like Quarto for web-based reporting and Tableau for interactive dashboards. Throughout the semester, I’ll be sharing my coursework, projects, and reflections here — so stay tuned as this site evolves!\nI’m currently a full-time business analyst and a part-time MITB student, with a keen interest in data storytelling and analytics. My goal is to pivot into a data science role, combining analytical techniques with strong business intuition to solve real-world problems. When I’m not coding or studying, you can usually find me at the gym, painting on a quiet weekend, or planning my next travel adventure. Feel free to explore my site!"
+  },
+  {
+    "objectID": "index.html#welcome-to-isss608-visual-analytics-applications",
+    "href": "index.html#welcome-to-isss608-visual-analytics-applications",
+    "title": "Visual Analytics & Applications",
+    "section": "",
+    "text": "This website showcases my learning journey for this course in the AY2024–25 April taught by Professor Kam Tin Seong at SMU. The course explores how visualizations can turn raw data into meaningful insights, using tools like Quarto for web-based reporting and Tableau for interactive dashboards. Throughout the semester, I’ll be sharing my coursework, projects, and reflections here — so stay tuned as this site evolves!\nI’m currently a full-time business analyst and a part-time MITB student, with a keen interest in data storytelling and analytics. My goal is to pivot into a data science role, combining analytical techniques with strong business intuition to solve real-world problems. When I’m not coding or studying, you can usually find me at the gym, painting on a quiet weekend, or planning my next travel adventure. Feel free to explore my site!"
   }
 ]

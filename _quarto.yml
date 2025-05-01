@@ -16,7 +16,10 @@ website:
           href: "HandsOn_Exercises/HandsOn_Ex03/HandsOnEx03.html"
         - text: "Hands On Exercise 4"
           href: "HandsOn_Exercises/HandsOn_Ex04/HandsOnEx04.html"
-          
+    - text: "Take Home Exercises"
+      menu:
+        - text: "Take Home Exercise 1"
+          href: "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html"
     
     tools:
       - icon: github
@@ -45,4 +48,8 @@ format:
     toc: true
 
 editor: visual
+
+execute:
+  enabled: true
+  engine: knitr
 
