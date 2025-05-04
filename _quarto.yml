@@ -47,6 +47,10 @@ format:
     fontcolor: black
     linkcolor: '#300713'
     footer-fg: "#ffffff"
+    code-fold: true
+    code-summary: "Code"
+    code-tools: true
+    code-overflow: scroll
     page-layout: full
     css: styles.css
     toc: true

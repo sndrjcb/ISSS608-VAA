@@ -8,5 +8,3 @@ Welcome to **ISSS608: Visual Analytics & Applications**!
 This website showcases my learning journey for this course in the **AY2024–25 April** taught by **Professor Kam Tin Seong** at SMU. The course explores how visualizations can turn raw data into meaningful insights, using tools like Quarto for web-based reporting and Tableau for interactive dashboards. Throughout the semester, I’ll be sharing my coursework, projects, and reflections here — so stay tuned as this site evolves!
 
 I’m currently a full-time business analyst and a part-time MITB student, with a keen interest in data storytelling and analytics. My goal is to pivot into a data science role, combining analytical techniques with strong business intuition to solve real-world problems. When I’m not coding or studying, you can usually find me at the gym, painting on a quiet weekend, or planning my next travel adventure. Feel free to explore my site!
-
-![](images/Tech.jpg){fig-align="center" width="342" height="56"}

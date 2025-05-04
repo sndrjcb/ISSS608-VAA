@@ -21,9 +21,9 @@ Introduction & description of the dataset.
 
 In this exercise, Exploratory Data Analysis (EDA) methods and ggplot functions are used to explore:
 
--   the variations of age, sex, population between different planning areas and subzones
+-   the variations of Age, sex, population between different planning areas and subzones
 
--   the distribution of Singapore overall population in terms of age, sex, etc.
+-   the distribution of Singapore overall population in terms of Age, sex, etc.
 
 # 1.3 Let's get started!
 
@@ -47,9 +47,26 @@ We load the following R packages using the `pacman::p_load()` function:
 
 -   **scales**: provides the internal scaling infrastructure used by **ggplot2**
 
+```{r}
+pacman::p_load(tidyverse, haven,
+               ggrepel, ggthemes,
+               ggridges, ggdist,colorspace,ggdist,
+               patchwork, scales, ggplot2)
+
+```
+
 ## 1.3.2 Importing Data
 
 Importing dataset
+
+```{r}
+
+respopagesex2024 <- read_csv("respopagesex2024.csv")
+show_col_types = FALSE
+
+knitr::kable(head(respopagesex2024))
+
+```
 
 # 1.4 Data Pre-Processing
 
@@ -57,27 +74,187 @@ We first take a look at the data, and check if there are any duplicate entries u
 
 ## 1.4.1 Glimpse
 
+```{r}
+glimpse(respopagesex2024)
+```
+
 ## **1.4.2 Checking data structure**
 
 ## 1.4.3 Checking for duplicate values
+
+```{r}
+respopagesex2024[duplicated(respopagesex2024),]
+```
 
 ## 1.4.4 **Checking for missing values**
 
 ## **1.4.5 Filtering data for selected variables**
 
-# 1.5 Exploratory Data Analysis (EDA)
+```{r}
 
-# 1.? References
+planning_areas <- read_csv("Planning_areas_of_Singapore_2.csv")
 
+# Check column names
+colnames(respopagesex2024)
+colnames(planning_areas)
+
+respop_with_region <- respopagesex2024 %>%
+  left_join(planning_areas, by = c("PA" = "Name (English)"))
+
+# View result
+
+glimpse(respop_with_region)
+
+
+head(respop_with_region)
+
+knitr::kable(head(respop_with_region))
+
+```
+
+Deleting
 
 ```{r}
-library(leaflet)
+respop_cleaned <- respop_with_region %>%
+  select(-`Time`, -`Malay`, -`Chinese`, -`Pinyin`, -`Tamil`, -`Area (km2)`, -`Population`, -`Density (/km2)`, -`Subzones`)
 
-lat <- 48
-long <- 350
+knitr::kable(head(respop_cleaned))
 
-cat("title=", "World Map at", lat, long)
+glimpse(respop_cleaned)
 
-leaflet() |> addTiles() |> 
-  setView(long, lat, zoom = 2)
 ```
+
+# 1.5 Exploratory Data Analysis (EDA)
+
+Region-wise Age Distribution Using Multiple Density Plots
+
+```{r, fig.width=14, fig.height=16}
+library(matrixStats)
+
+respop_cleaned <- respop_cleaned %>%
+  mutate(
+    Age = as.character(Age),
+    Age = ifelse(Age == "90_and_Over", "90", Age),
+    Age = as.numeric(Age)
+)
+
+# Calculate mode (age with highest density) per region
+mode_age <- respop_cleaned %>%
+  group_by(Region) %>%
+  group_split() %>%
+  map_df(~ {
+    d <- density(rep(.x$Age, .x$Pop))
+    data.frame(
+      Region = unique(.x$Region),
+      mode_age = d$x[which.max(d$y)]
+    )
+  })
+
+# Plot with vertical mode lines
+ggplot(respop_cleaned, aes(x = Age, weight = Pop, fill = Region)) +
+  geom_density(alpha = 0.6, adjust = 1) +
+  geom_vline(data = mode_age, aes(xintercept = mode_age), color = "black", linetype = "dashed", size = 0.8) + 
+  geom_text(
+    data = mode_age,
+    mapping = aes(x = mode_age, y = 0, label = paste0("Peak: ", round(mode_age, 1))),
+    inherit.aes = FALSE,
+    angle = 90, vjust = -0.5, hjust = 1.1, size = 3
+  ) +
+  facet_wrap(~ Region, scales = "free_y", ncol = 2) +
+  labs(
+    title = "Age Distribution by Region in Singapore (Weighted by Population)",
+    subtitle = "Dashed line indicates age with highest density (mode)",
+    x = "Age",
+    y = "Density"
+  ) +
+  theme(legend.position = "none") +
+  theme_minimal(base_family = "nunito") + theme(legend.position = "none",axis.text.x = element_text(angle = 90, vjust = 0.5),plot.title = element_text(hjust = 0.5, size = 30, face = "bold", family = "nunito")) +
+  scale_fill_manual(values = c("West" = "#145C47", "East" = "#2C3C60", "North" = "#662633","North-East" = "#4B2C60","Central" = "#665C26"))
+
+```
+
+Gender Ratio Analysis by Region (Male-to-Female Ratio)
+
+```{r}
+gender_summary_long <- respop_cleaned %>%
+  group_by(Region, Sex) %>%
+  summarise(Total_Pop = sum(Pop), .groups = "drop")
+
+# Step 2: Calculate total population per region
+gender_summary_long <- gender_summary_long %>%
+  group_by(Region) %>%
+  mutate(
+    Region_Total = sum(Total_Pop),
+    Percent = (Total_Pop / Region_Total) * 100
+  )
+
+# Step 3: Plot side-by-side bars with percentage labels
+ggplot(gender_summary_long, aes(x = Region, y = Total_Pop, fill = Sex)) +
+  geom_col(position = "dodge") +
+  geom_text(
+    aes(label = paste0(round(Percent, 1), "%")),
+    position = position_dodge(width = 0.9),
+    vjust = -0.5,
+    size = 3, family = "nunito"
+  ) +
+  labs(
+    title = "Male and Female Population by Region",
+    x = "Region",
+    y = "Total Population"
+  ) +
+  scale_y_continuous(labels = scales::comma) +
+  theme_minimal(base_family = "nunito") + theme(legend.position = "none",axis.text.x = element_text(angle = 90, vjust = 0.5),plot.title = element_text(hjust = 0.5, size = 15, face = "bold", family = "nunito")) +
+  scale_fill_manual(values = c("Females" = "#662633", "Males" = "#2C3C60"))
+
+```
+
+Total population by Region
+
+```{r}
+library("treemapify")
+library(showtext)
+font_add_google(name = "Nunito Sans", family = "nunito")
+showtext_auto()
+
+# Summarize total population by region
+region_summary <- respop_cleaned %>%
+  group_by(Region) %>%
+  summarise(Total_Pop = sum(Pop), .groups = "drop")
+
+# Treemap
+ggplot(region_summary, aes(area = Total_Pop, fill = Region, label = paste(Region, "\n", scales::comma(Total_Pop)))) +
+  geom_treemap() +
+  geom_treemap_text(colour = "white",family = "nunito",
+    place = "centre",
+    grow = TRUE,
+    size = 14,    
+    fontface = "bold") +
+  labs(title = "Total Population by Region") +
+  theme_minimal(base_family = "nunito") + theme(legend.position = "none",axis.text.x = element_text(angle = 90, vjust = 0.5),plot.title = element_text(hjust = 0.5, size = 30, face = "bold", family = "nunito")) +
+  scale_fill_manual(values = c("West" = "#145C47", "East" = "#2C3C60", "North" = "#662633","North-East" = "#4B2C60","Central" = "#665C26"))
+
+
+```
+
+Population by Planning Areas
+
+```{r, fig.width=16, fig.height=15, echo=TRUE}
+
+# Summarize total population by planning area for each region
+planning_area_summary <- respop_cleaned %>%
+  group_by(Region, PA) %>%
+  summarise(Total_Pop = sum(Pop), .groups = "drop")
+
+# Bar chart
+ggplot(planning_area_summary, aes(x = reorder(PA, -Total_Pop), y = Total_Pop, fill = Region)) +
+  geom_col() +
+  facet_wrap(~ Region, scales = "free_x") +
+  labs(title = "Total Population by Planning Area (within Each Region)", x = "Planning Area", y = "Population") +
+  scale_y_continuous(labels = scales::comma) +
+  theme_minimal(base_family = "nunito",base_size = 25) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5),plot.title = element_text(hjust = 0.5, size = 30, face = "bold", family = "nunito")) +
+  scale_fill_manual(values = c("West" = "#145C47", "East" = "#2C3C60", "North" = "#662633","North-East" = "#4B2C60","Central" = "#665C26"))
+
+```
+
+# 1.? References
