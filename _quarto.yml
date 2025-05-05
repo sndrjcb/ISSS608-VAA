@@ -12,10 +12,10 @@ website:
           href: "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html"
         - text: "Hands On Exercise 2"
           href: "HandsOn_Exercises/HandsOn_Ex02/HandsOnEx02.html"
-        - text: "Hands On Exercise 3"
-          href: "HandsOn_Exercises/HandsOn_Ex03/HandsOnEx03.html"
-        - text: "Hands On Exercise 4"
-          href: "HandsOn_Exercises/HandsOn_Ex04/HandsOnEx04.html"
+        - text: "Hands On Exercise 3A"
+          href: "HandsOn_Exercises/HandsOn_Ex03A/HandsOnEx03A.html"
+        - text: "Hands On Exercise 3B"
+          href: "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html"
     - text: "In Class Exercises"
       menu:
         - text: "In Class Exercise 1"
@@ -40,7 +40,9 @@ website:
 
 format:
   html:
-    theme: lux
+    theme: litera
+    theme-options:
+      font-family-base: "Nunito Sans"
     highlight-style: dracula
     title-block-banner: '#300713'
     title-block-banner-color: white

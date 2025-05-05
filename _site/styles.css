@@ -4,3 +4,7 @@
   background-color: #1f050c !important; 
   color: white
 }
+
+body, p, li, ul, ol, blockquote {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+}

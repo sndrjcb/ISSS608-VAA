@@ -163,12 +163,12 @@ background: #300713;
  <span class="dropdown-text">Hands On Exercise 2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../HandsOn_Exercises/HandsOn_Ex03/HandsOnEx03.html">
- <span class="dropdown-text">Hands On Exercise 3</span></a>
+    <a class="dropdown-item" href="../../HandsOn_Exercises/HandsOn_Ex03A/HandsOnEx03A.html">
+ <span class="dropdown-text">Hands On Exercise 3A</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../HandsOn_Exercises/HandsOn_Ex04/HandsOnEx04.html">
- <span class="dropdown-text">Hands On Exercise 4</span></a>
+    <a class="dropdown-item" href="../../HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html">
+ <span class="dropdown-text">Hands On Exercise 3B</span></a>
   </li>  
     </ul>
   </li>
@@ -227,7 +227,7 @@ background: #300713;
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">May 4, 2025</p>
+        <p class="date-modified">May 5, 2025</p>
       </div>
     </div>
       
@@ -243,18 +243,18 @@ background: #300713;
    
   <ul>
   <li><a href="#setting-the-scene" id="toc-setting-the-scene" class="nav-link active" data-scroll-target="#setting-the-scene">1.1 Setting the Scene</a></li>
-  <li><a href="#our-task" id="toc-our-task" class="nav-link" data-scroll-target="#our-task"><strong>1.2 Our Task</strong></a></li>
+  <li><a href="#our-task" id="toc-our-task" class="nav-link" data-scroll-target="#our-task">1.2 Our Task</a></li>
   <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">1.3 Getting Started</a>
   <ul class="collapse">
-  <li><a href="#loading-packages" id="toc-loading-packages" class="nav-link" data-scroll-target="#loading-packages"><strong>1.3.1 Loading packages</strong></a></li>
+  <li><a href="#loading-packages" id="toc-loading-packages" class="nav-link" data-scroll-target="#loading-packages">1.3.1 Loading packages</a></li>
   <li><a href="#importing-data" id="toc-importing-data" class="nav-link" data-scroll-target="#importing-data">1.3.2 Importing Data</a></li>
   </ul></li>
   <li><a href="#data-pre-processing" id="toc-data-pre-processing" class="nav-link" data-scroll-target="#data-pre-processing">1.4 Data Pre-Processing</a>
   <ul class="collapse">
   <li><a href="#glimpse" id="toc-glimpse" class="nav-link" data-scroll-target="#glimpse">1.4.1 Glimpse</a></li>
   <li><a href="#checking-for-duplicate-values" id="toc-checking-for-duplicate-values" class="nav-link" data-scroll-target="#checking-for-duplicate-values">1.4.2 Checking for duplicate values</a></li>
-  <li><a href="#additional-variables" id="toc-additional-variables" class="nav-link" data-scroll-target="#additional-variables"><strong>1.4.3 Additional variables</strong></a></li>
-  <li><a href="#selecting-variables" id="toc-selecting-variables" class="nav-link" data-scroll-target="#selecting-variables">1.4.4 Selecting Variables</a></li>
+  <li><a href="#additional-variables" id="toc-additional-variables" class="nav-link" data-scroll-target="#additional-variables">1.4.3 Additional Variables</a></li>
+  <li><a href="#selecting-primary-variables" id="toc-selecting-primary-variables" class="nav-link" data-scroll-target="#selecting-primary-variables">1.4.4 Selecting Primary Variables</a></li>
   </ul></li>
   <li><a href="#exploratory-data-analysis-eda" id="toc-exploratory-data-analysis-eda" class="nav-link" data-scroll-target="#exploratory-data-analysis-eda">1.5 Exploratory Data Analysis (EDA)</a>
   <ul class="collapse">
@@ -273,13 +273,13 @@ background: #300713;
 
 
 
-<p><u><em>Note: Based on your preference on viewing the R codes, please toggle between ‘Show’ or ‘Hide’ above.</em></u></p>
+<p><u><em>Note: Please toggle between ‘Show’ and ‘Hide’ above based on your preference for viewing the R codes.</em></u></p>
 <section id="setting-the-scene" class="level1">
 <h1>1.1 Setting the Scene</h1>
 <p>The dataset used in this exercise contains population statistics for Singapore as of 2024, broken down by planning area, subzone, age, and sex. It provides the number of residents across different demographic groups, allowing for a granular look at how Singapore’s population is distributed geographically and demographically.</p>
 </section>
 <section id="our-task" class="level1">
-<h1><strong>1.2 Our Task</strong></h1>
+<h1>1.2 Our Task</h1>
 <p>In this exercise, we apply Exploratory Data Analysis (EDA) techniques using the ggplot2 package in R. Specifically, we explore:</p>
 <ul>
 <li><p>The variation in age distribution across different planning areas and regions.</p></li>
@@ -291,7 +291,7 @@ background: #300713;
 <section id="getting-started" class="level1">
 <h1>1.3 Getting Started</h1>
 <section id="loading-packages" class="level2">
-<h2 class="anchored" data-anchor-id="loading-packages"><strong>1.3.1 Loading packages</strong></h2>
+<h2 class="anchored" data-anchor-id="loading-packages">1.3.1 Loading packages</h2>
 <p>We load the following R packages using the <code>pacman::p_load()</code> function:</p>
 <ul>
 <li><p><strong>tidyverse</strong>: Core collection of R packages designed for data science.</p></li>
@@ -319,7 +319,7 @@ background: #300713;
 </section>
 <section id="importing-data" class="level2">
 <h2 class="anchored" data-anchor-id="importing-data">1.3.2 Importing Data</h2>
-<p>The dataset used in the exercise is <em>Singapore Residents by Planning Area / Subzone, Single Year of Age and Sex, June 2024,</em> retrieved from the Department of Statistics, Singapore. Let’s import this dataset as rrespopagesex2024 and how the dataset looks like.</p>
+<p>The dataset used in the exercise is <em>Singapore Residents by Planning Area / Subzone, Single Year of Age and Sex, June 2024,</em> retrieved from the <a href="https://www.singstat.gov.sg/find-data/search-by-theme/population/geographic-distribution/latest-data">Department of Statistics, Singapore</a>. Let’s import this dataset as rrespopagesex2024 and how the dataset looks like.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -434,8 +434,8 @@ $ Time &lt;dbl&gt; 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2
 </div>
 </section>
 <section id="additional-variables" class="level2">
-<h2 class="anchored" data-anchor-id="additional-variables"><strong>1.4.3 Additional variables</strong></h2>
-<p>There are 55 planning zones and 332 subzones in Singapore, which is consistent with this dataset. However, it is not practical to explore each of these individually. However, I felt that exploring each subzone individually would not be practical for a high-level analysis. To address this, I introduced a ‘Region’ column to the dataset, indicating which of the five major regions (East, West, North, North-East, or Central) each planning zone belongs to. This grouping makes it easier to understand broad demographic patterns across Singapore. To achieve this, an additional dataset from Wikipedia listing the planning zones and their corresponding regions was used. A left join is performed to link these two datasets using the function <em>left_join()</em>.</p>
+<h2 class="anchored" data-anchor-id="additional-variables">1.4.3 Additional Variables</h2>
+<p>There are 55 planning zones and 332 subzones in Singapore, which is consistent with this dataset. However, I felt that exploring each subzone individually would not be practical for a high-level analysis. So, a ‘Region’ column is added to the dataset, indicating which of the five major regions (East, West, North, North-East, or Central) each planning zone belongs to. This grouping makes it easier to understand broad demographic patterns across Singapore. To achieve this, an additional dataset from <a href="https://en.wikipedia.org/wiki/Planning_areas_of_Singapore">Wikipedia</a> listing the planning zones and their corresponding regions was used. A left join is performed to link these two datasets using the function <em>left_join()</em>.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -632,8 +632,8 @@ $ Subzones         &lt;chr&gt; "12", "12", "12", "12", "12", "12", "12", "12", "
 </div>
 </div>
 </section>
-<section id="selecting-variables" class="level2">
-<h2 class="anchored" data-anchor-id="selecting-variables">1.4.4 Selecting Variables</h2>
+<section id="selecting-primary-variables" class="level2">
+<h2 class="anchored" data-anchor-id="selecting-primary-variables">1.4.4 Selecting Primary Variables</h2>
 <p>The primary variables chosen for this exercise are given below.</p>
 <table class="caption-top table">
 <colgroup>
@@ -774,7 +774,7 @@ $ Region &lt;chr&gt; "North-East", "North-East", "North-East", "North-East", "No
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Region, Sex) <span class="sc">%&gt;%</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Total_Pop =</span> <span class="fu">sum</span>(Pop), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Calculate total population per region</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculate total population per region</span></span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>gender_summary_long <span class="ot">&lt;-</span> gender_summary_long <span class="sc">%&gt;%</span></span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Region) <span class="sc">%&gt;%</span></span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
@@ -782,7 +782,7 @@ $ Region &lt;chr&gt; "North-East", "North-East", "North-East", "North-East", "No
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">Percent =</span> (Total_Pop <span class="sc">/</span> Region_Total) <span class="sc">*</span> <span class="dv">100</span></span>
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Plot side-by-side bars with percentage labels</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot side-by-side bars</span></span>
 <span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gender_summary_long, <span class="fu">aes</span>(<span class="at">x =</span> Region, <span class="at">y =</span> Total_Pop, <span class="at">fill =</span> Sex)) <span class="sc">+</span></span>
 <span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
 <span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
@@ -797,7 +797,7 @@ $ Region &lt;chr&gt; "North-East", "North-East", "North-East", "North-East", "No
 <span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Total Population"</span></span>
 <span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>comma) <span class="sc">+</span></span>
-<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_family =</span> <span class="st">"nunito"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>),<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">15</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">family =</span> <span class="st">"nunito"</span>)) <span class="sc">+</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_family =</span> <span class="st">"nunito"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>),<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">15</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">family =</span> <span class="st">"nunito"</span>)) <span class="sc">+</span></span>
 <span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Females"</span> <span class="ot">=</span> <span class="st">"#662633"</span>, <span class="st">"Males"</span> <span class="ot">=</span> <span class="st">"#2C3C60"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
@@ -828,7 +828,7 @@ $ Region &lt;chr&gt; "North-East", "North-East", "North-East", "North-East", "No
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Age =</span> <span class="fu">as.numeric</span>(Age)</span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate mode (age with highest density) per region</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate age with highest density per region</span></span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>mode_age <span class="ot">&lt;-</span> respop_cleaned <span class="sc">%&gt;%</span></span>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Region) <span class="sc">%&gt;%</span></span>
 <span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_split</span>() <span class="sc">%&gt;%</span></span>
@@ -1414,13 +1414,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co">  freeze: true</span></span>
 <span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">*Note: Based on your preference on viewing the R codes, please toggle between 'Show' or 'Hide' above.*</span><span class="co">]</span>{.underline}</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">*Note: Please toggle between 'Show' and 'Hide' above based on your preference for viewing the R codes.*</span><span class="co">]</span>{.underline}</span>
 <span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="fu"># 1.1 Setting the Scene</span></span>
 <span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>The dataset used in this exercise contains population statistics for Singapore as of 2024, broken down by planning area, subzone, age, and sex. It provides the number of residents across different demographic groups, allowing for a granular look at how Singapore’s population is distributed geographically and demographically.</span>
 <span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="fu"># **1.2 Our Task**</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="fu"># 1.2 Our Task</span></span>
 <span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>In this exercise, we apply Exploratory Data Analysis (EDA) techniques using the ggplot2 package in R. Specifically, we explore:</span>
 <span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a></span>
@@ -1434,7 +1434,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a><span class="fu"># 1.3 Getting Started</span></span>
 <span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## **1.3.1 Loading packages**</span></span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1.3.1 Loading packages</span></span>
 <span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a>We load the following R packages using the <span class="in">`pacman::p_load()`</span> function:</span>
 <span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a></span>
@@ -1471,7 +1471,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb20-72"><a href="#cb20-72" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-73"><a href="#cb20-73" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1.3.2 Importing Data</span></span>
 <span id="cb20-74"><a href="#cb20-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-75"><a href="#cb20-75" aria-hidden="true" tabindex="-1"></a>The dataset used in the exercise is *Singapore Residents by Planning Area / Subzone, Single Year of Age and Sex, June 2024,* retrieved from the Department of Statistics, Singapore. Let's import this dataset as rrespopagesex2024 and how the dataset looks like.</span>
+<span id="cb20-75"><a href="#cb20-75" aria-hidden="true" tabindex="-1"></a>The dataset used in the exercise is *Singapore Residents by Planning Area / Subzone, Single Year of Age and Sex, June 2024,* retrieved from the <span class="co">[</span><span class="ot">Department of Statistics, Singapore</span><span class="co">](https://www.singstat.gov.sg/find-data/search-by-theme/population/geographic-distribution/latest-data)</span>. Let's import this dataset as rrespopagesex2024 and how the dataset looks like.</span>
 <span id="cb20-76"><a href="#cb20-76" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-79"><a href="#cb20-79" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb20-80"><a href="#cb20-80" aria-hidden="true" tabindex="-1"></a>respopagesex2024 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"respopagesex2024.csv"</span>)</span>
@@ -1501,9 +1501,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb20-108"><a href="#cb20-108" aria-hidden="true" tabindex="-1"></a>respopagesex2024[<span class="fu">duplicated</span>(respopagesex2024),]</span>
 <span id="cb20-109"><a href="#cb20-109" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb20-110"><a href="#cb20-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-111"><a href="#cb20-111" aria-hidden="true" tabindex="-1"></a><span class="fu">## **1.4.3 Additional variables**</span></span>
+<span id="cb20-111"><a href="#cb20-111" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1.4.3 Additional Variables</span></span>
 <span id="cb20-112"><a href="#cb20-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-113"><a href="#cb20-113" aria-hidden="true" tabindex="-1"></a>There are 55 planning zones and 332 subzones in Singapore, which is consistent with this dataset. However, it is not practical to explore each of these individually. However, I felt that exploring each subzone individually would not be practical for a high-level analysis. To address this, I introduced a ‘Region’ column to the dataset, indicating which of the five major regions (East, West, North, North-East, or Central) each planning zone belongs to. This grouping makes it easier to understand broad demographic patterns across Singapore. To achieve this, an additional dataset from Wikipedia listing the planning zones and their corresponding regions was used. A left join is performed to link these two datasets using the function *left_join()*.</span>
+<span id="cb20-113"><a href="#cb20-113" aria-hidden="true" tabindex="-1"></a>There are 55 planning zones and 332 subzones in Singapore, which is consistent with this dataset. However, I felt that exploring each subzone individually would not be practical for a high-level analysis. So, a ‘Region’ column is added to the dataset, indicating which of the five major regions (East, West, North, North-East, or Central) each planning zone belongs to. This grouping makes it easier to understand broad demographic patterns across Singapore. To achieve this, an additional dataset from <span class="co">[</span><span class="ot">Wikipedia</span><span class="co">](https://en.wikipedia.org/wiki/Planning_areas_of_Singapore)</span> listing the planning zones and their corresponding regions was used. A left join is performed to link these two datasets using the function *left_join()*.</span>
 <span id="cb20-114"><a href="#cb20-114" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-117"><a href="#cb20-117" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb20-118"><a href="#cb20-118" aria-hidden="true" tabindex="-1"></a>planning_areas <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"Planning_areas_of_Singapore_2.csv"</span>)</span>
@@ -1519,7 +1519,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb20-128"><a href="#cb20-128" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(respop_with_region))</span>
 <span id="cb20-129"><a href="#cb20-129" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb20-130"><a href="#cb20-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-131"><a href="#cb20-131" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1.4.4 Selecting Variables</span></span>
+<span id="cb20-131"><a href="#cb20-131" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1.4.4 Selecting Primary Variables</span></span>
 <span id="cb20-132"><a href="#cb20-132" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-133"><a href="#cb20-133" aria-hidden="true" tabindex="-1"></a>The primary variables chosen for this exercise are given below.</span>
 <span id="cb20-134"><a href="#cb20-134" aria-hidden="true" tabindex="-1"></a></span>
@@ -1551,7 +1551,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb20-164"><a href="#cb20-164" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Region, Sex) <span class="sc">%&gt;%</span></span>
 <span id="cb20-165"><a href="#cb20-165" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Total_Pop =</span> <span class="fu">sum</span>(Pop), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
 <span id="cb20-166"><a href="#cb20-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-167"><a href="#cb20-167" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Calculate total population per region</span></span>
+<span id="cb20-167"><a href="#cb20-167" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculate total population per region</span></span>
 <span id="cb20-168"><a href="#cb20-168" aria-hidden="true" tabindex="-1"></a>gender_summary_long <span class="ot">&lt;-</span> gender_summary_long <span class="sc">%&gt;%</span></span>
 <span id="cb20-169"><a href="#cb20-169" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Region) <span class="sc">%&gt;%</span></span>
 <span id="cb20-170"><a href="#cb20-170" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
@@ -1559,7 +1559,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb20-172"><a href="#cb20-172" aria-hidden="true" tabindex="-1"></a>    <span class="at">Percent =</span> (Total_Pop <span class="sc">/</span> Region_Total) <span class="sc">*</span> <span class="dv">100</span></span>
 <span id="cb20-173"><a href="#cb20-173" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb20-174"><a href="#cb20-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-175"><a href="#cb20-175" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Plot side-by-side bars with percentage labels</span></span>
+<span id="cb20-175"><a href="#cb20-175" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot side-by-side bars</span></span>
 <span id="cb20-176"><a href="#cb20-176" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gender_summary_long, <span class="fu">aes</span>(<span class="at">x =</span> Region, <span class="at">y =</span> Total_Pop, <span class="at">fill =</span> Sex)) <span class="sc">+</span></span>
 <span id="cb20-177"><a href="#cb20-177" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
 <span id="cb20-178"><a href="#cb20-178" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
@@ -1574,7 +1574,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb20-187"><a href="#cb20-187" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Total Population"</span></span>
 <span id="cb20-188"><a href="#cb20-188" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb20-189"><a href="#cb20-189" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>comma) <span class="sc">+</span></span>
-<span id="cb20-190"><a href="#cb20-190" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_family =</span> <span class="st">"nunito"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>),<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">15</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">family =</span> <span class="st">"nunito"</span>)) <span class="sc">+</span></span>
+<span id="cb20-190"><a href="#cb20-190" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_family =</span> <span class="st">"nunito"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>),<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">15</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">family =</span> <span class="st">"nunito"</span>)) <span class="sc">+</span></span>
 <span id="cb20-191"><a href="#cb20-191" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Females"</span> <span class="ot">=</span> <span class="st">"#662633"</span>, <span class="st">"Males"</span> <span class="ot">=</span> <span class="st">"#2C3C60"</span>))</span>
 <span id="cb20-192"><a href="#cb20-192" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-193"><a href="#cb20-193" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
@@ -1598,7 +1598,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb20-211"><a href="#cb20-211" aria-hidden="true" tabindex="-1"></a><span class="in">    Age = as.numeric(Age)</span></span>
 <span id="cb20-212"><a href="#cb20-212" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
 <span id="cb20-213"><a href="#cb20-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-214"><a href="#cb20-214" aria-hidden="true" tabindex="-1"></a><span class="in"># Calculate mode (age with highest density) per region</span></span>
+<span id="cb20-214"><a href="#cb20-214" aria-hidden="true" tabindex="-1"></a><span class="in"># Calculate age with highest density per region</span></span>
 <span id="cb20-215"><a href="#cb20-215" aria-hidden="true" tabindex="-1"></a><span class="in">mode_age &lt;- respop_cleaned %&gt;%</span></span>
 <span id="cb20-216"><a href="#cb20-216" aria-hidden="true" tabindex="-1"></a><span class="in">  group_by(Region) %&gt;%</span></span>
 <span id="cb20-217"><a href="#cb20-217" aria-hidden="true" tabindex="-1"></a><span class="in">  group_split() %&gt;%</span></span>
