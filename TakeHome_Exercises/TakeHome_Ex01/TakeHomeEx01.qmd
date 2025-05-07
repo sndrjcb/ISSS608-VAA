@@ -182,9 +182,11 @@ ggplot(gender_summary_long, aes(x = Region, y = Total_Pop, fill = Sex)) +
 
 **Insights:**
 
-1.  Across all five regions in Singapore, the density curves show peaks between ages 20 – 40, suggesting these age groups make up the largest share of the population. This reflects a working-age dominance that is prevalent in urban and developed countries.
-2.  The dashed vertical lines marking the modal age (most common) appear at nearly the same point for all regions, which is around 30 - 35 year olds. This indicates a consistent demographic structure across Singapore’s regions.
-3.  While younger and middle-aged groups dominate, all regions show a gradual decline in density after age 50 – 60, reflecting lower population counts at older ages. Future policies focus on potential improvements for aging populations, like healthcare support and elderly welfare.
+1.  In all five regions, females make up a slightly higher percentage of the total population, with the Central and North-East regions showing the largest gaps.
+
+2.  The total population size varies significantly by region. Central and North-East regions have noticeably larger total populations compared to the North, East, and West, highlighting regional population concentration and urban density differences.
+
+3.  Despite minor percentage differences, the male-to-female split remains close to 50 - 50 in all regions, suggesting a stable and balanced gender distribution at the regional level in Singapore.
 
 ## 1.5.2 Region-wise Age Distribution Using Multiple Density Plots
 
@@ -236,11 +238,9 @@ ggplot(respop_cleaned, aes(x = Age, weight = Pop, fill = Region)) +
 
 **Insights:**
 
-1.  In all five regions, females make up a slightly higher percentage of the total population, with the Central and North-East regions showing the largest gaps.
-
-2.  The total population size varies significantly by region. Central and North-East regions have noticeably larger total populations compared to the North, East, and West, highlighting regional population concentration and urban density differences.
-
-3.  Despite minor percentage differences, the male-to-female split remains close to 50 - 50 in all regions, suggesting a stable and balanced gender distribution at the regional level in Singapore.
+1.  Across all five regions in Singapore, the density curves show peaks between ages 20 – 40, suggesting these age groups make up the largest share of the population. This reflects a working-age dominance that is prevalent in urban and developed countries.
+2.  The dashed vertical lines marking the modal age (most common) appear at nearly the same point for all regions, which is around 30 - 35 year olds. This indicates a consistent demographic structure across Singapore’s regions.
+3.  While younger and middle-aged groups dominate, all regions show a gradual decline in density after age 50 – 60, reflecting lower population counts at older ages. Future policies focus on potential improvements for aging populations, like healthcare support and elderly welfare.
 
 ## 1.5.3 Total Population by Planning Areas in all Regions
 

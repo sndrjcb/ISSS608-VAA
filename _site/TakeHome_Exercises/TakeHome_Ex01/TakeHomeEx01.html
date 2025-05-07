@@ -170,6 +170,10 @@ background: #300713;
     <a class="dropdown-item" href="../../HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html">
  <span class="dropdown-text">Hands On Exercise 3B</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../HandsOn_Exercises/HandsOn_Ex04A/HandsOnEx04A.html">
+ <span class="dropdown-text">Hands On Exercise 4A</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -227,7 +231,7 @@ background: #300713;
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">May 5, 2025</p>
+        <p class="date-modified">May 7, 2025</p>
       </div>
     </div>
       
@@ -810,9 +814,9 @@ $ Region &lt;chr&gt; "North-East", "North-East", "North-East", "North-East", "No
 </div>
 <p><strong>Insights:</strong></p>
 <ol type="1">
-<li>Across all five regions in Singapore, the density curves show peaks between ages 20 – 40, suggesting these age groups make up the largest share of the population. This reflects a working-age dominance that is prevalent in urban and developed countries.</li>
-<li>The dashed vertical lines marking the modal age (most common) appear at nearly the same point for all regions, which is around 30 - 35 year olds. This indicates a consistent demographic structure across Singapore’s regions.</li>
-<li>While younger and middle-aged groups dominate, all regions show a gradual decline in density after age 50 – 60, reflecting lower population counts at older ages. Future policies focus on potential improvements for aging populations, like healthcare support and elderly welfare.</li>
+<li><p>In all five regions, females make up a slightly higher percentage of the total population, with the Central and North-East regions showing the largest gaps.</p></li>
+<li><p>The total population size varies significantly by region. Central and North-East regions have noticeably larger total populations compared to the North, East, and West, highlighting regional population concentration and urban density differences.</p></li>
+<li><p>Despite minor percentage differences, the male-to-female split remains close to 50 - 50 in all regions, suggesting a stable and balanced gender distribution at the regional level in Singapore.</p></li>
 </ol>
 </section>
 <section id="region-wise-age-distribution-using-multiple-density-plots" class="level2">
@@ -871,9 +875,9 @@ $ Region &lt;chr&gt; "North-East", "North-East", "North-East", "North-East", "No
 </div>
 <p><strong>Insights:</strong></p>
 <ol type="1">
-<li><p>In all five regions, females make up a slightly higher percentage of the total population, with the Central and North-East regions showing the largest gaps.</p></li>
-<li><p>The total population size varies significantly by region. Central and North-East regions have noticeably larger total populations compared to the North, East, and West, highlighting regional population concentration and urban density differences.</p></li>
-<li><p>Despite minor percentage differences, the male-to-female split remains close to 50 - 50 in all regions, suggesting a stable and balanced gender distribution at the regional level in Singapore.</p></li>
+<li>Across all five regions in Singapore, the density curves show peaks between ages 20 – 40, suggesting these age groups make up the largest share of the population. This reflects a working-age dominance that is prevalent in urban and developed countries.</li>
+<li>The dashed vertical lines marking the modal age (most common) appear at nearly the same point for all regions, which is around 30 - 35 year olds. This indicates a consistent demographic structure across Singapore’s regions.</li>
+<li>While younger and middle-aged groups dominate, all regions show a gradual decline in density after age 50 – 60, reflecting lower population counts at older ages. Future policies focus on potential improvements for aging populations, like healthcare support and elderly welfare.</li>
 </ol>
 </section>
 <section id="total-population-by-planning-areas-in-all-regions" class="level2">
@@ -1581,65 +1585,65 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb20-194"><a href="#cb20-194" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-195"><a href="#cb20-195" aria-hidden="true" tabindex="-1"></a>**Insights:**</span>
 <span id="cb20-196"><a href="#cb20-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-197"><a href="#cb20-197" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Across all five regions in Singapore, the density curves show peaks between ages 20 – 40, suggesting these age groups make up the largest share of the population. This reflects a working-age dominance that is prevalent in urban and developed countries.</span>
-<span id="cb20-198"><a href="#cb20-198" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>The dashed vertical lines marking the modal age (most common) appear at nearly the same point for all regions, which is around 30 - 35 year olds. This indicates a consistent demographic structure across Singapore’s regions.</span>
-<span id="cb20-199"><a href="#cb20-199" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>While younger and middle-aged groups dominate, all regions show a gradual decline in density after age 50 – 60, reflecting lower population counts at older ages. Future policies focus on potential improvements for aging populations, like healthcare support and elderly welfare.</span>
+<span id="cb20-197"><a href="#cb20-197" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>In all five regions, females make up a slightly higher percentage of the total population, with the Central and North-East regions showing the largest gaps.</span>
+<span id="cb20-198"><a href="#cb20-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-199"><a href="#cb20-199" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>The total population size varies significantly by region. Central and North-East regions have noticeably larger total populations compared to the North, East, and West, highlighting regional population concentration and urban density differences.</span>
 <span id="cb20-200"><a href="#cb20-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-201"><a href="#cb20-201" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1.5.2 Region-wise Age Distribution Using Multiple Density Plots</span></span>
+<span id="cb20-201"><a href="#cb20-201" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Despite minor percentage differences, the male-to-female split remains close to 50 - 50 in all regions, suggesting a stable and balanced gender distribution at the regional level in Singapore.</span>
 <span id="cb20-202"><a href="#cb20-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-203"><a href="#cb20-203" aria-hidden="true" tabindex="-1"></a>Age is stored as a character datatype because it contains values '90_and_Over' to represent residents aged over 90. To simplify this for an age distribution, these records will be recoded as '90' before converting them to a numeric datatype.</span>
+<span id="cb20-203"><a href="#cb20-203" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1.5.2 Region-wise Age Distribution Using Multiple Density Plots</span></span>
 <span id="cb20-204"><a href="#cb20-204" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-205"><a href="#cb20-205" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, fig.width=14, fig.height=16}</span></span>
+<span id="cb20-205"><a href="#cb20-205" aria-hidden="true" tabindex="-1"></a>Age is stored as a character datatype because it contains values '90_and_Over' to represent residents aged over 90. To simplify this for an age distribution, these records will be recoded as '90' before converting them to a numeric datatype.</span>
 <span id="cb20-206"><a href="#cb20-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-207"><a href="#cb20-207" aria-hidden="true" tabindex="-1"></a><span class="in">respop_cleaned &lt;- respop_cleaned %&gt;%</span></span>
-<span id="cb20-208"><a href="#cb20-208" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(</span></span>
-<span id="cb20-209"><a href="#cb20-209" aria-hidden="true" tabindex="-1"></a><span class="in">    Age = as.character(Age),</span></span>
-<span id="cb20-210"><a href="#cb20-210" aria-hidden="true" tabindex="-1"></a><span class="in">    Age = ifelse(Age == "90_and_Over", "90", Age),</span></span>
-<span id="cb20-211"><a href="#cb20-211" aria-hidden="true" tabindex="-1"></a><span class="in">    Age = as.numeric(Age)</span></span>
-<span id="cb20-212"><a href="#cb20-212" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
-<span id="cb20-213"><a href="#cb20-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-214"><a href="#cb20-214" aria-hidden="true" tabindex="-1"></a><span class="in"># Calculate age with highest density per region</span></span>
-<span id="cb20-215"><a href="#cb20-215" aria-hidden="true" tabindex="-1"></a><span class="in">mode_age &lt;- respop_cleaned %&gt;%</span></span>
-<span id="cb20-216"><a href="#cb20-216" aria-hidden="true" tabindex="-1"></a><span class="in">  group_by(Region) %&gt;%</span></span>
-<span id="cb20-217"><a href="#cb20-217" aria-hidden="true" tabindex="-1"></a><span class="in">  group_split() %&gt;%</span></span>
-<span id="cb20-218"><a href="#cb20-218" aria-hidden="true" tabindex="-1"></a><span class="in">  map_df(~ {</span></span>
-<span id="cb20-219"><a href="#cb20-219" aria-hidden="true" tabindex="-1"></a><span class="in">    d &lt;- density(rep(.x$Age, .x$Pop))</span></span>
-<span id="cb20-220"><a href="#cb20-220" aria-hidden="true" tabindex="-1"></a><span class="in">    data.frame(</span></span>
-<span id="cb20-221"><a href="#cb20-221" aria-hidden="true" tabindex="-1"></a><span class="in">      Region = unique(.x$Region),</span></span>
-<span id="cb20-222"><a href="#cb20-222" aria-hidden="true" tabindex="-1"></a><span class="in">      mode_age = d$x[which.max(d$y)]</span></span>
-<span id="cb20-223"><a href="#cb20-223" aria-hidden="true" tabindex="-1"></a><span class="in">    )</span></span>
-<span id="cb20-224"><a href="#cb20-224" aria-hidden="true" tabindex="-1"></a><span class="in">  })</span></span>
-<span id="cb20-225"><a href="#cb20-225" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-226"><a href="#cb20-226" aria-hidden="true" tabindex="-1"></a><span class="in"># Plot with vertical mode lines</span></span>
-<span id="cb20-227"><a href="#cb20-227" aria-hidden="true" tabindex="-1"></a><span class="in">ggplot(respop_cleaned, aes(x = Age, weight = Pop, fill = Region)) +</span></span>
-<span id="cb20-228"><a href="#cb20-228" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_density(alpha = 0.6, adjust = 1) +</span></span>
-<span id="cb20-229"><a href="#cb20-229" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_vline(data = mode_age, aes(xintercept = mode_age), color = "black", linetype = "dashed", size = 0.8) + </span></span>
-<span id="cb20-230"><a href="#cb20-230" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_text(</span></span>
-<span id="cb20-231"><a href="#cb20-231" aria-hidden="true" tabindex="-1"></a><span class="in">    data = mode_age,</span></span>
-<span id="cb20-232"><a href="#cb20-232" aria-hidden="true" tabindex="-1"></a><span class="in">    mapping = aes(x = mode_age, y = 0, label = paste0("Peak: ", round(mode_age, 1))),</span></span>
-<span id="cb20-233"><a href="#cb20-233" aria-hidden="true" tabindex="-1"></a><span class="in">    inherit.aes = FALSE,</span></span>
-<span id="cb20-234"><a href="#cb20-234" aria-hidden="true" tabindex="-1"></a><span class="in">    angle = 90, vjust = -0.5, hjust = 1.1, size = 3</span></span>
-<span id="cb20-235"><a href="#cb20-235" aria-hidden="true" tabindex="-1"></a><span class="in">  ) +</span></span>
-<span id="cb20-236"><a href="#cb20-236" aria-hidden="true" tabindex="-1"></a><span class="in">  facet_wrap(~ Region, scales = "free_y", ncol = 2) +</span></span>
-<span id="cb20-237"><a href="#cb20-237" aria-hidden="true" tabindex="-1"></a><span class="in">  labs(</span></span>
-<span id="cb20-238"><a href="#cb20-238" aria-hidden="true" tabindex="-1"></a><span class="in">    title = "Age Distribution by Region in Singapore (Weighted by Population)",</span></span>
-<span id="cb20-239"><a href="#cb20-239" aria-hidden="true" tabindex="-1"></a><span class="in">    subtitle = "Dashed line indicates age with highest density (mode)",</span></span>
-<span id="cb20-240"><a href="#cb20-240" aria-hidden="true" tabindex="-1"></a><span class="in">    x = "Age",</span></span>
-<span id="cb20-241"><a href="#cb20-241" aria-hidden="true" tabindex="-1"></a><span class="in">    y = "Density"</span></span>
-<span id="cb20-242"><a href="#cb20-242" aria-hidden="true" tabindex="-1"></a><span class="in">  ) +</span></span>
-<span id="cb20-243"><a href="#cb20-243" aria-hidden="true" tabindex="-1"></a><span class="in">  theme(legend.position = "none") +</span></span>
-<span id="cb20-244"><a href="#cb20-244" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_minimal(base_family = "nunito") + theme(legend.position = "none",axis.text.x = element_text(angle = 90, vjust = 0.5),plot.title = element_text(hjust = 0.5, size = 30, face = "bold", family = "nunito")) +</span></span>
-<span id="cb20-245"><a href="#cb20-245" aria-hidden="true" tabindex="-1"></a><span class="in">  scale_fill_manual(values = c("West" = "#145C47", "East" = "#2C3C60", "North" = "#662633","North-East" = "#4B2C60","Central" = "#665C26"))</span></span>
-<span id="cb20-246"><a href="#cb20-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-247"><a href="#cb20-247" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-207"><a href="#cb20-207" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, fig.width=14, fig.height=16}</span></span>
+<span id="cb20-208"><a href="#cb20-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-209"><a href="#cb20-209" aria-hidden="true" tabindex="-1"></a><span class="in">respop_cleaned &lt;- respop_cleaned %&gt;%</span></span>
+<span id="cb20-210"><a href="#cb20-210" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(</span></span>
+<span id="cb20-211"><a href="#cb20-211" aria-hidden="true" tabindex="-1"></a><span class="in">    Age = as.character(Age),</span></span>
+<span id="cb20-212"><a href="#cb20-212" aria-hidden="true" tabindex="-1"></a><span class="in">    Age = ifelse(Age == "90_and_Over", "90", Age),</span></span>
+<span id="cb20-213"><a href="#cb20-213" aria-hidden="true" tabindex="-1"></a><span class="in">    Age = as.numeric(Age)</span></span>
+<span id="cb20-214"><a href="#cb20-214" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb20-215"><a href="#cb20-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-216"><a href="#cb20-216" aria-hidden="true" tabindex="-1"></a><span class="in"># Calculate age with highest density per region</span></span>
+<span id="cb20-217"><a href="#cb20-217" aria-hidden="true" tabindex="-1"></a><span class="in">mode_age &lt;- respop_cleaned %&gt;%</span></span>
+<span id="cb20-218"><a href="#cb20-218" aria-hidden="true" tabindex="-1"></a><span class="in">  group_by(Region) %&gt;%</span></span>
+<span id="cb20-219"><a href="#cb20-219" aria-hidden="true" tabindex="-1"></a><span class="in">  group_split() %&gt;%</span></span>
+<span id="cb20-220"><a href="#cb20-220" aria-hidden="true" tabindex="-1"></a><span class="in">  map_df(~ {</span></span>
+<span id="cb20-221"><a href="#cb20-221" aria-hidden="true" tabindex="-1"></a><span class="in">    d &lt;- density(rep(.x$Age, .x$Pop))</span></span>
+<span id="cb20-222"><a href="#cb20-222" aria-hidden="true" tabindex="-1"></a><span class="in">    data.frame(</span></span>
+<span id="cb20-223"><a href="#cb20-223" aria-hidden="true" tabindex="-1"></a><span class="in">      Region = unique(.x$Region),</span></span>
+<span id="cb20-224"><a href="#cb20-224" aria-hidden="true" tabindex="-1"></a><span class="in">      mode_age = d$x[which.max(d$y)]</span></span>
+<span id="cb20-225"><a href="#cb20-225" aria-hidden="true" tabindex="-1"></a><span class="in">    )</span></span>
+<span id="cb20-226"><a href="#cb20-226" aria-hidden="true" tabindex="-1"></a><span class="in">  })</span></span>
+<span id="cb20-227"><a href="#cb20-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-228"><a href="#cb20-228" aria-hidden="true" tabindex="-1"></a><span class="in"># Plot with vertical mode lines</span></span>
+<span id="cb20-229"><a href="#cb20-229" aria-hidden="true" tabindex="-1"></a><span class="in">ggplot(respop_cleaned, aes(x = Age, weight = Pop, fill = Region)) +</span></span>
+<span id="cb20-230"><a href="#cb20-230" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_density(alpha = 0.6, adjust = 1) +</span></span>
+<span id="cb20-231"><a href="#cb20-231" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_vline(data = mode_age, aes(xintercept = mode_age), color = "black", linetype = "dashed", size = 0.8) + </span></span>
+<span id="cb20-232"><a href="#cb20-232" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_text(</span></span>
+<span id="cb20-233"><a href="#cb20-233" aria-hidden="true" tabindex="-1"></a><span class="in">    data = mode_age,</span></span>
+<span id="cb20-234"><a href="#cb20-234" aria-hidden="true" tabindex="-1"></a><span class="in">    mapping = aes(x = mode_age, y = 0, label = paste0("Peak: ", round(mode_age, 1))),</span></span>
+<span id="cb20-235"><a href="#cb20-235" aria-hidden="true" tabindex="-1"></a><span class="in">    inherit.aes = FALSE,</span></span>
+<span id="cb20-236"><a href="#cb20-236" aria-hidden="true" tabindex="-1"></a><span class="in">    angle = 90, vjust = -0.5, hjust = 1.1, size = 3</span></span>
+<span id="cb20-237"><a href="#cb20-237" aria-hidden="true" tabindex="-1"></a><span class="in">  ) +</span></span>
+<span id="cb20-238"><a href="#cb20-238" aria-hidden="true" tabindex="-1"></a><span class="in">  facet_wrap(~ Region, scales = "free_y", ncol = 2) +</span></span>
+<span id="cb20-239"><a href="#cb20-239" aria-hidden="true" tabindex="-1"></a><span class="in">  labs(</span></span>
+<span id="cb20-240"><a href="#cb20-240" aria-hidden="true" tabindex="-1"></a><span class="in">    title = "Age Distribution by Region in Singapore (Weighted by Population)",</span></span>
+<span id="cb20-241"><a href="#cb20-241" aria-hidden="true" tabindex="-1"></a><span class="in">    subtitle = "Dashed line indicates age with highest density (mode)",</span></span>
+<span id="cb20-242"><a href="#cb20-242" aria-hidden="true" tabindex="-1"></a><span class="in">    x = "Age",</span></span>
+<span id="cb20-243"><a href="#cb20-243" aria-hidden="true" tabindex="-1"></a><span class="in">    y = "Density"</span></span>
+<span id="cb20-244"><a href="#cb20-244" aria-hidden="true" tabindex="-1"></a><span class="in">  ) +</span></span>
+<span id="cb20-245"><a href="#cb20-245" aria-hidden="true" tabindex="-1"></a><span class="in">  theme(legend.position = "none") +</span></span>
+<span id="cb20-246"><a href="#cb20-246" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_minimal(base_family = "nunito") + theme(legend.position = "none",axis.text.x = element_text(angle = 90, vjust = 0.5),plot.title = element_text(hjust = 0.5, size = 30, face = "bold", family = "nunito")) +</span></span>
+<span id="cb20-247"><a href="#cb20-247" aria-hidden="true" tabindex="-1"></a><span class="in">  scale_fill_manual(values = c("West" = "#145C47", "East" = "#2C3C60", "North" = "#662633","North-East" = "#4B2C60","Central" = "#665C26"))</span></span>
 <span id="cb20-248"><a href="#cb20-248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-249"><a href="#cb20-249" aria-hidden="true" tabindex="-1"></a>**Insights:**</span>
+<span id="cb20-249"><a href="#cb20-249" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb20-250"><a href="#cb20-250" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-251"><a href="#cb20-251" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>In all five regions, females make up a slightly higher percentage of the total population, with the Central and North-East regions showing the largest gaps.</span>
+<span id="cb20-251"><a href="#cb20-251" aria-hidden="true" tabindex="-1"></a>**Insights:**</span>
 <span id="cb20-252"><a href="#cb20-252" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-253"><a href="#cb20-253" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>The total population size varies significantly by region. Central and North-East regions have noticeably larger total populations compared to the North, East, and West, highlighting regional population concentration and urban density differences.</span>
-<span id="cb20-254"><a href="#cb20-254" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-255"><a href="#cb20-255" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Despite minor percentage differences, the male-to-female split remains close to 50 - 50 in all regions, suggesting a stable and balanced gender distribution at the regional level in Singapore.</span>
+<span id="cb20-253"><a href="#cb20-253" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Across all five regions in Singapore, the density curves show peaks between ages 20 – 40, suggesting these age groups make up the largest share of the population. This reflects a working-age dominance that is prevalent in urban and developed countries.</span>
+<span id="cb20-254"><a href="#cb20-254" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>The dashed vertical lines marking the modal age (most common) appear at nearly the same point for all regions, which is around 30 - 35 year olds. This indicates a consistent demographic structure across Singapore’s regions.</span>
+<span id="cb20-255"><a href="#cb20-255" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>While younger and middle-aged groups dominate, all regions show a gradual decline in density after age 50 – 60, reflecting lower population counts at older ages. Future policies focus on potential improvements for aging populations, like healthcare support and elderly welfare.</span>
 <span id="cb20-256"><a href="#cb20-256" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-257"><a href="#cb20-257" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1.5.3 Total Population by Planning Areas in all Regions</span></span>
 <span id="cb20-258"><a href="#cb20-258" aria-hidden="true" tabindex="-1"></a></span>

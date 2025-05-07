@@ -1,10 +1,24 @@
 ---
 title: "Visual Analytics & Applications"
 subtitle: "Sandra's Journey through Data Visualizations"
+format: html
+engine: knitr
 ---
 
-Welcome to **ISSS608: Visual Analytics & Applications**!
+::::: grid
+::: g-col-6
+## About This Course
 
-This website showcases my learning journey for this course in the **AY2024–25 April** taught by **Professor Kam Tin Seong** at SMU. The course explores how visualizations can turn raw data into meaningful insights, using tools like Quarto for web-based reporting and Tableau for interactive dashboards. Throughout the semester, I’ll be sharing my coursework, projects, and reflections here — so stay tuned as this site evolves!
+My website showcases my learning journey for this course in the AY2024–25 April term taught by Professor Kam Tin Seong at SMU. The course explores how visualizations can turn raw data into meaningful insights, using tools like Quarto for web-based reporting and Tableau for interactive dashboards. Throughout the semester, I’ll be sharing my coursework, projects, and reflections here — so stay tuned as this site evolves!
 
-I’m currently a full-time business analyst and a part-time MITB student, with a keen interest in data storytelling and analytics. My goal is to pivot into a data science role, combining analytical techniques with strong business intuition to solve real-world problems. When I’m not coding or studying, you can usually find me at the gym, painting on a quiet weekend, or planning my next travel adventure. Feel free to explore my site!
+![](images/2900991.jpg){width="572"}
+:::
+
+::: g-col-6
+## About Myself
+
+I’m currently a full-time business analyst and a part-time MITB student, with a keen interest in data storytelling and analytics. My goal is to pivot into a data science role, to combine analytical techniques with strong business intuition to solve real-world problems. When I’m not coding or studying, you can usually find me at the gym, painting on a quiet weekend, or planning my next travel adventure. Feel free to reach out to me!
+
+![](images/Selfie1.jpg){fig-align="center" width="439"}
+:::
+:::::
