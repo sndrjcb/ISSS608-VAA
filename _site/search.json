@@ -1,115 +1,234 @@
 [
   {
-    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html",
-    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html",
-    "title": "Take Home Exercise 1",
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01B/TakeHomeEx01B.html",
+    "href": "TakeHome_Exercises/TakeHome_Ex01B/TakeHomeEx01B.html",
+    "title": "Take Home Exercise 1B",
     "section": "",
     "text": "Note: Please toggle between ‘Show’ and ‘Hide’ above based on your preference for viewing the R codes."
   },
   {
-    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#loading-packages",
-    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#loading-packages",
-    "title": "Take Home Exercise 1",
-    "section": "1.3.1 Loading packages",
-    "text": "1.3.1 Loading packages\nWe load the following R packages using the pacman::p_load() function:\n\ntidyverse: Core collection of R packages designed for data science.\nhaven: To read in data formats such as SAS and SPSS.\nggrepel: To provide geoms for ggplot2 to repel overlapping text labels.\nggthemes: To use additional themes for ggplot2.\npatchwork: To prepare composite figures created using ggplot2.\nggridges: To plot ridgeline plots.\nggdist: For visualizations of distributions and uncertainty.\nscales: Provides the internal scaling infrastructure used by ggplot2.\nmatrixStats: Provides efficient functions for row and column operations on matrices and data frames.\ntreemapify: Allows the creation of treemap visualizations using ggplot2 syntax.\nshowtext: Enables the use of custom fonts in R plots for better typography.\n\n\n\nCode\npacman::p_load(tidyverse, haven,\n               ggrepel, ggthemes,\n               ggridges, ggdist,colorspace,ggdist,\n               patchwork, scales, ggplot2, \n               matrixStats, treemapify, showtext)"
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01B/TakeHomeEx01B.html#three-good-design-principles",
+    "href": "TakeHome_Exercises/TakeHome_Ex01B/TakeHomeEx01B.html#three-good-design-principles",
+    "title": "Take Home Exercise 1B",
+    "section": "1.2.1 Three Good Design Principles",
+    "text": "1.2.1 Three Good Design Principles\n\nClear Comparison Between Groups: Using side-by-side bars for total vs. elderly population enables a quick visual comparison, making it easy to spot which planning areas have larger elderly proportions.\nEffective Use of Color and Labels: The contrasting colors (gold and purple) and direct value labels on bars improve readability and help viewers interpret values without needing to refer to the axis constantly.\nInsightful Focus: Highlighting elderly population (65+) alongside total population adds value by addressing demographic trends — a relevant and important lens for policy and planning."
   },
   {
-    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#importing-data",
-    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#importing-data",
-    "title": "Take Home Exercise 1",
-    "section": "1.3.2 Importing Data",
-    "text": "1.3.2 Importing Data\nThe dataset used in the exercise is Singapore Residents by Planning Area / Subzone, Single Year of Age and Sex, June 2024, retrieved from the Department of Statistics, Singapore. Let’s import this dataset as rrespopagesex2024 and how the dataset looks like.\n\n\nCode\nrespopagesex2024 &lt;- read_csv(\"respopagesex2024.csv\")\nshow_col_types = FALSE\n\nknitr::kable(head(respopagesex2024))\n\n\n\n\n\nPA\nSZ\nAge\nSex\nPop\nTime\n\n\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n0\nMales\n10\n2024\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n0\nFemales\n10\n2024\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n1\nMales\n10\n2024\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n1\nFemales\n10\n2024\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n2\nMales\n10\n2024\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n2\nFemales\n10\n2024"
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01B/TakeHomeEx01B.html#three-areas-for-further-improvement",
+    "href": "TakeHome_Exercises/TakeHome_Ex01B/TakeHomeEx01B.html#three-areas-for-further-improvement",
+    "title": "Take Home Exercise 1B",
+    "section": "1.2.2 Three Areas for Further Improvement",
+    "text": "1.2.2 Three Areas for Further Improvement\n\nOverlapping Bars and Misleading Lengths: Since both bars start from the same axis, the elderly population bar is visually “on top of” the total bar, but this could mislead viewers into thinking they are stacked or directly proportional. A grouped bar chart or dual-axis plot might reduce confusion.\nMissing Percentage Context: Including the percentage of elderly population relative to the total for each planning area (e.g., as text labels or a separate line plot) would add deeper insight beyond raw counts.\nVisual Hierarchy Could Be Improved: Right now, the gold bars stand out more than the purple bars, even though the purple ones represent the main variable (total population). Consider reversing this emphasis or softening the elderly bar color to reflect its subset nature."
   },
   {
-    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#glimpse",
-    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#glimpse",
-    "title": "Take Home Exercise 1",
-    "section": "1.4.1 Glimpse",
-    "text": "1.4.1 Glimpse\n\n\nCode\nglimpse(respopagesex2024)\n\n\nRows: 60,424\nColumns: 6\n$ PA   &lt;chr&gt; \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo K…\n$ SZ   &lt;chr&gt; \"Ang Mo Kio Town Centre\", \"Ang Mo Kio Town Centre\", \"Ang Mo Kio T…\n$ Age  &lt;chr&gt; \"0\", \"0\", \"1\", \"1\", \"2\", \"2\", \"3\", \"3\", \"4\", \"4\", \"5\", \"5\", \"6\", …\n$ Sex  &lt;chr&gt; \"Males\", \"Females\", \"Males\", \"Females\", \"Males\", \"Females\", \"Male…\n$ Pop  &lt;dbl&gt; 10, 10, 10, 10, 10, 10, 10, 10, 30, 10, 20, 10, 20, 30, 30, 10, 3…\n$ Time &lt;dbl&gt; 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024,…\n\n\nBased on the result, there are 60,424 records, which is consistent with the CSV file, indicating that there are no missing records while importing. There are 6 variables, and the corresponding datatypes are shown as well. Take note that Age is defined as a character, so we will be converting that to a numeric data type later."
-  },
-  {
-    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#checking-for-duplicate-values",
-    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#checking-for-duplicate-values",
-    "title": "Take Home Exercise 1",
-    "section": "1.4.2 Checking for duplicate values",
-    "text": "1.4.2 Checking for duplicate values\nUsing the duplicated function, we see that there are no duplicate entries in the data.\n\n\nCode\nrespopagesex2024[duplicated(respopagesex2024),]\n\n\n# A tibble: 0 × 6\n# ℹ 6 variables: PA &lt;chr&gt;, SZ &lt;chr&gt;, Age &lt;chr&gt;, Sex &lt;chr&gt;, Pop &lt;dbl&gt;,\n#   Time &lt;dbl&gt;"
-  },
-  {
-    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#additional-variables",
-    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#additional-variables",
-    "title": "Take Home Exercise 1",
-    "section": "1.4.3 Additional Variables",
-    "text": "1.4.3 Additional Variables\nThere are 55 planning zones and 332 subzones in Singapore, which is consistent with this dataset. However, I felt that exploring each subzone individually would not be practical for a high-level analysis. So, a ‘Region’ column is added to the dataset, indicating which of the five major regions (East, West, North, North-East, or Central) each planning zone belongs to. This grouping makes it easier to understand broad demographic patterns across Singapore. To achieve this, an additional dataset from Wikipedia listing the planning zones and their corresponding regions was used. A left join is performed to link these two datasets using the function left_join().\n\n\nCode\nplanning_areas &lt;- read_csv(\"Planning_areas_of_Singapore_2.csv\")\n\n# Check column names\ncolnames(respopagesex2024)\n\n\n[1] \"PA\"   \"SZ\"   \"Age\"  \"Sex\"  \"Pop\"  \"Time\"\n\n\nCode\ncolnames(planning_areas)\n\n\n [1] \"Name (English)\" \"Malay\"          \"Chinese\"        \"Pinyin\"        \n [5] \"Tamil\"          \"Region\"         \"Area (km2)\"     \"Population\"    \n [9] \"Density (/km2)\" \"Subzones\"      \n\n\nCode\nrespop_with_region &lt;- respopagesex2024 %&gt;%\n  left_join(planning_areas, by = c(\"PA\" = \"Name (English)\"))\n\nglimpse(respop_with_region)\n\n\nRows: 60,424\nColumns: 15\n$ PA               &lt;chr&gt; \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo Kio…\n$ SZ               &lt;chr&gt; \"Ang Mo Kio Town Centre\", \"Ang Mo Kio Town Centre\", \"…\n$ Age              &lt;chr&gt; \"0\", \"0\", \"1\", \"1\", \"2\", \"2\", \"3\", \"3\", \"4\", \"4\", \"5\"…\n$ Sex              &lt;chr&gt; \"Males\", \"Females\", \"Males\", \"Females\", \"Males\", \"Fem…\n$ Pop              &lt;dbl&gt; 10, 10, 10, 10, 10, 10, 10, 10, 30, 10, 20, 10, 20, 3…\n$ Time             &lt;dbl&gt; 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024,…\n$ Malay            &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…\n$ Chinese          &lt;chr&gt; \"宏茂桥\", \"宏茂桥\", \"宏茂桥\", \"宏茂桥\", \"宏茂桥\", \"宏茂桥\", \"宏茂桥\", \"宏茂桥…\n$ Pinyin           &lt;chr&gt; \"Hóngmàoqiáo\", \"Hóngmàoqiáo\", \"Hóngmàoqiáo\", \"Hóngmào…\n$ Tamil            &lt;chr&gt; \"ஆங் மோ கியோ\", \"ஆங் மோ கியோ\", \"ஆங் மோ கியோ\", \"ஆங் மோ கியோ\", \"ஆங் மோ கியோ\"…\n$ Region           &lt;chr&gt; \"North-East\", \"North-East\", \"North-East\", \"North-East…\n$ `Area (km2)`     &lt;dbl&gt; 13.94, 13.94, 13.94, 13.94, 13.94, 13.94, 13.94, 13.9…\n$ Population       &lt;chr&gt; \"161,000\", \"161,000\", \"161,000\", \"161,000\", \"161,000\"…\n$ `Density (/km2)` &lt;chr&gt; \"13,400\", \"13,400\", \"13,400\", \"13,400\", \"13,400\", \"13…\n$ Subzones         &lt;chr&gt; \"12\", \"12\", \"12\", \"12\", \"12\", \"12\", \"12\", \"12\", \"12\",…\n\n\nCode\nknitr::kable(head(respop_with_region))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPA\nSZ\nAge\nSex\nPop\nTime\nMalay\nChinese\nPinyin\nTamil\nRegion\nArea (km2)\nPopulation\nDensity (/km2)\nSubzones\n\n\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n0\nMales\n10\n2024\nNA\n宏茂桥\nHóngmàoqiáo\nஆங் மோ கியோ\nNorth-East\n13.94\n161,000\n13,400\n12\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n0\nFemales\n10\n2024\nNA\n宏茂桥\nHóngmàoqiáo\nஆங் மோ கியோ\nNorth-East\n13.94\n161,000\n13,400\n12\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n1\nMales\n10\n2024\nNA\n宏茂桥\nHóngmàoqiáo\nஆங் மோ கியோ\nNorth-East\n13.94\n161,000\n13,400\n12\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n1\nFemales\n10\n2024\nNA\n宏茂桥\nHóngmàoqiáo\nஆங் மோ கியோ\nNorth-East\n13.94\n161,000\n13,400\n12\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n2\nMales\n10\n2024\nNA\n宏茂桥\nHóngmàoqiáo\nஆங் மோ கியோ\nNorth-East\n13.94\n161,000\n13,400\n12\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n2\nFemales\n10\n2024\nNA\n宏茂桥\nHóngmàoqiáo\nஆங் மோ கியோ\nNorth-East\n13.94\n161,000\n13,400\n12"
-  },
-  {
-    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#selecting-primary-variables",
-    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#selecting-primary-variables",
-    "title": "Take Home Exercise 1",
-    "section": "1.4.4 Selecting Primary Variables",
-    "text": "1.4.4 Selecting Primary Variables\nThe primary variables chosen for this exercise are given below.\n\n\n\n\n\n\n\nField Name\nField Description\n\n\n\n\nPA\nName of planning area where the population record belongs\n\n\nSZ\nName of subzone within the planning area\n\n\nAge\nAge of the individuals\n\n\nSex\nGender of the population group\n\n\nPop\nTotal population count for the given age, sex, and location\n\n\nRegion\nBroad geographic region linked to each planning area\n\n\n\nRemaining variables will be excluded to give the cleaned dataset - respop_cleaned.\n\n\nCode\nrespop_cleaned &lt;- respop_with_region %&gt;%\n  select(-`Time`, -`Malay`, -`Chinese`, -`Pinyin`, -`Tamil`, -`Area (km2)`, -`Population`, -`Density (/km2)`, -`Subzones`)\n\nknitr::kable(head(respop_cleaned))\n\n\n\n\n\nPA\nSZ\nAge\nSex\nPop\nRegion\n\n\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n0\nMales\n10\nNorth-East\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n0\nFemales\n10\nNorth-East\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n1\nMales\n10\nNorth-East\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n1\nFemales\n10\nNorth-East\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n2\nMales\n10\nNorth-East\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n2\nFemales\n10\nNorth-East\n\n\n\n\n\nCode\nglimpse(respop_cleaned)\n\n\nRows: 60,424\nColumns: 6\n$ PA     &lt;chr&gt; \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo…\n$ SZ     &lt;chr&gt; \"Ang Mo Kio Town Centre\", \"Ang Mo Kio Town Centre\", \"Ang Mo Kio…\n$ Age    &lt;chr&gt; \"0\", \"0\", \"1\", \"1\", \"2\", \"2\", \"3\", \"3\", \"4\", \"4\", \"5\", \"5\", \"6\"…\n$ Sex    &lt;chr&gt; \"Males\", \"Females\", \"Males\", \"Females\", \"Males\", \"Females\", \"Ma…\n$ Pop    &lt;dbl&gt; 10, 10, 10, 10, 10, 10, 10, 10, 30, 10, 20, 10, 20, 30, 30, 10,…\n$ Region &lt;chr&gt; \"North-East\", \"North-East\", \"North-East\", \"North-East\", \"North-…"
-  },
-  {
-    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#gender-ratio-analysis-by-region",
-    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#gender-ratio-analysis-by-region",
-    "title": "Take Home Exercise 1",
-    "section": "1.5.1 Gender Ratio Analysis by Region",
-    "text": "1.5.1 Gender Ratio Analysis by Region\n\n\nCode\ngender_summary_long &lt;- respop_cleaned %&gt;%\n  group_by(Region, Sex) %&gt;%\n  summarise(Total_Pop = sum(Pop), .groups = \"drop\")\n\n#Calculate total population per region\ngender_summary_long &lt;- gender_summary_long %&gt;%\n  group_by(Region) %&gt;%\n  mutate(\n    Region_Total = sum(Total_Pop),\n    Percent = (Total_Pop / Region_Total) * 100\n  )\n\n#Plot side-by-side bars\nggplot(gender_summary_long, aes(x = Region, y = Total_Pop, fill = Sex)) +\n  geom_col(position = \"dodge\") +\n  geom_text(\n    aes(label = paste0(round(Percent, 1), \"%\")),\n    position = position_dodge(width = 0.9),\n    vjust = -0.5,\n    size = 3, family = \"nunito\"\n  ) +\n  labs(\n    title = \"Male and Female Population by Region\",\n    x = \"Region\",\n    y = \"Total Population\"\n  ) +\n  scale_y_continuous(labels = scales::comma) +\n  theme_minimal(base_family = \"nunito\") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5),plot.title = element_text(hjust = 0.5, size = 15, face = \"bold\", family = \"nunito\")) +\n  scale_fill_manual(values = c(\"Females\" = \"#662633\", \"Males\" = \"#2C3C60\"))\n\n\n\n\n\n\n\n\n\nInsights:\n\nIn all five regions, females make up a slightly higher percentage of the total population, with the Central and North-East regions showing the largest gaps.\nThe total population size varies significantly by region. Central and North-East regions have noticeably larger total populations compared to the North, East, and West, highlighting regional population concentration and urban density differences.\nDespite minor percentage differences, the male-to-female split remains close to 50 - 50 in all regions, suggesting a stable and balanced gender distribution at the regional level in Singapore."
-  },
-  {
-    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#region-wise-age-distribution-using-multiple-density-plots",
-    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#region-wise-age-distribution-using-multiple-density-plots",
-    "title": "Take Home Exercise 1",
-    "section": "1.5.2 Region-wise Age Distribution Using Multiple Density Plots",
-    "text": "1.5.2 Region-wise Age Distribution Using Multiple Density Plots\nAge is stored as a character datatype because it contains values ‘90_and_Over’ to represent residents aged over 90. To simplify this for an age distribution, these records will be recoded as ‘90’ before converting them to a numeric datatype.\n\n\nCode\nrespop_cleaned &lt;- respop_cleaned %&gt;%\n  mutate(\n    Age = as.character(Age),\n    Age = ifelse(Age == \"90_and_Over\", \"90\", Age),\n    Age = as.numeric(Age)\n)\n\n# Calculate age with highest density per region\nmode_age &lt;- respop_cleaned %&gt;%\n  group_by(Region) %&gt;%\n  group_split() %&gt;%\n  map_df(~ {\n    d &lt;- density(rep(.x$Age, .x$Pop))\n    data.frame(\n      Region = unique(.x$Region),\n      mode_age = d$x[which.max(d$y)]\n    )\n  })\n\n# Plot with vertical mode lines\nggplot(respop_cleaned, aes(x = Age, weight = Pop, fill = Region)) +\n  geom_density(alpha = 0.6, adjust = 1) +\n  geom_vline(data = mode_age, aes(xintercept = mode_age), color = \"black\", linetype = \"dashed\", size = 0.8) + \n  geom_text(\n    data = mode_age,\n    mapping = aes(x = mode_age, y = 0, label = paste0(\"Peak: \", round(mode_age, 1))),\n    inherit.aes = FALSE,\n    angle = 90, vjust = -0.5, hjust = 1.1, size = 3\n  ) +\n  facet_wrap(~ Region, scales = \"free_y\", ncol = 2) +\n  labs(\n    title = \"Age Distribution by Region in Singapore (Weighted by Population)\",\n    subtitle = \"Dashed line indicates age with highest density (mode)\",\n    x = \"Age\",\n    y = \"Density\"\n  ) +\n  theme(legend.position = \"none\") +\n  theme_minimal(base_family = \"nunito\") + theme(legend.position = \"none\",axis.text.x = element_text(angle = 90, vjust = 0.5),plot.title = element_text(hjust = 0.5, size = 30, face = \"bold\", family = \"nunito\")) +\n  scale_fill_manual(values = c(\"West\" = \"#145C47\", \"East\" = \"#2C3C60\", \"North\" = \"#662633\",\"North-East\" = \"#4B2C60\",\"Central\" = \"#665C26\"))\n\n\n\n\n\n\n\n\n\nInsights:\n\nAcross all five regions in Singapore, the density curves show peaks between ages 20 – 40, suggesting these age groups make up the largest share of the population. This reflects a working-age dominance that is prevalent in urban and developed countries.\nThe dashed vertical lines marking the modal age (most common) appear at nearly the same point for all regions, which is around 30 - 35 year olds. This indicates a consistent demographic structure across Singapore’s regions.\nWhile younger and middle-aged groups dominate, all regions show a gradual decline in density after age 50 – 60, reflecting lower population counts at older ages. Future policies focus on potential improvements for aging populations, like healthcare support and elderly welfare."
-  },
-  {
-    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#total-population-by-planning-areas-in-all-regions",
-    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#total-population-by-planning-areas-in-all-regions",
-    "title": "Take Home Exercise 1",
-    "section": "1.5.3 Total Population by Planning Areas in all Regions",
-    "text": "1.5.3 Total Population by Planning Areas in all Regions\n\n\nCode\n# Summarize total population by planning area for each region\nplanning_area_summary &lt;- respop_cleaned %&gt;%\n  group_by(Region, PA) %&gt;%\n  summarise(Total_Pop = sum(Pop), .groups = \"drop\")\n\n# Bar chart\nggplot(planning_area_summary, aes(x = reorder(PA, -Total_Pop), y = Total_Pop, fill = Region)) +\n  geom_col() +\n  facet_wrap(~ Region, scales = \"free_x\") +\n  labs(title = \"Total Population by Planning Area (within Each Region)\", x = \"Planning Area\", y = \"Population\") +\n  scale_y_continuous(labels = scales::comma) +\n  theme_minimal(base_family = \"nunito\",base_size = 25) +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5),plot.title = element_text(hjust = 0.5, size = 30, face = \"bold\", family = \"nunito\")) +\n  scale_fill_manual(values = c(\"West\" = \"#145C47\", \"East\" = \"#2C3C60\", \"North\" = \"#662633\",\"North-East\" = \"#4B2C60\",\"Central\" = \"#665C26\"))\n\n\n\n\n\n\n\n\n\nInsights:\n\nPopulation is heavily concentrated in a few dominant planning areas within each region. For example, Tampines (East), Woodlands (North), Sengkang (North-East), and Jurong West (West) stand out as the most populous planning areas, suggesting that they are clearly urban hubs.\nWhile there are numerous planning areas in Central, only a few (like Bukit Merah, Queenstown, and Toa Payoh) hold large populations. Other areas have relatively small populations of Singaporean residents, due to the presence of commercial, or low-residence zones like Orchard and Marina South.\nSome planning areas have extremely low or negligible residential populations. Places like Lim Chu Kang, Central Water Catchment, and Western Islands show almost no population, indicating these are likely reserved for industrial, military, or nature conservation purposes."
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex04C/HandsOnEx04C.html",
-    "href": "HandsOn_Exercises/HandsOn_Ex04C/HandsOnEx04C.html",
-    "title": "Hands On Exercise 4C",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Visual Analytics & Applications",
     "section": "",
-    "text": "Visualising uncertainty is relatively new in statistical graphics. In this chapter, you will gain hands-on experience on creating statistical graphics for visualising uncertainty. By the end of this chapter you will be able:\n\nto plot statistics error bars by using ggplot2,\nto plot interactive error bars by combining ggplot2, plotly and DT,\nto create advanced by using ggdist, and\nto create hypothetical outcome plots (HOPs) by using ungeviz package."
+    "text": "My website showcases my learning journey for this course in the AY2024–25 April term taught by Professor Kam Tin Seong at SMU. The course explores how visualizations can turn raw data into meaningful insights, using tools like Quarto for web-based reporting and Tableau for interactive dashboards. Throughout the semester, I’ll be sharing my coursework, projects, and reflections here — so stay tuned as this site evolves!\n\n\n\n\nI’m currently a full-time business analyst and a part-time MITB student, with a keen interest in data storytelling and analytics. My goal is to pivot into a data science role, to combine analytical techniques with strong business intuition to solve real-world problems. When I’m not coding or studying, you can usually find me at the gym, painting on a quiet weekend, or planning my next travel adventure. Feel free to reach out to me!"
   },
   {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex04C/HandsOnEx04C.html#installing-and-loading-the-packages",
-    "href": "HandsOn_Exercises/HandsOn_Ex04C/HandsOnEx04C.html#installing-and-loading-the-packages",
-    "title": "Hands On Exercise 4C",
-    "section": "11.2.1 Installing and loading the packages",
-    "text": "11.2.1 Installing and loading the packages\nFor the purpose of this exercise, the following R packages will be used, they are:\n\ntidyverse, a family of R packages for data science process,\nplotly for creating interactive plot,\ngganimate for creating animation plot,\nDT for displaying interactive html table,\ncrosstalk for for implementing cross-widget interactions (currently, linked brushing and filtering), and\nggdist for visualising distribution and uncertainty.\n\n\n\nCode\npacman::p_load(plotly, crosstalk, DT, \n               ggdist, ggridges, colorspace,\n               gganimate, tidyverse)"
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex04C/HandsOnEx04C.html#data-import",
-    "href": "HandsOn_Exercises/HandsOn_Ex04C/HandsOnEx04C.html#data-import",
-    "title": "Hands On Exercise 4C",
-    "section": "11.2.2 Data import",
-    "text": "11.2.2 Data import\nFor the purpose of this exercise, Exam_data.csv will be used.\n\n\nCode\nexam &lt;- read_csv(\"Exam_data.csv\")"
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex04A/HandsOnEx04A.html",
-    "href": "HandsOn_Exercises/HandsOn_Ex04A/HandsOnEx04A.html",
-    "title": "Hands On Exercise 4A",
+    "objectID": "index.html#about-this-course",
+    "href": "index.html#about-this-course",
+    "title": "Visual Analytics & Applications",
     "section": "",
-    "text": "Visualising distribution is not new in statistical analysis. In chapter 1 we have shared with you some of the popular statistical graphics methods for visualising distribution are histogram, probability density curve (pdf), boxplot, notch plot and violin plot and how they can be created by using ggplot2. In this chapter, we are going to share with you two relatively new statistical graphic methods for visualising distribution, namely ridgeline plot and raincloud plot by using ggplot2 and its extensions."
+    "text": "My website showcases my learning journey for this course in the AY2024–25 April term taught by Professor Kam Tin Seong at SMU. The course explores how visualizations can turn raw data into meaningful insights, using tools like Quarto for web-based reporting and Tableau for interactive dashboards. Throughout the semester, I’ll be sharing my coursework, projects, and reflections here — so stay tuned as this site evolves!"
   },
   {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex04A/HandsOnEx04A.html#installing-and-loading-the-packages",
-    "href": "HandsOn_Exercises/HandsOn_Ex04A/HandsOnEx04A.html#installing-and-loading-the-packages",
-    "title": "Hands On Exercise 4A",
-    "section": "9.2.1 Installing and loading the packages",
-    "text": "9.2.1 Installing and loading the packages\nFor the purpose of this exercise, the following R packages will be used, they are:\n\nggridges, a ggplot2 extension specially designed for plotting ridgeline plots\nggdist, a ggplot2 extension spacially desgin for visualising distribution and uncertainty\ntidyverse, a family of R packages to meet the modern data science and visual communication needs\nggthemes, a ggplot extension that provides the user additional themes, scales, and geoms for the ggplots package\ncolorspace, an R package provides a broad toolbox for selecting individual colors or color palettes, manipulating these colors, and employing them in various kinds of visualisations.\n\nThe code chunk below will be used load these R packages into RStudio environment.\n\n\nCode\npacman::p_load(ggdist, ggridges, ggthemes,\n               colorspace, tidyverse)"
+    "objectID": "index.html#about-myself",
+    "href": "index.html#about-myself",
+    "title": "Visual Analytics & Applications",
+    "section": "",
+    "text": "I’m currently a full-time business analyst and a part-time MITB student, with a keen interest in data storytelling and analytics. My goal is to pivot into a data science role, to combine analytical techniques with strong business intuition to solve real-world problems. When I’m not coding or studying, you can usually find me at the gym, painting on a quiet weekend, or planning my next travel adventure. Feel free to reach out to me!"
   },
   {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex04A/HandsOnEx04A.html#data-import",
-    "href": "HandsOn_Exercises/HandsOn_Ex04A/HandsOnEx04A.html#data-import",
-    "title": "Hands On Exercise 4A",
-    "section": "9.2.2 Data Import",
-    "text": "9.2.2 Data Import\nFor the purpose of this exercise, Exam_data.csv will be used.\nIn the code chunk below, read_csv() of readr package is used to import Exam_data.csv into R and saved it into a tibble data.frame.\n\n\nCode\nexam &lt;- read_csv(\"Exam_data.csv\")"
+    "objectID": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html",
+    "href": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html",
+    "title": "Hands On Exercise 4D",
+    "section": "",
+    "text": "Funnel plot is a specially designed data visualisation for conducting unbiased comparison between outlets, stores or business entities. By the end of this hands-on exercise, you will gain hands-on experience on:\n\nplotting funnel plots by using funnelPlotR package,\nplotting static funnel plot by using ggplot2 package, and\nplotting interactive funnel plot by using both plotly R and ggplot2 packages."
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#funnelplotr-methods-the-basic-plot",
+    "href": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#funnelplotr-methods-the-basic-plot",
+    "title": "Hands On Exercise 4D",
+    "section": "8.4.1 FunnelPlotR methods: The basic plot",
+    "text": "8.4.1 FunnelPlotR methods: The basic plot\nThe code chunk below plots a funnel plot.\nThings to learn from the code chunk above.\n\ngroup in this function is different from the scatterplot. Here, it defines the level of the points to be plotted i.e. Sub-district, District or City. If Cityc is chosen, there are only six data points.\n\n\n\nCode\nfunnel_plot(\n  .data = covid19,\n  numerator = Positive,\n  denominator = Death,\n  group = `Sub-district`\n)\n\n\n\n\n\n\n\n\n\nA funnel plot object with 267 points of which 0 are outliers. \nPlot is adjusted for overdispersion. \n\n\n\nBy default, data_typeargument is “SR”.\nlimit: Plot limits, accepted values are: 95 or 99, corresponding to 95% or 99.8% quantiles of the distribution."
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#funnelplotr-methods-makeover-1",
+    "href": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#funnelplotr-methods-makeover-1",
+    "title": "Hands On Exercise 4D",
+    "section": "8.4.2 FunnelPlotR methods: Makeover 1",
+    "text": "8.4.2 FunnelPlotR methods: Makeover 1\nThe code chunk below plots a funnel plot.\nThings to learn from the code chunk above. + data_type argument is used to change from default “SR” to “PR” (i.e. proportions). + xrange and yrange are used to set the range of x-axis and y-axis.\n\n\nCode\nfunnel_plot(\n  .data = covid19,\n  numerator = Death,\n  denominator = Positive,\n  group = `Sub-district`,\n  data_type = \"PR\",     #&lt;&lt;\n  xrange = c(0, 6500),  #&lt;&lt;\n  yrange = c(0, 0.05)   #&lt;&lt;\n)\n\n\n\n\n\n\n\n\n\nA funnel plot object with 267 points of which 7 are outliers. \nPlot is adjusted for overdispersion."
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#funnelplotr-methods-makeover-2",
+    "href": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#funnelplotr-methods-makeover-2",
+    "title": "Hands On Exercise 4D",
+    "section": "8.4.3 FunnelPlotR methods: Makeover 2",
+    "text": "8.4.3 FunnelPlotR methods: Makeover 2\nThe code chunk below plots a funnel plot.\nThings to learn from the code chunk above.\n\nlabel = NA argument is to removed the default label outliers feature.\ntitle argument is used to add plot title.\nx_label and y_label arguments are used to add/edit x-axis and y-axis titles.\n\n\n\nCode\nfunnel_plot(\n  .data = covid19,\n  numerator = Death,\n  denominator = Positive,\n  group = `Sub-district`,\n  data_type = \"PR\",   \n  xrange = c(0, 6500),  \n  yrange = c(0, 0.05),\n  label = NA,\n  title = \"Cumulative COVID-19 Fatality Rate by Cumulative Total Number of COVID-19 Positive Cases\", #&lt;&lt;           \n  x_label = \"Cumulative COVID-19 Positive Cases\", #&lt;&lt;\n  y_label = \"Cumulative Fatality Rate\"  #&lt;&lt;\n)\n\n\n\n\n\n\n\n\n\nA funnel plot object with 267 points of which 7 are outliers. \nPlot is adjusted for overdispersion."
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#computing-the-basic-derived-fields",
+    "href": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#computing-the-basic-derived-fields",
+    "title": "Hands On Exercise 4D",
+    "section": "8.5.1 Computing the basic derived fields",
+    "text": "8.5.1 Computing the basic derived fields\nTo plot the funnel plot from scratch, we need to derive cumulative death rate and standard error of cumulative death rate.\n\n\nCode\ndf &lt;- covid19 %&gt;%\n  mutate(rate = Death / Positive) %&gt;%\n  mutate(rate.se = sqrt((rate*(1-rate)) / (Positive))) %&gt;%\n  filter(rate &gt; 0)\n\n\nNext, the fit.mean is computed by using the code chunk below.\n\n\nCode\nfit.mean &lt;- weighted.mean(df$rate, 1/df$rate.se^2)"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#calculate-lower-and-upper-limits-for-95-and-99.9-ci",
+    "href": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#calculate-lower-and-upper-limits-for-95-and-99.9-ci",
+    "title": "Hands On Exercise 4D",
+    "section": "8.5.2 Calculate lower and upper limits for 95% and 99.9% CI",
+    "text": "8.5.2 Calculate lower and upper limits for 95% and 99.9% CI\nThe code chunk below is used to compute the lower and upper limits for 95% confidence interval.\n\n\nCode\nnumber.seq &lt;- seq(1, max(df$Positive), 1)\nnumber.ll95 &lt;- fit.mean - 1.96 * sqrt((fit.mean*(1-fit.mean)) / (number.seq)) \nnumber.ul95 &lt;- fit.mean + 1.96 * sqrt((fit.mean*(1-fit.mean)) / (number.seq)) \nnumber.ll999 &lt;- fit.mean - 3.29 * sqrt((fit.mean*(1-fit.mean)) / (number.seq)) \nnumber.ul999 &lt;- fit.mean + 3.29 * sqrt((fit.mean*(1-fit.mean)) / (number.seq)) \ndfCI &lt;- data.frame(number.ll95, number.ul95, number.ll999, \n                   number.ul999, number.seq, fit.mean)"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#plotting-a-static-funnel-plot",
+    "href": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#plotting-a-static-funnel-plot",
+    "title": "Hands On Exercise 4D",
+    "section": "8.5.3 Plotting a static funnel plot",
+    "text": "8.5.3 Plotting a static funnel plot\nIn the code chunk below, ggplot2 functions are used to plot a static funnel plot.\n\n\nCode\np &lt;- ggplot(df, aes(x = Positive, y = rate)) +\n  geom_point(aes(label=`Sub-district`), \n             alpha=0.4) +\n  geom_line(data = dfCI, \n            aes(x = number.seq, \n                y = number.ll95), \n            size = 0.4, \n            colour = \"grey40\", \n            linetype = \"dashed\") +\n  geom_line(data = dfCI, \n            aes(x = number.seq, \n                y = number.ul95), \n            size = 0.4, \n            colour = \"grey40\", \n            linetype = \"dashed\") +\n  geom_line(data = dfCI, \n            aes(x = number.seq, \n                y = number.ll999), \n            size = 0.4, \n            colour = \"grey40\") +\n  geom_line(data = dfCI, \n            aes(x = number.seq, \n                y = number.ul999), \n            size = 0.4, \n            colour = \"grey40\") +\n  geom_hline(data = dfCI, \n             aes(yintercept = fit.mean), \n             size = 0.4, \n             colour = \"grey40\") +\n  coord_cartesian(ylim=c(0,0.05)) +\n  annotate(\"text\", x = 1, y = -0.13, label = \"95%\", size = 3, colour = \"grey40\") + \n  annotate(\"text\", x = 4.5, y = -0.18, label = \"99%\", size = 3, colour = \"grey40\") + \n  ggtitle(\"Cumulative Fatality Rate by Cumulative Number of COVID-19 Cases\") +\n  xlab(\"Cumulative Number of COVID-19 Cases\") + \n  ylab(\"Cumulative Fatality Rate\") +\n  theme_light() +\n  theme(plot.title = element_text(size=12),\n        legend.position = c(0.91,0.85), \n        legend.title = element_text(size=7),\n        legend.text = element_text(size=7),\n        legend.background = element_rect(colour = \"grey60\", linetype = \"dotted\"),\n        legend.key.height = unit(0.3, \"cm\"))\np"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#interactive-funnel-plot-plotly-ggplot2",
+    "href": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#interactive-funnel-plot-plotly-ggplot2",
+    "title": "Hands On Exercise 4D",
+    "section": "8.5.4 Interactive Funnel Plot: plotly + ggplot2",
+    "text": "8.5.4 Interactive Funnel Plot: plotly + ggplot2\nThe funnel plot created using ggplot2 functions can be made interactive with ggplotly() of plotly r package.\n\n\nCode\nfp_ggplotly &lt;- ggplotly(p,\n  tooltip = c(\"label\", \n              \"x\", \n              \"y\"))\nfp_ggplotly"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex04B/HandsOnEx04B.html",
+    "href": "HandsOn_Exercises/HandsOn_Ex04B/HandsOnEx04B.html",
+    "title": "Hands On Exercise 4B",
+    "section": "",
+    "text": "In this hands-on exercise, you will gain hands-on experience on using:\n\nggstatsplot package to create visual graphics with rich statistical information,\nperformance package to visualise model diagnostics, and\nparameters package to visualise model parameters"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex04B/HandsOnEx04B.html#installing-and-launching-r-packages",
+    "href": "HandsOn_Exercises/HandsOn_Ex04B/HandsOnEx04B.html#installing-and-launching-r-packages",
+    "title": "Hands On Exercise 4B",
+    "section": "10.3.1 Installing and launching R packages",
+    "text": "10.3.1 Installing and launching R packages\nIn this exercise, ggstatsplot and tidyverse will be used.\n\n\nCode\npacman::p_load(ggstatsplot, tidyverse)"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex04B/HandsOnEx04B.html#importing-data",
+    "href": "HandsOn_Exercises/HandsOn_Ex04B/HandsOnEx04B.html#importing-data",
+    "title": "Hands On Exercise 4B",
+    "section": "10.3.2 Importing data",
+    "text": "10.3.2 Importing data\n\n\nCode\nexam &lt;- read_csv(\"Exam_data.csv\")"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html",
+    "href": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html",
+    "title": "Hands On Exercise 3B",
+    "section": "",
+    "text": "When telling a visually-driven data story, animated graphics tends to attract the interest of the audience and make deeper impression than static graphics. In this hands-on exercise, you will learn how to create animated data visualisation by using gganimate and plotly r packages. At the same time, you will also learn how to (i) reshape data by using tidyr package, and (ii) process, wrangle and transform data by using dplyr package.\n\n\nWhen creating animations, the plot does not actually move. Instead, many individual plots are built and then stitched together as movie frames, just like an old-school flip book or cartoon. Each frame is a different plot when conveying motion, which is built using some relevant subset of the aggregate data. The subset drives the flow of the animation when stitched back together.\n\n\n\nBefore we dive into the steps for creating an animated statistical graph, it’s important to understand some of the key concepts and terminology related to this type of visualization.\n\nFrame: In an animated line graph, each frame represents a different point in time or a different category. When the frame changes, the data points on the graph are updated to reflect the new data.\nAnimation Attributes: The animation attributes are the settings that control how the animation behaves. For example, you can specify the duration of each frame, the easing function used to transition between frames, and whether to start the animation from the current frame or from the beginning."
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#basic-concepts-of-animation",
+    "href": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#basic-concepts-of-animation",
+    "title": "Hands On Exercise 3B",
+    "section": "",
+    "text": "When creating animations, the plot does not actually move. Instead, many individual plots are built and then stitched together as movie frames, just like an old-school flip book or cartoon. Each frame is a different plot when conveying motion, which is built using some relevant subset of the aggregate data. The subset drives the flow of the animation when stitched back together."
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#terminology",
+    "href": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#terminology",
+    "title": "Hands On Exercise 3B",
+    "section": "",
+    "text": "Before we dive into the steps for creating an animated statistical graph, it’s important to understand some of the key concepts and terminology related to this type of visualization.\n\nFrame: In an animated line graph, each frame represents a different point in time or a different category. When the frame changes, the data points on the graph are updated to reflect the new data.\nAnimation Attributes: The animation attributes are the settings that control how the animation behaves. For example, you can specify the duration of each frame, the easing function used to transition between frames, and whether to start the animation from the current frame or from the beginning."
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#loading-the-r-packages",
+    "href": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#loading-the-r-packages",
+    "title": "Hands On Exercise 3B",
+    "section": "4.2.1 Loading the R packages",
+    "text": "4.2.1 Loading the R packages\nFirst, write a code chunk to check, install and load the following R packages:\n\nplotly, R library for plotting interactive statistical graphs.\ngganimate, an ggplot extension for creating animated statistical graphs.\ngifski converts video frames to GIF animations using pngquant’s fancy features for efficient cross-frame palettes and temporal dithering. It produces animated GIFs that use thousands of colors per frame.\ngapminder: An excerpt of the data available at Gapminder.org. We just want to use its country_colors scheme.\ntidyverse, a family of modern R packages specially designed to support data science, analysis and communication task including creating static statistical graphs.\n\n\n\nCode\npacman::p_load(readxl, gifski, gapminder,\n               plotly, gganimate, tidyverse)"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#importing-the-data",
+    "href": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#importing-the-data",
+    "title": "Hands On Exercise 3B",
+    "section": "4.2.2 Importing the data",
+    "text": "4.2.2 Importing the data\nIn this hands-on exercise, the Data worksheet from GlobalPopulation Excel workbook will be used.\nWrite a code chunk to import Data worksheet from GlobalPopulation Excel workbook by using appropriate R package from tidyverse family.\nUnfortunately, mutate_each_() was deprecated in dplyr 0.7.0. and funs() was deprecated in dplyr 0.8.0. In view of this, we will re-write the code by using mutate_at() as shown in the code chunk below.\n\n\nCode\ncol &lt;- c(\"Country\", \"Continent\")\nglobalPop &lt;- read_xls(\"GlobalPopulation.xls\",\n                      sheet=\"Data\") %&gt;%\n  mutate_at(col, as.factor) %&gt;%\n  mutate(Year = as.integer(Year))\n\n\nInstead of using mutate_at(), across() can be used to derive the same outputs.\n\n\nCode\ncol &lt;- c(\"Country\", \"Continent\")\nglobalPop &lt;- read_xls(\"GlobalPopulation.xls\",\n                      sheet=\"Data\") %&gt;%\n  mutate(across(col, as.factor)) %&gt;%\n  mutate(Year = as.integer(Year))"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#building-a-static-population-bubble-plot",
+    "href": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#building-a-static-population-bubble-plot",
+    "title": "Hands On Exercise 3B",
+    "section": "4.3.1 Building a static population bubble plot",
+    "text": "4.3.1 Building a static population bubble plot\nIn the code chunk below, the basic ggplot2 functions are used to create a static bubble plot.\n\n\nCode\nggplot(globalPop, aes(x = Old, y = Young, \n                      size = Population, \n                      colour = Country)) +\n  geom_point(alpha = 0.7, \n             show.legend = FALSE) +\n  scale_colour_manual(values = country_colors) +\n  scale_size(range = c(2, 12)) +\n  labs(title = 'Year: {frame_time}', \n       x = '% Aged', \n       y = '% Young')"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#building-the-animated-bubble-plot",
+    "href": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#building-the-animated-bubble-plot",
+    "title": "Hands On Exercise 3B",
+    "section": "4.3.2 Building the animated bubble plot",
+    "text": "4.3.2 Building the animated bubble plot\nIn the code chunk below,\n\ntransition_time() of gganimate is used to create transition through distinct states in time (i.e. Year).\nease_aes() is used to control easing of aesthetics. The default is linear. Other methods are: quadratic, cubic, quartic, quintic, sine, circular, exponential, elastic, back, and bounce.\n\n\n\nCode\nggplot(globalPop, aes(x = Old, y = Young, \n                      size = Population, \n                      colour = Country)) +\n  geom_point(alpha = 0.7, \n             show.legend = FALSE) +\n  scale_colour_manual(values = country_colors) +\n  scale_size(range = c(2, 12)) +\n  labs(title = 'Year: {frame_time}', \n       x = '% Aged', \n       y = '% Young') +\n  transition_time(Year) +       \n  ease_aes('linear')"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#building-an-animated-bubble-plot-ggplotly-method",
+    "href": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#building-an-animated-bubble-plot-ggplotly-method",
+    "title": "Hands On Exercise 3B",
+    "section": "4.4.1 Building an animated bubble plot: ggplotly() method",
+    "text": "4.4.1 Building an animated bubble plot: ggplotly() method\nIn this sub-section, you will learn how to create an animated bubble plot by using ggplotly() method.\n\n\nCode\ngg &lt;- ggplot(globalPop, \n       aes(x = Old, \n           y = Young, \n           size = Population, \n           colour = Country)) +\n  geom_point(aes(size = Population,\n                 frame = Year),\n             alpha = 0.7, \n             show.legend = FALSE) +\n  scale_colour_manual(values = country_colors) +\n  scale_size(range = c(2, 12)) +\n  labs(x = '% Aged', \n       y = '% Young')\n\nggplotly(gg)\n\n\n\n\n\n\nNotice that although show.legend = FALSE argument was used, the legend still appears on the plot. To overcome this problem, theme(legend.position='none') should be used as shown in the plot and code chunk below.\n\n\nCode\ngg &lt;- ggplot(globalPop, \n       aes(x = Old, \n           y = Young, \n           size = Population, \n           colour = Country)) +\n  geom_point(aes(size = Population,\n                 frame = Year),\n             alpha = 0.7) +\n  scale_colour_manual(values = country_colors) +\n  scale_size(range = c(2, 12)) +\n  labs(x = '% Aged', \n       y = '% Young') + \n  theme(legend.position='none')\n\nggplotly(gg)"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#building-an-animated-bubble-plot-plot_ly-method",
+    "href": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#building-an-animated-bubble-plot-plot_ly-method",
+    "title": "Hands On Exercise 3B",
+    "section": "4.4.2 Building an animated bubble plot: plot_ly() method",
+    "text": "4.4.2 Building an animated bubble plot: plot_ly() method\nIn this sub-section, you will learn how to create an animated bubble plot by using plot_ly() method.\n\n\nCode\nbp &lt;- globalPop %&gt;%\n  plot_ly(x = ~Old, \n          y = ~Young, \n          size = ~Population, \n          color = ~Continent,\n          sizes = c(2, 100),\n          frame = ~Year, \n          text = ~Country, \n          hoverinfo = \"text\",\n          type = 'scatter',\n          mode = 'markers'\n          ) %&gt;%\n  layout(showlegend = FALSE)\nbp"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex02/HandsOnEx02.html",
+    "href": "HandsOn_Exercises/HandsOn_Ex02/HandsOnEx02.html",
+    "title": "Hands On Exercise 2",
+    "section": "",
+    "text": "There are several ggplot2 extensions for creating more elegant and effective statistical graphics. Let’s explore these features!\n\nGetting Started\nBesides tidyverse, four R packages will be used.\n\nggrepel: to provide geoms for ggplot2 to repel overlapping text labels\nggthemes: to provide extra themes, geoms, and scales for ‘ggplot2’\nhrbrthemes: for typography-centric themes and theme components for ggplot2\npatchwork: for preparing composite figure created using ggplot2\n\nTo check if these packages have been installed and to load them into your working R environment, run the code below.\n\n\nCode\npacman::p_load(ggrepel, patchwork, ggthemes, hrbrthemes, tidyverse)\n\n\n\n\nImporting Data\nThe code chunk below imports exam_data.csv into R environment by using read_csv() function of readr package. \n\n\nCode\nexam_data &lt;- read_csv(\"Exam_data.csv\")\nshow_col_types = FALSE\nknitr::kable(head(exam_data))\n\n\n\n\n\nID\nCLASS\nGENDER\nRACE\nENGLISH\nMATHS\nSCIENCE\n\n\n\n\nStudent321\n3I\nMale\nMalay\n21\n9\n15\n\n\nStudent305\n3I\nFemale\nMalay\n24\n22\n16\n\n\nStudent289\n3H\nMale\nChinese\n26\n16\n16\n\n\nStudent227\n3F\nMale\nChinese\n27\n77\n31\n\n\nStudent318\n3I\nMale\nMalay\n27\n11\n25\n\n\nStudent306\n3I\nFemale\nMalay\n31\n16\n16\n\n\n\n\n\n\n\nWhat is ggrepel?\nOne of the challenge in plotting statistical graph is annotation, especially with large number of data points. Take a look below and see it for yourself.\n\n\nCode\nggplot(data=exam_data, \n       aes(x= MATHS, \n           y=ENGLISH)) +\n  geom_point() +\n  geom_smooth(method=lm, \n              size=0.5) +  \n  geom_label(aes(label = ID), \n             hjust = .5, \n             vjust = -.5) +\n  coord_cartesian(xlim=c(0,100),\n                  ylim=c(0,100)) +\n  ggtitle(\"English scores versus Maths scores for Primary 3\")\n\n\n\n\n\n\n\n\n\nCode\nknitr::opts_chunk$set(warning = FALSE)\n\n\nggrepel is an extension of ggplot2 package which provides geoms for ggplot2 to repel overlapping text.\n\n\nCode\nggplot(data=exam_data, \n       aes(x= MATHS, \n           y=ENGLISH)) +\n  geom_point() +\n  geom_smooth(method=lm, \n              size=0.5) +  \n  geom_label_repel(aes(label = ID), \n                   fontface = \"bold\") +\n  coord_cartesian(xlim=c(0,100),\n                  ylim=c(0,100)) +\n  ggtitle(\"English scores versus Maths scores for Primary 3\")\n\n\n\n\n\n\n\n\n\nCode\nknitr::opts_chunk$set(warning = FALSE)\n\n\n\n\nThemes\nggplot2 comes with eight built-in themes, they are: theme_gray(), theme_bw(), theme_classic(), theme_dark(), theme_light(), theme_linedraw(), theme_minimal(), and theme_void().\n\n\nCode\nggplot(data=exam_data, \n             aes(x = MATHS)) +\n  geom_histogram(bins=20, \n                 boundary = 100,\n                 color=\"grey25\", \n                 fill=\"#630e27\") +\n  theme_dark() +\n  ggtitle(\"Distribution of Maths Scores\") \n\n\n\n\n\n\n\n\n\nCode\nknitr::opts_chunk$set(warning = FALSE)\n\n\n\n\nCode\nggplot(data=exam_data, \n             aes(x = MATHS)) +\n  geom_histogram(bins=20, \n                 boundary = 100,\n                 color=\"grey25\", \n                 fill=\"#630e27\") +\n  ggtitle(\"Distribution of Maths scores\") +\n  theme_ipsum()\n\n\n\n\n\n\n\n\n\nCode\nknitr::opts_chunk$set(warning = FALSE)\n\n\n\n\nCombining Graphs\nLet’s create three graphs named p1, p2 and p3.\n\n\nCode\np1 &lt;- ggplot(data=exam_data, \n             aes(x = MATHS)) +\n  geom_histogram(bins=20, \n                 boundary = 100,\n                 color=\"grey25\", \n                 fill=\"#630e27\") + \n  coord_cartesian(xlim=c(0,100)) +\n  ggtitle(\"Distribution of Maths scores\")\nknitr::opts_chunk$set(warning = FALSE)\n\n\n\n\nCode\np2 &lt;- ggplot(data=exam_data, \n             aes(x = ENGLISH)) +\n  geom_histogram(bins=20, \n                 boundary = 100,\n                 color=\"grey25\", \n                 fill=\"black\") +\n  coord_cartesian(xlim=c(0,100)) +\n  ggtitle(\"Distribution of English scores\")\nknitr::opts_chunk$set(warning = FALSE)\n\n\n\n\nCode\np3 &lt;- ggplot(data=exam_data, \n             aes(x= MATHS, \n                 y=ENGLISH)) +\n  geom_point() +\n  geom_smooth(method=lm, \n              size=0.5) +  \n  coord_cartesian(xlim=c(0,100),\n                  ylim=c(0,100)) +\n  ggtitle(\"English scores versus Maths scores for Primary 3\")\nknitr::opts_chunk$set(warning = FALSE)\n\n\nPatchwork is a ggplot2 extension designed to combine separate ggplot2 graphs into a single figure. Here’s the syntax.\n\n“/” operator to stack two ggplot2 graphs\n“|” operator to place the plots beside each other\n“()” operator the define the sequence of the plotting\n\n\n\nCode\np1 + p2\n\n\n\n\n\n\n\n\n\n\n\nCode\n(p1 / p2) | p3\n\n\n\n\n\n\n\n\n\n\n\nCode\npatchwork &lt;- (p1 / p2) | p3\npatchwork\n\n\n\n\n\n\n\n\n\n\n\nCode\np3 &lt;- ggplot(data=exam_data, \n             aes(x= MATHS, \n                 y=ENGLISH)) +\n  geom_point() +\n  geom_smooth(method=lm, \n              size=0.5) +  \n  coord_cartesian(xlim=c(0,100),\n                  ylim=c(0,100)) +\n  ggtitle(stringr::str_wrap(\"English scores versus Maths scores for Primary 3\", width = 30)) +\n  theme_wsj() +\n  theme(plot.title = element_text(hjust = 0.5, size = 15, face = \"bold\"))"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html",
+    "href": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html",
+    "title": "Hands On Exercise 1",
+    "section": "",
+    "text": "The code below uses p_load() of pacman package to check if tidyverse packages are installed in the computer. If they are, then they will be launched into R.\n\n\nCode\npacman::p_load(tidyverse)\n\n\n\n\n\n\n\nCode\nexam_data &lt;- read_csv(\"data/Exam_data.csv\")\nshow_col_types = FALSE\n\nknitr::kable(head(exam_data))\n\n\n\n\n\nID\nCLASS\nGENDER\nRACE\nENGLISH\nMATHS\nSCIENCE\n\n\n\n\nStudent321\n3I\nMale\nMalay\n21\n9\n15\n\n\nStudent305\n3I\nFemale\nMalay\n24\n22\n16\n\n\nStudent289\n3H\nMale\nChinese\n26\n16\n16\n\n\nStudent227\n3F\nMale\nChinese\n27\n77\n31\n\n\nStudent318\n3I\nMale\nMalay\n27\n11\n25\n\n\nStudent306\n3I\nFemale\nMalay\n31\n16\n16"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#installing-r-packages",
+    "href": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#installing-r-packages",
+    "title": "Hands On Exercise 1",
+    "section": "",
+    "text": "The code below uses p_load() of pacman package to check if tidyverse packages are installed in the computer. If they are, then they will be launched into R.\n\n\nCode\npacman::p_load(tidyverse)"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#importing-data",
+    "href": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#importing-data",
+    "title": "Hands On Exercise 1",
+    "section": "",
+    "text": "Code\nexam_data &lt;- read_csv(\"data/Exam_data.csv\")\nshow_col_types = FALSE\n\nknitr::kable(head(exam_data))\n\n\n\n\n\nID\nCLASS\nGENDER\nRACE\nENGLISH\nMATHS\nSCIENCE\n\n\n\n\nStudent321\n3I\nMale\nMalay\n21\n9\n15\n\n\nStudent305\n3I\nFemale\nMalay\n24\n22\n16\n\n\nStudent289\n3H\nMale\nChinese\n26\n16\n16\n\n\nStudent227\n3F\nMale\nChinese\n27\n77\n31\n\n\nStudent318\n3I\nMale\nMalay\n27\n11\n25\n\n\nStudent306\n3I\nFemale\nMalay\n31\n16\n16"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#data",
+    "href": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#data",
+    "title": "Hands On Exercise 1",
+    "section": "Data",
+    "text": "Data\nFirst, let’s call the ggplot() function using the below code.\n\n\nCode\nggplot(data=exam_data)"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#aesthetic-mappings",
+    "href": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#aesthetic-mappings",
+    "title": "Hands On Exercise 1",
+    "section": "Aesthetic mappings",
+    "text": "Aesthetic mappings\n\n\nCode\nggplot(data=exam_data, \n       aes(x= MATHS))"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#geom",
+    "href": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#geom",
+    "title": "Hands On Exercise 1",
+    "section": "Geom",
+    "text": "Geom\nGeometric objects are the actual marks we put on a plot. A plot must have at least one geom and there is no upper limit. You can add a geom to a plot using the + operator.\nExamples include:\n\ngeom_point() for drawing individual points (e.g., a scatter plot)\ngeom_line() for drawing lines (e.g., for a line charts)\ngeom_bar() for drawing bars (e.g., for bar charts)\ngeom_jitter() to add a small amount of random variation to the location of each point\ngeom_map() for drawing polygons in the shape of a map!"
   },
   {
     "objectID": "HandsOn_Exercises/HandsOn_Ex03A/HandsOnEx03A.html",
@@ -210,228 +329,46 @@
     "text": "3.8.2 Linked brushing: crosstalk method\nCode chunk below is used to implement the coordinated brushing shown above.\n\n\nCode\nd &lt;- highlight_key(exam_data) \np &lt;- ggplot(d, \n            aes(ENGLISH, \n                MATHS)) + \n  geom_point(size=1) +\n  coord_cartesian(xlim=c(0,100),\n                  ylim=c(0,100))\n\ngg &lt;- highlight(ggplotly(p),        \n                \"plotly_selected\")  \n\ncrosstalk::bscols(gg,               \n                  DT::datatable(d), \n                  widths = 5)        \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThings to learn from the code chunk:\nhighlight() is a function of plotly package. It sets a variety of options for brushing (i.e., highlighting) multiple plots. These options are primarily designed for linking multiple plotly graphs, and may not behave as expected when linking plotly to another htmlwidget package via crosstalk. In some cases, other htmlwidgets will respect these options, such as persistent selection in leaflet.\nbscols() is a helper function of crosstalk package. It makes it easy to put HTML elements side by side. It can be called directly from the console but is especially designed to work in an R Markdown document. Warning: This will bring in all of Bootstrap!."
   },
   {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html",
-    "href": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html",
-    "title": "Hands On Exercise 1",
+    "objectID": "HandsOn_Exercises/HandsOn_Ex04A/HandsOnEx04A.html",
+    "href": "HandsOn_Exercises/HandsOn_Ex04A/HandsOnEx04A.html",
+    "title": "Hands On Exercise 4A",
     "section": "",
-    "text": "The code below uses p_load() of pacman package to check if tidyverse packages are installed in the computer. If they are, then they will be launched into R.\n\n\nCode\npacman::p_load(tidyverse)\n\n\n\n\n\n\n\nCode\nexam_data &lt;- read_csv(\"data/Exam_data.csv\")\nshow_col_types = FALSE\n\nknitr::kable(head(exam_data))\n\n\n\n\n\nID\nCLASS\nGENDER\nRACE\nENGLISH\nMATHS\nSCIENCE\n\n\n\n\nStudent321\n3I\nMale\nMalay\n21\n9\n15\n\n\nStudent305\n3I\nFemale\nMalay\n24\n22\n16\n\n\nStudent289\n3H\nMale\nChinese\n26\n16\n16\n\n\nStudent227\n3F\nMale\nChinese\n27\n77\n31\n\n\nStudent318\n3I\nMale\nMalay\n27\n11\n25\n\n\nStudent306\n3I\nFemale\nMalay\n31\n16\n16"
+    "text": "Visualising distribution is not new in statistical analysis. In chapter 1 we have shared with you some of the popular statistical graphics methods for visualising distribution are histogram, probability density curve (pdf), boxplot, notch plot and violin plot and how they can be created by using ggplot2. In this chapter, we are going to share with you two relatively new statistical graphic methods for visualising distribution, namely ridgeline plot and raincloud plot by using ggplot2 and its extensions."
   },
   {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#installing-r-packages",
-    "href": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#installing-r-packages",
-    "title": "Hands On Exercise 1",
-    "section": "",
-    "text": "The code below uses p_load() of pacman package to check if tidyverse packages are installed in the computer. If they are, then they will be launched into R.\n\n\nCode\npacman::p_load(tidyverse)"
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#importing-data",
-    "href": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#importing-data",
-    "title": "Hands On Exercise 1",
-    "section": "",
-    "text": "Code\nexam_data &lt;- read_csv(\"data/Exam_data.csv\")\nshow_col_types = FALSE\n\nknitr::kable(head(exam_data))\n\n\n\n\n\nID\nCLASS\nGENDER\nRACE\nENGLISH\nMATHS\nSCIENCE\n\n\n\n\nStudent321\n3I\nMale\nMalay\n21\n9\n15\n\n\nStudent305\n3I\nFemale\nMalay\n24\n22\n16\n\n\nStudent289\n3H\nMale\nChinese\n26\n16\n16\n\n\nStudent227\n3F\nMale\nChinese\n27\n77\n31\n\n\nStudent318\n3I\nMale\nMalay\n27\n11\n25\n\n\nStudent306\n3I\nFemale\nMalay\n31\n16\n16"
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#data",
-    "href": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#data",
-    "title": "Hands On Exercise 1",
-    "section": "Data",
-    "text": "Data\nFirst, let’s call the ggplot() function using the below code.\n\n\nCode\nggplot(data=exam_data)"
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#aesthetic-mappings",
-    "href": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#aesthetic-mappings",
-    "title": "Hands On Exercise 1",
-    "section": "Aesthetic mappings",
-    "text": "Aesthetic mappings\n\n\nCode\nggplot(data=exam_data, \n       aes(x= MATHS))"
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#geom",
-    "href": "HandsOn_Exercises/HandsOn_Ex01/HandsOnEx01.html#geom",
-    "title": "Hands On Exercise 1",
-    "section": "Geom",
-    "text": "Geom\nGeometric objects are the actual marks we put on a plot. A plot must have at least one geom and there is no upper limit. You can add a geom to a plot using the + operator.\nExamples include:\n\ngeom_point() for drawing individual points (e.g., a scatter plot)\ngeom_line() for drawing lines (e.g., for a line charts)\ngeom_bar() for drawing bars (e.g., for bar charts)\ngeom_jitter() to add a small amount of random variation to the location of each point\ngeom_map() for drawing polygons in the shape of a map!"
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex02/HandsOnEx02.html",
-    "href": "HandsOn_Exercises/HandsOn_Ex02/HandsOnEx02.html",
-    "title": "Hands On Exercise 2",
-    "section": "",
-    "text": "There are several ggplot2 extensions for creating more elegant and effective statistical graphics. Let’s explore these features!\n\nGetting Started\nBesides tidyverse, four R packages will be used.\n\nggrepel: to provide geoms for ggplot2 to repel overlapping text labels\nggthemes: to provide extra themes, geoms, and scales for ‘ggplot2’\nhrbrthemes: for typography-centric themes and theme components for ggplot2\npatchwork: for preparing composite figure created using ggplot2\n\nTo check if these packages have been installed and to load them into your working R environment, run the code below.\n\n\nCode\npacman::p_load(ggrepel, patchwork, ggthemes, hrbrthemes, tidyverse)\n\n\n\n\nImporting Data\nThe code chunk below imports exam_data.csv into R environment by using read_csv() function of readr package. \n\n\nCode\nexam_data &lt;- read_csv(\"Exam_data.csv\")\nshow_col_types = FALSE\nknitr::kable(head(exam_data))\n\n\n\n\n\nID\nCLASS\nGENDER\nRACE\nENGLISH\nMATHS\nSCIENCE\n\n\n\n\nStudent321\n3I\nMale\nMalay\n21\n9\n15\n\n\nStudent305\n3I\nFemale\nMalay\n24\n22\n16\n\n\nStudent289\n3H\nMale\nChinese\n26\n16\n16\n\n\nStudent227\n3F\nMale\nChinese\n27\n77\n31\n\n\nStudent318\n3I\nMale\nMalay\n27\n11\n25\n\n\nStudent306\n3I\nFemale\nMalay\n31\n16\n16\n\n\n\n\n\n\n\nWhat is ggrepel?\nOne of the challenge in plotting statistical graph is annotation, especially with large number of data points. Take a look below and see it for yourself.\n\n\nCode\nggplot(data=exam_data, \n       aes(x= MATHS, \n           y=ENGLISH)) +\n  geom_point() +\n  geom_smooth(method=lm, \n              size=0.5) +  \n  geom_label(aes(label = ID), \n             hjust = .5, \n             vjust = -.5) +\n  coord_cartesian(xlim=c(0,100),\n                  ylim=c(0,100)) +\n  ggtitle(\"English scores versus Maths scores for Primary 3\")\n\n\n\n\n\n\n\n\n\nCode\nknitr::opts_chunk$set(warning = FALSE)\n\n\nggrepel is an extension of ggplot2 package which provides geoms for ggplot2 to repel overlapping text.\n\n\nCode\nggplot(data=exam_data, \n       aes(x= MATHS, \n           y=ENGLISH)) +\n  geom_point() +\n  geom_smooth(method=lm, \n              size=0.5) +  \n  geom_label_repel(aes(label = ID), \n                   fontface = \"bold\") +\n  coord_cartesian(xlim=c(0,100),\n                  ylim=c(0,100)) +\n  ggtitle(\"English scores versus Maths scores for Primary 3\")\n\n\n\n\n\n\n\n\n\nCode\nknitr::opts_chunk$set(warning = FALSE)\n\n\n\n\nThemes\nggplot2 comes with eight built-in themes, they are: theme_gray(), theme_bw(), theme_classic(), theme_dark(), theme_light(), theme_linedraw(), theme_minimal(), and theme_void().\n\n\nCode\nggplot(data=exam_data, \n             aes(x = MATHS)) +\n  geom_histogram(bins=20, \n                 boundary = 100,\n                 color=\"grey25\", \n                 fill=\"#630e27\") +\n  theme_dark() +\n  ggtitle(\"Distribution of Maths Scores\") \n\n\n\n\n\n\n\n\n\nCode\nknitr::opts_chunk$set(warning = FALSE)\n\n\n\n\nCode\nggplot(data=exam_data, \n             aes(x = MATHS)) +\n  geom_histogram(bins=20, \n                 boundary = 100,\n                 color=\"grey25\", \n                 fill=\"#630e27\") +\n  ggtitle(\"Distribution of Maths scores\") +\n  theme_ipsum()\n\n\n\n\n\n\n\n\n\nCode\nknitr::opts_chunk$set(warning = FALSE)\n\n\n\n\nCombining Graphs\nLet’s create three graphs named p1, p2 and p3.\n\n\nCode\np1 &lt;- ggplot(data=exam_data, \n             aes(x = MATHS)) +\n  geom_histogram(bins=20, \n                 boundary = 100,\n                 color=\"grey25\", \n                 fill=\"#630e27\") + \n  coord_cartesian(xlim=c(0,100)) +\n  ggtitle(\"Distribution of Maths scores\")\nknitr::opts_chunk$set(warning = FALSE)\n\n\n\n\nCode\np2 &lt;- ggplot(data=exam_data, \n             aes(x = ENGLISH)) +\n  geom_histogram(bins=20, \n                 boundary = 100,\n                 color=\"grey25\", \n                 fill=\"black\") +\n  coord_cartesian(xlim=c(0,100)) +\n  ggtitle(\"Distribution of English scores\")\nknitr::opts_chunk$set(warning = FALSE)\n\n\n\n\nCode\np3 &lt;- ggplot(data=exam_data, \n             aes(x= MATHS, \n                 y=ENGLISH)) +\n  geom_point() +\n  geom_smooth(method=lm, \n              size=0.5) +  \n  coord_cartesian(xlim=c(0,100),\n                  ylim=c(0,100)) +\n  ggtitle(\"English scores versus Maths scores for Primary 3\")\nknitr::opts_chunk$set(warning = FALSE)\n\n\nPatchwork is a ggplot2 extension designed to combine separate ggplot2 graphs into a single figure. Here’s the syntax.\n\n“/” operator to stack two ggplot2 graphs\n“|” operator to place the plots beside each other\n“()” operator the define the sequence of the plotting\n\n\n\nCode\np1 + p2\n\n\n\n\n\n\n\n\n\n\n\nCode\n(p1 / p2) | p3\n\n\n\n\n\n\n\n\n\n\n\nCode\npatchwork &lt;- (p1 / p2) | p3\npatchwork\n\n\n\n\n\n\n\n\n\n\n\nCode\np3 &lt;- ggplot(data=exam_data, \n             aes(x= MATHS, \n                 y=ENGLISH)) +\n  geom_point() +\n  geom_smooth(method=lm, \n              size=0.5) +  \n  coord_cartesian(xlim=c(0,100),\n                  ylim=c(0,100)) +\n  ggtitle(stringr::str_wrap(\"English scores versus Maths scores for Primary 3\", width = 30)) +\n  theme_wsj() +\n  theme(plot.title = element_text(hjust = 0.5, size = 15, face = \"bold\"))"
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html",
-    "href": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html",
-    "title": "Hands On Exercise 3B",
-    "section": "",
-    "text": "When telling a visually-driven data story, animated graphics tends to attract the interest of the audience and make deeper impression than static graphics. In this hands-on exercise, you will learn how to create animated data visualisation by using gganimate and plotly r packages. At the same time, you will also learn how to (i) reshape data by using tidyr package, and (ii) process, wrangle and transform data by using dplyr package.\n\n\nWhen creating animations, the plot does not actually move. Instead, many individual plots are built and then stitched together as movie frames, just like an old-school flip book or cartoon. Each frame is a different plot when conveying motion, which is built using some relevant subset of the aggregate data. The subset drives the flow of the animation when stitched back together.\n\n\n\nBefore we dive into the steps for creating an animated statistical graph, it’s important to understand some of the key concepts and terminology related to this type of visualization.\n\nFrame: In an animated line graph, each frame represents a different point in time or a different category. When the frame changes, the data points on the graph are updated to reflect the new data.\nAnimation Attributes: The animation attributes are the settings that control how the animation behaves. For example, you can specify the duration of each frame, the easing function used to transition between frames, and whether to start the animation from the current frame or from the beginning."
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#basic-concepts-of-animation",
-    "href": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#basic-concepts-of-animation",
-    "title": "Hands On Exercise 3B",
-    "section": "",
-    "text": "When creating animations, the plot does not actually move. Instead, many individual plots are built and then stitched together as movie frames, just like an old-school flip book or cartoon. Each frame is a different plot when conveying motion, which is built using some relevant subset of the aggregate data. The subset drives the flow of the animation when stitched back together."
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#terminology",
-    "href": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#terminology",
-    "title": "Hands On Exercise 3B",
-    "section": "",
-    "text": "Before we dive into the steps for creating an animated statistical graph, it’s important to understand some of the key concepts and terminology related to this type of visualization.\n\nFrame: In an animated line graph, each frame represents a different point in time or a different category. When the frame changes, the data points on the graph are updated to reflect the new data.\nAnimation Attributes: The animation attributes are the settings that control how the animation behaves. For example, you can specify the duration of each frame, the easing function used to transition between frames, and whether to start the animation from the current frame or from the beginning."
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#loading-the-r-packages",
-    "href": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#loading-the-r-packages",
-    "title": "Hands On Exercise 3B",
-    "section": "4.2.1 Loading the R packages",
-    "text": "4.2.1 Loading the R packages\nFirst, write a code chunk to check, install and load the following R packages:\n\nplotly, R library for plotting interactive statistical graphs.\ngganimate, an ggplot extension for creating animated statistical graphs.\ngifski converts video frames to GIF animations using pngquant’s fancy features for efficient cross-frame palettes and temporal dithering. It produces animated GIFs that use thousands of colors per frame.\ngapminder: An excerpt of the data available at Gapminder.org. We just want to use its country_colors scheme.\ntidyverse, a family of modern R packages specially designed to support data science, analysis and communication task including creating static statistical graphs.\n\n\n\nCode\npacman::p_load(readxl, gifski, gapminder,\n               plotly, gganimate, tidyverse)"
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#importing-the-data",
-    "href": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#importing-the-data",
-    "title": "Hands On Exercise 3B",
-    "section": "4.2.2 Importing the data",
-    "text": "4.2.2 Importing the data\nIn this hands-on exercise, the Data worksheet from GlobalPopulation Excel workbook will be used.\nWrite a code chunk to import Data worksheet from GlobalPopulation Excel workbook by using appropriate R package from tidyverse family.\nUnfortunately, mutate_each_() was deprecated in dplyr 0.7.0. and funs() was deprecated in dplyr 0.8.0. In view of this, we will re-write the code by using mutate_at() as shown in the code chunk below.\n\n\nCode\ncol &lt;- c(\"Country\", \"Continent\")\nglobalPop &lt;- read_xls(\"GlobalPopulation.xls\",\n                      sheet=\"Data\") %&gt;%\n  mutate_at(col, as.factor) %&gt;%\n  mutate(Year = as.integer(Year))\n\n\nInstead of using mutate_at(), across() can be used to derive the same outputs.\n\n\nCode\ncol &lt;- c(\"Country\", \"Continent\")\nglobalPop &lt;- read_xls(\"GlobalPopulation.xls\",\n                      sheet=\"Data\") %&gt;%\n  mutate(across(col, as.factor)) %&gt;%\n  mutate(Year = as.integer(Year))"
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#building-a-static-population-bubble-plot",
-    "href": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#building-a-static-population-bubble-plot",
-    "title": "Hands On Exercise 3B",
-    "section": "4.3.1 Building a static population bubble plot",
-    "text": "4.3.1 Building a static population bubble plot\nIn the code chunk below, the basic ggplot2 functions are used to create a static bubble plot.\n\n\nCode\nggplot(globalPop, aes(x = Old, y = Young, \n                      size = Population, \n                      colour = Country)) +\n  geom_point(alpha = 0.7, \n             show.legend = FALSE) +\n  scale_colour_manual(values = country_colors) +\n  scale_size(range = c(2, 12)) +\n  labs(title = 'Year: {frame_time}', \n       x = '% Aged', \n       y = '% Young')"
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#building-the-animated-bubble-plot",
-    "href": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#building-the-animated-bubble-plot",
-    "title": "Hands On Exercise 3B",
-    "section": "4.3.2 Building the animated bubble plot",
-    "text": "4.3.2 Building the animated bubble plot\nIn the code chunk below,\n\ntransition_time() of gganimate is used to create transition through distinct states in time (i.e. Year).\nease_aes() is used to control easing of aesthetics. The default is linear. Other methods are: quadratic, cubic, quartic, quintic, sine, circular, exponential, elastic, back, and bounce.\n\n\n\nCode\nggplot(globalPop, aes(x = Old, y = Young, \n                      size = Population, \n                      colour = Country)) +\n  geom_point(alpha = 0.7, \n             show.legend = FALSE) +\n  scale_colour_manual(values = country_colors) +\n  scale_size(range = c(2, 12)) +\n  labs(title = 'Year: {frame_time}', \n       x = '% Aged', \n       y = '% Young') +\n  transition_time(Year) +       \n  ease_aes('linear')"
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#building-an-animated-bubble-plot-ggplotly-method",
-    "href": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#building-an-animated-bubble-plot-ggplotly-method",
-    "title": "Hands On Exercise 3B",
-    "section": "4.4.1 Building an animated bubble plot: ggplotly() method",
-    "text": "4.4.1 Building an animated bubble plot: ggplotly() method\nIn this sub-section, you will learn how to create an animated bubble plot by using ggplotly() method.\n\n\nCode\ngg &lt;- ggplot(globalPop, \n       aes(x = Old, \n           y = Young, \n           size = Population, \n           colour = Country)) +\n  geom_point(aes(size = Population,\n                 frame = Year),\n             alpha = 0.7, \n             show.legend = FALSE) +\n  scale_colour_manual(values = country_colors) +\n  scale_size(range = c(2, 12)) +\n  labs(x = '% Aged', \n       y = '% Young')\n\nggplotly(gg)\n\n\n\n\n\n\nNotice that although show.legend = FALSE argument was used, the legend still appears on the plot. To overcome this problem, theme(legend.position='none') should be used as shown in the plot and code chunk below.\n\n\nCode\ngg &lt;- ggplot(globalPop, \n       aes(x = Old, \n           y = Young, \n           size = Population, \n           colour = Country)) +\n  geom_point(aes(size = Population,\n                 frame = Year),\n             alpha = 0.7) +\n  scale_colour_manual(values = country_colors) +\n  scale_size(range = c(2, 12)) +\n  labs(x = '% Aged', \n       y = '% Young') + \n  theme(legend.position='none')\n\nggplotly(gg)"
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#building-an-animated-bubble-plot-plot_ly-method",
-    "href": "HandsOn_Exercises/HandsOn_Ex03B/HandsOnEx03B.html#building-an-animated-bubble-plot-plot_ly-method",
-    "title": "Hands On Exercise 3B",
-    "section": "4.4.2 Building an animated bubble plot: plot_ly() method",
-    "text": "4.4.2 Building an animated bubble plot: plot_ly() method\nIn this sub-section, you will learn how to create an animated bubble plot by using plot_ly() method.\n\n\nCode\nbp &lt;- globalPop %&gt;%\n  plot_ly(x = ~Old, \n          y = ~Young, \n          size = ~Population, \n          color = ~Continent,\n          sizes = c(2, 100),\n          frame = ~Year, \n          text = ~Country, \n          hoverinfo = \"text\",\n          type = 'scatter',\n          mode = 'markers'\n          ) %&gt;%\n  layout(showlegend = FALSE)\nbp"
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex04B/HandsOnEx04B.html",
-    "href": "HandsOn_Exercises/HandsOn_Ex04B/HandsOnEx04B.html",
-    "title": "Hands On Exercise 4B",
-    "section": "",
-    "text": "In this hands-on exercise, you will gain hands-on experience on using:\n\nggstatsplot package to create visual graphics with rich statistical information,\nperformance package to visualise model diagnostics, and\nparameters package to visualise model parameters"
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex04B/HandsOnEx04B.html#installing-and-loading-the-packages",
-    "href": "HandsOn_Exercises/HandsOn_Ex04B/HandsOnEx04B.html#installing-and-loading-the-packages",
+    "objectID": "HandsOn_Exercises/HandsOn_Ex04A/HandsOnEx04A.html#installing-and-loading-the-packages",
+    "href": "HandsOn_Exercises/HandsOn_Ex04A/HandsOnEx04A.html#installing-and-loading-the-packages",
     "title": "Hands On Exercise 4A",
     "section": "9.2.1 Installing and loading the packages",
     "text": "9.2.1 Installing and loading the packages\nFor the purpose of this exercise, the following R packages will be used, they are:\n\nggridges, a ggplot2 extension specially designed for plotting ridgeline plots\nggdist, a ggplot2 extension spacially desgin for visualising distribution and uncertainty\ntidyverse, a family of R packages to meet the modern data science and visual communication needs\nggthemes, a ggplot extension that provides the user additional themes, scales, and geoms for the ggplots package\ncolorspace, an R package provides a broad toolbox for selecting individual colors or color palettes, manipulating these colors, and employing them in various kinds of visualisations.\n\nThe code chunk below will be used load these R packages into RStudio environment.\n\n\nCode\npacman::p_load(ggdist, ggridges, ggthemes,\n               colorspace, tidyverse)"
   },
   {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex04B/HandsOnEx04B.html#data-import",
-    "href": "HandsOn_Exercises/HandsOn_Ex04B/HandsOnEx04B.html#data-import",
+    "objectID": "HandsOn_Exercises/HandsOn_Ex04A/HandsOnEx04A.html#data-import",
+    "href": "HandsOn_Exercises/HandsOn_Ex04A/HandsOnEx04A.html#data-import",
     "title": "Hands On Exercise 4A",
     "section": "9.2.2 Data Import",
     "text": "9.2.2 Data Import\nFor the purpose of this exercise, Exam_data.csv will be used.\nIn the code chunk below, read_csv() of readr package is used to import Exam_data.csv into R and saved it into a tibble data.frame.\n\n\nCode\nexam &lt;- read_csv(\"Exam_data.csv\")"
   },
   {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html",
-    "href": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html",
-    "title": "Hands On Exercise 4D",
+    "objectID": "HandsOn_Exercises/HandsOn_Ex04C/HandsOnEx04C.html",
+    "href": "HandsOn_Exercises/HandsOn_Ex04C/HandsOnEx04C.html",
+    "title": "Hands On Exercise 4C",
     "section": "",
-    "text": "Funnel plot is a specially designed data visualisation for conducting unbiased comparison between outlets, stores or business entities. By the end of this hands-on exercise, you will gain hands-on experience on:\n\nplotting funnel plots by using funnelPlotR package,\nplotting static funnel plot by using ggplot2 package, and\nplotting interactive funnel plot by using both plotly R and ggplot2 packages."
+    "text": "Visualising uncertainty is relatively new in statistical graphics. In this chapter, you will gain hands-on experience on creating statistical graphics for visualising uncertainty. By the end of this chapter you will be able:\n\nto plot statistics error bars by using ggplot2,\nto plot interactive error bars by combining ggplot2, plotly and DT,\nto create advanced by using ggdist, and\nto create hypothetical outcome plots (HOPs) by using ungeviz package."
   },
   {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#installing-and-loading-the-packages",
-    "href": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#installing-and-loading-the-packages",
-    "title": "Hands On Exercise 4A",
-    "section": "9.2.1 Installing and loading the packages",
-    "text": "9.2.1 Installing and loading the packages\nFor the purpose of this exercise, the following R packages will be used, they are:\n\nggridges, a ggplot2 extension specially designed for plotting ridgeline plots\nggdist, a ggplot2 extension spacially desgin for visualising distribution and uncertainty\ntidyverse, a family of R packages to meet the modern data science and visual communication needs\nggthemes, a ggplot extension that provides the user additional themes, scales, and geoms for the ggplots package\ncolorspace, an R package provides a broad toolbox for selecting individual colors or color palettes, manipulating these colors, and employing them in various kinds of visualisations.\n\nThe code chunk below will be used load these R packages into RStudio environment.\n\n\nCode\npacman::p_load(ggdist, ggridges, ggthemes,\n               colorspace, tidyverse)"
+    "objectID": "HandsOn_Exercises/HandsOn_Ex04C/HandsOnEx04C.html#installing-and-loading-the-packages",
+    "href": "HandsOn_Exercises/HandsOn_Ex04C/HandsOnEx04C.html#installing-and-loading-the-packages",
+    "title": "Hands On Exercise 4C",
+    "section": "11.2.1 Installing and loading the packages",
+    "text": "11.2.1 Installing and loading the packages\nFor the purpose of this exercise, the following R packages will be used, they are:\n\ntidyverse, a family of R packages for data science process,\nplotly for creating interactive plot,\ngganimate for creating animation plot,\nDT for displaying interactive html table,\ncrosstalk for for implementing cross-widget interactions (currently, linked brushing and filtering), and\nggdist for visualising distribution and uncertainty.\n\n\n\nCode\npacman::p_load(plotly, crosstalk, DT, \n               ggdist, ggridges, colorspace,\n               gganimate, tidyverse)"
   },
   {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#data-import",
-    "href": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#data-import",
-    "title": "Hands On Exercise 4A",
-    "section": "9.2.2 Data Import",
-    "text": "9.2.2 Data Import\nFor the purpose of this exercise, Exam_data.csv will be used.\nIn the code chunk below, read_csv() of readr package is used to import Exam_data.csv into R and saved it into a tibble data.frame.\n\n\nCode\nexam &lt;- read_csv(\"Exam_data.csv\")"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Visual Analytics & Applications",
-    "section": "",
-    "text": "My website showcases my learning journey for this course in the AY2024–25 April term taught by Professor Kam Tin Seong at SMU. The course explores how visualizations can turn raw data into meaningful insights, using tools like Quarto for web-based reporting and Tableau for interactive dashboards. Throughout the semester, I’ll be sharing my coursework, projects, and reflections here — so stay tuned as this site evolves!\n\n\n\n\nI’m currently a full-time business analyst and a part-time MITB student, with a keen interest in data storytelling and analytics. My goal is to pivot into a data science role, to combine analytical techniques with strong business intuition to solve real-world problems. When I’m not coding or studying, you can usually find me at the gym, painting on a quiet weekend, or planning my next travel adventure. Feel free to reach out to me!"
-  },
-  {
-    "objectID": "index.html#about-this-course",
-    "href": "index.html#about-this-course",
-    "title": "Visual Analytics & Applications",
-    "section": "",
-    "text": "My website showcases my learning journey for this course in the AY2024–25 April term taught by Professor Kam Tin Seong at SMU. The course explores how visualizations can turn raw data into meaningful insights, using tools like Quarto for web-based reporting and Tableau for interactive dashboards. Throughout the semester, I’ll be sharing my coursework, projects, and reflections here — so stay tuned as this site evolves!"
-  },
-  {
-    "objectID": "index.html#about-myself",
-    "href": "index.html#about-myself",
-    "title": "Visual Analytics & Applications",
-    "section": "",
-    "text": "I’m currently a full-time business analyst and a part-time MITB student, with a keen interest in data storytelling and analytics. My goal is to pivot into a data science role, to combine analytical techniques with strong business intuition to solve real-world problems. When I’m not coding or studying, you can usually find me at the gym, painting on a quiet weekend, or planning my next travel adventure. Feel free to reach out to me!"
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#funnelplotr-methods-the-basic-plot",
-    "href": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#funnelplotr-methods-the-basic-plot",
-    "title": "Hands On Exercise 4D",
-    "section": "8.4.1 FunnelPlotR methods: The basic plot",
-    "text": "8.4.1 FunnelPlotR methods: The basic plot\nThe code chunk below plots a funnel plot.\nThings to learn from the code chunk above.\n\ngroup in this function is different from the scatterplot. Here, it defines the level of the points to be plotted i.e. Sub-district, District or City. If Cityc is chosen, there are only six data points.\n\n\n\nCode\nfunnel_plot(\n  .data = covid19,\n  numerator = Positive,\n  denominator = Death,\n  group = `Sub-district`\n)\n\n\n\n\n\n\n\n\n\nA funnel plot object with 267 points of which 0 are outliers. \nPlot is adjusted for overdispersion. \n\n\n\nBy default, data_typeargument is “SR”.\nlimit: Plot limits, accepted values are: 95 or 99, corresponding to 95% or 99.8% quantiles of the distribution."
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#funnelplotr-methods-makeover-1",
-    "href": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#funnelplotr-methods-makeover-1",
-    "title": "Hands On Exercise 4D",
-    "section": "8.4.2 FunnelPlotR methods: Makeover 1",
-    "text": "8.4.2 FunnelPlotR methods: Makeover 1\nThe code chunk below plots a funnel plot.\nThings to learn from the code chunk above. + data_type argument is used to change from default “SR” to “PR” (i.e. proportions). + xrange and yrange are used to set the range of x-axis and y-axis.\n\n\nCode\nfunnel_plot(\n  .data = covid19,\n  numerator = Death,\n  denominator = Positive,\n  group = `Sub-district`,\n  data_type = \"PR\",     #&lt;&lt;\n  xrange = c(0, 6500),  #&lt;&lt;\n  yrange = c(0, 0.05)   #&lt;&lt;\n)\n\n\n\n\n\n\n\n\n\nA funnel plot object with 267 points of which 7 are outliers. \nPlot is adjusted for overdispersion."
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#funnelplotr-methods-makeover-2",
-    "href": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#funnelplotr-methods-makeover-2",
-    "title": "Hands On Exercise 4D",
-    "section": "8.4.3 FunnelPlotR methods: Makeover 2",
-    "text": "8.4.3 FunnelPlotR methods: Makeover 2\nThe code chunk below plots a funnel plot.\nThings to learn from the code chunk above.\n\nlabel = NA argument is to removed the default label outliers feature.\ntitle argument is used to add plot title.\nx_label and y_label arguments are used to add/edit x-axis and y-axis titles.\n\n\n\nCode\nfunnel_plot(\n  .data = covid19,\n  numerator = Death,\n  denominator = Positive,\n  group = `Sub-district`,\n  data_type = \"PR\",   \n  xrange = c(0, 6500),  \n  yrange = c(0, 0.05),\n  label = NA,\n  title = \"Cumulative COVID-19 Fatality Rate by Cumulative Total Number of COVID-19 Positive Cases\", #&lt;&lt;           \n  x_label = \"Cumulative COVID-19 Positive Cases\", #&lt;&lt;\n  y_label = \"Cumulative Fatality Rate\"  #&lt;&lt;\n)\n\n\n\n\n\n\n\n\n\nA funnel plot object with 267 points of which 7 are outliers. \nPlot is adjusted for overdispersion."
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#computing-the-basic-derived-fields",
-    "href": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#computing-the-basic-derived-fields",
-    "title": "Hands On Exercise 4D",
-    "section": "8.5.1 Computing the basic derived fields",
-    "text": "8.5.1 Computing the basic derived fields\nTo plot the funnel plot from scratch, we need to derive cumulative death rate and standard error of cumulative death rate.\n\n\nCode\ndf &lt;- covid19 %&gt;%\n  mutate(rate = Death / Positive) %&gt;%\n  mutate(rate.se = sqrt((rate*(1-rate)) / (Positive))) %&gt;%\n  filter(rate &gt; 0)\n\n\nNext, the fit.mean is computed by using the code chunk below.\n\n\nCode\nfit.mean &lt;- weighted.mean(df$rate, 1/df$rate.se^2)"
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#calculate-lower-and-upper-limits-for-95-and-99.9-ci",
-    "href": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#calculate-lower-and-upper-limits-for-95-and-99.9-ci",
-    "title": "Hands On Exercise 4D",
-    "section": "8.5.2 Calculate lower and upper limits for 95% and 99.9% CI",
-    "text": "8.5.2 Calculate lower and upper limits for 95% and 99.9% CI\nThe code chunk below is used to compute the lower and upper limits for 95% confidence interval.\n\n\nCode\nnumber.seq &lt;- seq(1, max(df$Positive), 1)\nnumber.ll95 &lt;- fit.mean - 1.96 * sqrt((fit.mean*(1-fit.mean)) / (number.seq)) \nnumber.ul95 &lt;- fit.mean + 1.96 * sqrt((fit.mean*(1-fit.mean)) / (number.seq)) \nnumber.ll999 &lt;- fit.mean - 3.29 * sqrt((fit.mean*(1-fit.mean)) / (number.seq)) \nnumber.ul999 &lt;- fit.mean + 3.29 * sqrt((fit.mean*(1-fit.mean)) / (number.seq)) \ndfCI &lt;- data.frame(number.ll95, number.ul95, number.ll999, \n                   number.ul999, number.seq, fit.mean)"
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#plotting-a-static-funnel-plot",
-    "href": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#plotting-a-static-funnel-plot",
-    "title": "Hands On Exercise 4D",
-    "section": "8.5.3 Plotting a static funnel plot",
-    "text": "8.5.3 Plotting a static funnel plot\nIn the code chunk below, ggplot2 functions are used to plot a static funnel plot.\n\n\nCode\np &lt;- ggplot(df, aes(x = Positive, y = rate)) +\n  geom_point(aes(label=`Sub-district`), \n             alpha=0.4) +\n  geom_line(data = dfCI, \n            aes(x = number.seq, \n                y = number.ll95), \n            size = 0.4, \n            colour = \"grey40\", \n            linetype = \"dashed\") +\n  geom_line(data = dfCI, \n            aes(x = number.seq, \n                y = number.ul95), \n            size = 0.4, \n            colour = \"grey40\", \n            linetype = \"dashed\") +\n  geom_line(data = dfCI, \n            aes(x = number.seq, \n                y = number.ll999), \n            size = 0.4, \n            colour = \"grey40\") +\n  geom_line(data = dfCI, \n            aes(x = number.seq, \n                y = number.ul999), \n            size = 0.4, \n            colour = \"grey40\") +\n  geom_hline(data = dfCI, \n             aes(yintercept = fit.mean), \n             size = 0.4, \n             colour = \"grey40\") +\n  coord_cartesian(ylim=c(0,0.05)) +\n  annotate(\"text\", x = 1, y = -0.13, label = \"95%\", size = 3, colour = \"grey40\") + \n  annotate(\"text\", x = 4.5, y = -0.18, label = \"99%\", size = 3, colour = \"grey40\") + \n  ggtitle(\"Cumulative Fatality Rate by Cumulative Number of COVID-19 Cases\") +\n  xlab(\"Cumulative Number of COVID-19 Cases\") + \n  ylab(\"Cumulative Fatality Rate\") +\n  theme_light() +\n  theme(plot.title = element_text(size=12),\n        legend.position = c(0.91,0.85), \n        legend.title = element_text(size=7),\n        legend.text = element_text(size=7),\n        legend.background = element_rect(colour = \"grey60\", linetype = \"dotted\"),\n        legend.key.height = unit(0.3, \"cm\"))\np"
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#interactive-funnel-plot-plotly-ggplot2",
-    "href": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html#interactive-funnel-plot-plotly-ggplot2",
-    "title": "Hands On Exercise 4D",
-    "section": "8.5.4 Interactive Funnel Plot: plotly + ggplot2",
-    "text": "8.5.4 Interactive Funnel Plot: plotly + ggplot2\nThe funnel plot created using ggplot2 functions can be made interactive with ggplotly() of plotly r package.\n\n\nCode\nfp_ggplotly &lt;- ggplotly(p,\n  tooltip = c(\"label\", \n              \"x\", \n              \"y\"))\nfp_ggplotly"
+    "objectID": "HandsOn_Exercises/HandsOn_Ex04C/HandsOnEx04C.html#data-import",
+    "href": "HandsOn_Exercises/HandsOn_Ex04C/HandsOnEx04C.html#data-import",
+    "title": "Hands On Exercise 4C",
+    "section": "11.2.2 Data import",
+    "text": "11.2.2 Data import\nFor the purpose of this exercise, Exam_data.csv will be used.\n\n\nCode\nexam &lt;- read_csv(\"Exam_data.csv\")"
   },
   {
     "objectID": "HandsOn_Exercises/HandsOn_Ex04C/HandsOnEx04C.html#plotting-standard-error-bars-of-point-estimates",
@@ -497,17 +434,73 @@
     "text": "11.5.3 Visualising Uncertainty with Hypothetical Outcome Plots (HOPs)\nNext, the code chunk below will be used to build the HOPs.\n\n\nCode\nggplot(data = exam, \n       (aes(x = factor(RACE), \n            y = MATHS))) +\n  geom_point(position = position_jitter(\n    height = 0.3, \n    width = 0.05), \n    size = 0.4, \n    color = \"#0072B2\", \n    alpha = 1/2) +\n  geom_hpline(data = sampler(25, \n                             group = RACE), \n              height = 0.6, \n              color = \"#D55E00\") +\n  theme_bw() + \n  transition_states(.draw, 1, 3)"
   },
   {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex04B/HandsOnEx04B.html#installing-and-launching-r-packages",
-    "href": "HandsOn_Exercises/HandsOn_Ex04B/HandsOnEx04B.html#installing-and-launching-r-packages",
-    "title": "Hands On Exercise 4B",
-    "section": "10.3.1 Installing and launching R packages",
-    "text": "10.3.1 Installing and launching R packages\nIn this exercise, ggstatsplot and tidyverse will be used.\n\n\nCode\npacman::p_load(ggstatsplot, tidyverse)\n\n\npackage 'rbibutils' successfully unpacked and MD5 sums checked\npackage 'Rdpack' successfully unpacked and MD5 sums checked\npackage 'cowplot' successfully unpacked and MD5 sums checked\npackage 'Deriv' successfully unpacked and MD5 sums checked\npackage 'microbenchmark' successfully unpacked and MD5 sums checked\npackage 'minqa' successfully unpacked and MD5 sums checked\npackage 'nloptr' successfully unpacked and MD5 sums checked\npackage 'reformulas' successfully unpacked and MD5 sums checked\npackage 'doBy' successfully unpacked and MD5 sums checked\npackage 'carData' successfully unpacked and MD5 sums checked\npackage 'abind' successfully unpacked and MD5 sums checked\npackage 'Formula' successfully unpacked and MD5 sums checked\npackage 'elliptic' successfully unpacked and MD5 sums checked\npackage 'contfrac' successfully unpacked and MD5 sums checked\npackage 'deSolve' successfully unpacked and MD5 sums checked\npackage 'plyr' successfully unpacked and MD5 sums checked\npackage 'lme4' successfully unpacked and MD5 sums checked\npackage 'pbkrtest' successfully unpacked and MD5 sums checked\npackage 'lmerTest' successfully unpacked and MD5 sums checked\npackage 'car' successfully unpacked and MD5 sums checked\npackage 'coda' successfully unpacked and MD5 sums checked\npackage 'pbapply' successfully unpacked and MD5 sums checked\npackage 'hypergeo' successfully unpacked and MD5 sums checked\npackage 'RcppEigen' successfully unpacked and MD5 sums checked\npackage 'multcompView' successfully unpacked and MD5 sums checked\npackage 'gmp' successfully unpacked and MD5 sums checked\npackage 'Rmpfr' successfully unpacked and MD5 sums checked\npackage 'SuppDists' successfully unpacked and MD5 sums checked\npackage 'kSamples' successfully unpacked and MD5 sums checked\npackage 'BWStest' successfully unpacked and MD5 sums checked\npackage 'RcppParallel' successfully unpacked and MD5 sums checked\npackage 'reshape' successfully unpacked and MD5 sums checked\npackage 'bayestestR' successfully unpacked and MD5 sums checked\npackage 'reshape2' successfully unpacked and MD5 sums checked\npackage 'prismatic' successfully unpacked and MD5 sums checked\npackage 'afex' successfully unpacked and MD5 sums checked\npackage 'BayesFactor' successfully unpacked and MD5 sums checked\npackage 'effectsize' successfully unpacked and MD5 sums checked\npackage 'PMCMRplus' successfully unpacked and MD5 sums checked\npackage 'rstantools' successfully unpacked and MD5 sums checked\npackage 'WRS2' successfully unpacked and MD5 sums checked\npackage 'zeallot' successfully unpacked and MD5 sums checked\npackage 'correlation' successfully unpacked and MD5 sums checked\npackage 'datawizard' successfully unpacked and MD5 sums checked\npackage 'ggcorrplot' successfully unpacked and MD5 sums checked\npackage 'ggside' successfully unpacked and MD5 sums checked\npackage 'ggsignif' successfully unpacked and MD5 sums checked\npackage 'insight' successfully unpacked and MD5 sums checked\npackage 'paletteer' successfully unpacked and MD5 sums checked\npackage 'parameters' successfully unpacked and MD5 sums checked\npackage 'performance' successfully unpacked and MD5 sums checked\npackage 'statsExpressions' successfully unpacked and MD5 sums checked\npackage 'ggstatsplot' successfully unpacked and MD5 sums checked\n\nThe downloaded binary packages are in\n    C:\\Users\\sandr\\AppData\\Local\\Temp\\Rtmp6VoHQe\\downloaded_packages"
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01A/TakeHomeEx01A.html",
+    "href": "TakeHome_Exercises/TakeHome_Ex01A/TakeHomeEx01A.html",
+    "title": "Take Home Exercise 1A",
+    "section": "",
+    "text": "Note: Please toggle between ‘Show’ and ‘Hide’ above based on your preference for viewing the R codes."
   },
   {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex04B/HandsOnEx04B.html#importing-data",
-    "href": "HandsOn_Exercises/HandsOn_Ex04B/HandsOnEx04B.html#importing-data",
-    "title": "Hands On Exercise 4B",
-    "section": "10.3.2 Importing data",
-    "text": "10.3.2 Importing data\n\n\nCode\nexam &lt;- read_csv(\"Exam_data.csv\")"
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01A/TakeHomeEx01A.html#loading-packages",
+    "href": "TakeHome_Exercises/TakeHome_Ex01A/TakeHomeEx01A.html#loading-packages",
+    "title": "Take Home Exercise 1A",
+    "section": "1.3.1 Loading packages",
+    "text": "1.3.1 Loading packages\nWe load the following R packages using the pacman::p_load() function:\n\ntidyverse: Core collection of R packages designed for data science.\nhaven: To read in data formats such as SAS and SPSS.\nggrepel: To provide geoms for ggplot2 to repel overlapping text labels.\nggthemes: To use additional themes for ggplot2.\npatchwork: To prepare composite figures created using ggplot2.\nggridges: To plot ridgeline plots.\nggdist: For visualizations of distributions and uncertainty.\nscales: Provides the internal scaling infrastructure used by ggplot2.\nmatrixStats: Provides efficient functions for row and column operations on matrices and data frames.\ntreemapify: Allows the creation of treemap visualizations using ggplot2 syntax.\nshowtext: Enables the use of custom fonts in R plots for better typography.\n\n\n\nCode\npacman::p_load(tidyverse, haven,\n               ggrepel, ggthemes,\n               ggridges, ggdist,colorspace,ggdist,\n               patchwork, scales, ggplot2, \n               matrixStats, treemapify, showtext)"
+  },
+  {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01A/TakeHomeEx01A.html#importing-data",
+    "href": "TakeHome_Exercises/TakeHome_Ex01A/TakeHomeEx01A.html#importing-data",
+    "title": "Take Home Exercise 1A",
+    "section": "1.3.2 Importing Data",
+    "text": "1.3.2 Importing Data\nThe dataset used in the exercise is Singapore Residents by Planning Area / Subzone, Single Year of Age and Sex, June 2024, retrieved from the Department of Statistics, Singapore. Let’s import this dataset as rrespopagesex2024 and how the dataset looks like.\n\n\nCode\nrespopagesex2024 &lt;- read_csv(\"respopagesex2024.csv\")\nshow_col_types = FALSE\n\nknitr::kable(head(respopagesex2024))\n\n\n\n\n\nPA\nSZ\nAge\nSex\nPop\nTime\n\n\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n0\nMales\n10\n2024\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n0\nFemales\n10\n2024\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n1\nMales\n10\n2024\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n1\nFemales\n10\n2024\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n2\nMales\n10\n2024\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n2\nFemales\n10\n2024"
+  },
+  {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01A/TakeHomeEx01A.html#glimpse",
+    "href": "TakeHome_Exercises/TakeHome_Ex01A/TakeHomeEx01A.html#glimpse",
+    "title": "Take Home Exercise 1A",
+    "section": "1.4.1 Glimpse",
+    "text": "1.4.1 Glimpse\n\n\nCode\nglimpse(respopagesex2024)\n\n\nRows: 60,424\nColumns: 6\n$ PA   &lt;chr&gt; \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo K…\n$ SZ   &lt;chr&gt; \"Ang Mo Kio Town Centre\", \"Ang Mo Kio Town Centre\", \"Ang Mo Kio T…\n$ Age  &lt;chr&gt; \"0\", \"0\", \"1\", \"1\", \"2\", \"2\", \"3\", \"3\", \"4\", \"4\", \"5\", \"5\", \"6\", …\n$ Sex  &lt;chr&gt; \"Males\", \"Females\", \"Males\", \"Females\", \"Males\", \"Females\", \"Male…\n$ Pop  &lt;dbl&gt; 10, 10, 10, 10, 10, 10, 10, 10, 30, 10, 20, 10, 20, 30, 30, 10, 3…\n$ Time &lt;dbl&gt; 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024,…\n\n\nBased on the result, there are 60,424 records, which is consistent with the CSV file, indicating that there are no missing records while importing. There are 6 variables, and the corresponding datatypes are shown as well. Take note that Age is defined as a character, so we will be converting that to a numeric data type later."
+  },
+  {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01A/TakeHomeEx01A.html#checking-for-duplicate-values",
+    "href": "TakeHome_Exercises/TakeHome_Ex01A/TakeHomeEx01A.html#checking-for-duplicate-values",
+    "title": "Take Home Exercise 1A",
+    "section": "1.4.2 Checking for duplicate values",
+    "text": "1.4.2 Checking for duplicate values\nUsing the duplicated function, we see that there are no duplicate entries in the data.\n\n\nCode\nrespopagesex2024[duplicated(respopagesex2024),]\n\n\n# A tibble: 0 × 6\n# ℹ 6 variables: PA &lt;chr&gt;, SZ &lt;chr&gt;, Age &lt;chr&gt;, Sex &lt;chr&gt;, Pop &lt;dbl&gt;,\n#   Time &lt;dbl&gt;"
+  },
+  {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01A/TakeHomeEx01A.html#additional-variables",
+    "href": "TakeHome_Exercises/TakeHome_Ex01A/TakeHomeEx01A.html#additional-variables",
+    "title": "Take Home Exercise 1A",
+    "section": "1.4.3 Additional Variables",
+    "text": "1.4.3 Additional Variables\nThere are 55 planning zones and 332 subzones in Singapore, which is consistent with this dataset. However, I felt that exploring each subzone individually would not be practical for a high-level analysis. So, a ‘Region’ column is added to the dataset, indicating which of the five major regions (East, West, North, North-East, or Central) each planning zone belongs to. This grouping makes it easier to understand broad demographic patterns across Singapore. To achieve this, an additional dataset from Wikipedia listing the planning zones and their corresponding regions was used. A left join is performed to link these two datasets using the function left_join().\n\n\nCode\nplanning_areas &lt;- read_csv(\"Planning_areas_of_Singapore_2.csv\")\n\n# Check column names\ncolnames(respopagesex2024)\n\n\n[1] \"PA\"   \"SZ\"   \"Age\"  \"Sex\"  \"Pop\"  \"Time\"\n\n\nCode\ncolnames(planning_areas)\n\n\n [1] \"Name (English)\" \"Malay\"          \"Chinese\"        \"Pinyin\"        \n [5] \"Tamil\"          \"Region\"         \"Area (km2)\"     \"Population\"    \n [9] \"Density (/km2)\" \"Subzones\"      \n\n\nCode\nrespop_with_region &lt;- respopagesex2024 %&gt;%\n  left_join(planning_areas, by = c(\"PA\" = \"Name (English)\"))\n\nglimpse(respop_with_region)\n\n\nRows: 60,424\nColumns: 15\n$ PA               &lt;chr&gt; \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo Kio…\n$ SZ               &lt;chr&gt; \"Ang Mo Kio Town Centre\", \"Ang Mo Kio Town Centre\", \"…\n$ Age              &lt;chr&gt; \"0\", \"0\", \"1\", \"1\", \"2\", \"2\", \"3\", \"3\", \"4\", \"4\", \"5\"…\n$ Sex              &lt;chr&gt; \"Males\", \"Females\", \"Males\", \"Females\", \"Males\", \"Fem…\n$ Pop              &lt;dbl&gt; 10, 10, 10, 10, 10, 10, 10, 10, 30, 10, 20, 10, 20, 3…\n$ Time             &lt;dbl&gt; 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024,…\n$ Malay            &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…\n$ Chinese          &lt;chr&gt; \"宏茂桥\", \"宏茂桥\", \"宏茂桥\", \"宏茂桥\", \"宏茂桥\", \"宏茂桥\", \"宏茂桥\", \"宏茂桥…\n$ Pinyin           &lt;chr&gt; \"Hóngmàoqiáo\", \"Hóngmàoqiáo\", \"Hóngmàoqiáo\", \"Hóngmào…\n$ Tamil            &lt;chr&gt; \"ஆங் மோ கியோ\", \"ஆங் மோ கியோ\", \"ஆங் மோ கியோ\", \"ஆங் மோ கியோ\", \"ஆங் மோ கியோ\"…\n$ Region           &lt;chr&gt; \"North-East\", \"North-East\", \"North-East\", \"North-East…\n$ `Area (km2)`     &lt;dbl&gt; 13.94, 13.94, 13.94, 13.94, 13.94, 13.94, 13.94, 13.9…\n$ Population       &lt;chr&gt; \"161,000\", \"161,000\", \"161,000\", \"161,000\", \"161,000\"…\n$ `Density (/km2)` &lt;chr&gt; \"13,400\", \"13,400\", \"13,400\", \"13,400\", \"13,400\", \"13…\n$ Subzones         &lt;chr&gt; \"12\", \"12\", \"12\", \"12\", \"12\", \"12\", \"12\", \"12\", \"12\",…\n\n\nCode\nknitr::kable(head(respop_with_region))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPA\nSZ\nAge\nSex\nPop\nTime\nMalay\nChinese\nPinyin\nTamil\nRegion\nArea (km2)\nPopulation\nDensity (/km2)\nSubzones\n\n\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n0\nMales\n10\n2024\nNA\n宏茂桥\nHóngmàoqiáo\nஆங் மோ கியோ\nNorth-East\n13.94\n161,000\n13,400\n12\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n0\nFemales\n10\n2024\nNA\n宏茂桥\nHóngmàoqiáo\nஆங் மோ கியோ\nNorth-East\n13.94\n161,000\n13,400\n12\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n1\nMales\n10\n2024\nNA\n宏茂桥\nHóngmàoqiáo\nஆங் மோ கியோ\nNorth-East\n13.94\n161,000\n13,400\n12\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n1\nFemales\n10\n2024\nNA\n宏茂桥\nHóngmàoqiáo\nஆங் மோ கியோ\nNorth-East\n13.94\n161,000\n13,400\n12\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n2\nMales\n10\n2024\nNA\n宏茂桥\nHóngmàoqiáo\nஆங் மோ கியோ\nNorth-East\n13.94\n161,000\n13,400\n12\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n2\nFemales\n10\n2024\nNA\n宏茂桥\nHóngmàoqiáo\nஆங் மோ கியோ\nNorth-East\n13.94\n161,000\n13,400\n12"
+  },
+  {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01A/TakeHomeEx01A.html#selecting-primary-variables",
+    "href": "TakeHome_Exercises/TakeHome_Ex01A/TakeHomeEx01A.html#selecting-primary-variables",
+    "title": "Take Home Exercise 1A",
+    "section": "1.4.4 Selecting Primary Variables",
+    "text": "1.4.4 Selecting Primary Variables\nThe primary variables chosen for this exercise are given below.\n\n\n\n\n\n\n\nField Name\nField Description\n\n\n\n\nPA\nName of planning area where the population record belongs\n\n\nSZ\nName of subzone within the planning area\n\n\nAge\nAge of the individuals\n\n\nSex\nGender of the population group\n\n\nPop\nTotal population count for the given age, sex, and location\n\n\nRegion\nBroad geographic region linked to each planning area\n\n\n\nRemaining variables will be excluded to give the cleaned dataset - respop_cleaned.\n\n\nCode\nrespop_cleaned &lt;- respop_with_region %&gt;%\n  select(-`Time`, -`Malay`, -`Chinese`, -`Pinyin`, -`Tamil`, -`Area (km2)`, -`Population`, -`Density (/km2)`, -`Subzones`)\n\nknitr::kable(head(respop_cleaned))\n\n\n\n\n\nPA\nSZ\nAge\nSex\nPop\nRegion\n\n\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n0\nMales\n10\nNorth-East\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n0\nFemales\n10\nNorth-East\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n1\nMales\n10\nNorth-East\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n1\nFemales\n10\nNorth-East\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n2\nMales\n10\nNorth-East\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n2\nFemales\n10\nNorth-East\n\n\n\n\n\nCode\nglimpse(respop_cleaned)\n\n\nRows: 60,424\nColumns: 6\n$ PA     &lt;chr&gt; \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo…\n$ SZ     &lt;chr&gt; \"Ang Mo Kio Town Centre\", \"Ang Mo Kio Town Centre\", \"Ang Mo Kio…\n$ Age    &lt;chr&gt; \"0\", \"0\", \"1\", \"1\", \"2\", \"2\", \"3\", \"3\", \"4\", \"4\", \"5\", \"5\", \"6\"…\n$ Sex    &lt;chr&gt; \"Males\", \"Females\", \"Males\", \"Females\", \"Males\", \"Females\", \"Ma…\n$ Pop    &lt;dbl&gt; 10, 10, 10, 10, 10, 10, 10, 10, 30, 10, 20, 10, 20, 30, 30, 10,…\n$ Region &lt;chr&gt; \"North-East\", \"North-East\", \"North-East\", \"North-East\", \"North-…"
+  },
+  {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01A/TakeHomeEx01A.html#gender-ratio-analysis-by-region",
+    "href": "TakeHome_Exercises/TakeHome_Ex01A/TakeHomeEx01A.html#gender-ratio-analysis-by-region",
+    "title": "Take Home Exercise 1A",
+    "section": "1.5.1 Gender Ratio Analysis by Region",
+    "text": "1.5.1 Gender Ratio Analysis by Region\n\n\nCode\ngender_summary_long &lt;- respop_cleaned %&gt;%\n  group_by(Region, Sex) %&gt;%\n  summarise(Total_Pop = sum(Pop), .groups = \"drop\")\n\n#Calculate total population per region\ngender_summary_long &lt;- gender_summary_long %&gt;%\n  group_by(Region) %&gt;%\n  mutate(\n    Region_Total = sum(Total_Pop),\n    Percent = (Total_Pop / Region_Total) * 100\n  )\n\n#Plot side-by-side bars\nggplot(gender_summary_long, aes(x = Region, y = Total_Pop, fill = Sex)) +\n  geom_col(position = \"dodge\") +\n  geom_text(\n    aes(label = paste0(round(Percent, 1), \"%\")),\n    position = position_dodge(width = 0.9),\n    vjust = -0.5,\n    size = 3, family = \"nunito\"\n  ) +\n  labs(\n    title = \"Male and Female Population by Region\",\n    x = \"Region\",\n    y = \"Total Population\"\n  ) +\n  scale_y_continuous(labels = scales::comma) +\n  theme_minimal(base_family = \"nunito\") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5),plot.title = element_text(hjust = 0.5, size = 15, face = \"bold\", family = \"nunito\")) +\n  scale_fill_manual(values = c(\"Females\" = \"#662633\", \"Males\" = \"#2C3C60\"))\n\n\n\n\n\n\n\n\n\nInsights:\n\nIn all five regions, females make up a slightly higher percentage of the total population, with the Central and North-East regions showing the largest gaps.\nThe total population size varies significantly by region. Central and North-East regions have noticeably larger total populations compared to the North, East, and West, highlighting regional population concentration and urban density differences.\nDespite minor percentage differences, the male-to-female split remains close to 50 - 50 in all regions, suggesting a stable and balanced gender distribution at the regional level in Singapore."
+  },
+  {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01A/TakeHomeEx01A.html#region-wise-age-distribution-using-multiple-density-plots",
+    "href": "TakeHome_Exercises/TakeHome_Ex01A/TakeHomeEx01A.html#region-wise-age-distribution-using-multiple-density-plots",
+    "title": "Take Home Exercise 1A",
+    "section": "1.5.2 Region-wise Age Distribution Using Multiple Density Plots",
+    "text": "1.5.2 Region-wise Age Distribution Using Multiple Density Plots\nAge is stored as a character datatype because it contains values ‘90_and_Over’ to represent residents aged over 90. To simplify this for an age distribution, these records will be recoded as ‘90’ before converting them to a numeric datatype.\n\n\nCode\nrespop_cleaned &lt;- respop_cleaned %&gt;%\n  mutate(\n    Age = as.character(Age),\n    Age = ifelse(Age == \"90_and_Over\", \"90\", Age),\n    Age = as.numeric(Age)\n)\n\n# Calculate age with highest density per region\nmode_age &lt;- respop_cleaned %&gt;%\n  group_by(Region) %&gt;%\n  group_split() %&gt;%\n  map_df(~ {\n    d &lt;- density(rep(.x$Age, .x$Pop))\n    data.frame(\n      Region = unique(.x$Region),\n      mode_age = d$x[which.max(d$y)]\n    )\n  })\n\n# Plot with vertical mode lines\nggplot(respop_cleaned, aes(x = Age, weight = Pop, fill = Region)) +\n  geom_density(alpha = 0.6, adjust = 1) +\n  geom_vline(data = mode_age, aes(xintercept = mode_age), color = \"black\", linetype = \"dashed\", size = 0.8) + \n  geom_text(\n    data = mode_age,\n    mapping = aes(x = mode_age, y = 0, label = paste0(\"Peak: \", round(mode_age, 1))),\n    inherit.aes = FALSE,\n    angle = 90, vjust = -0.5, hjust = 1.1, size = 3\n  ) +\n  facet_wrap(~ Region, scales = \"free_y\", ncol = 2) +\n  labs(\n    title = \"Age Distribution by Region in Singapore (Weighted by Population)\",\n    subtitle = \"Dashed line indicates age with highest density (mode)\",\n    x = \"Age\",\n    y = \"Density\"\n  ) +\n  theme(legend.position = \"none\") +\n  theme_minimal(base_family = \"nunito\") + theme(legend.position = \"none\",axis.text.x = element_text(angle = 90, vjust = 0.5),plot.title = element_text(hjust = 0.5, size = 30, face = \"bold\", family = \"nunito\")) +\n  scale_fill_manual(values = c(\"West\" = \"#145C47\", \"East\" = \"#2C3C60\", \"North\" = \"#662633\",\"North-East\" = \"#4B2C60\",\"Central\" = \"#665C26\"))\n\n\n\n\n\n\n\n\n\nInsights:\n\nAcross all five regions in Singapore, the density curves show peaks between ages 20 – 40, suggesting these age groups make up the largest share of the population. This reflects a working-age dominance that is prevalent in urban and developed countries.\nThe dashed vertical lines marking the modal age (most common) appear at nearly the same point for all regions, which is around 30 - 35 year olds. This indicates a consistent demographic structure across Singapore’s regions.\nWhile younger and middle-aged groups dominate, all regions show a gradual decline in density after age 50 – 60, reflecting lower population counts at older ages. Future policies focus on potential improvements for aging populations, like healthcare support and elderly welfare."
+  },
+  {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01A/TakeHomeEx01A.html#total-population-by-planning-areas-in-all-regions",
+    "href": "TakeHome_Exercises/TakeHome_Ex01A/TakeHomeEx01A.html#total-population-by-planning-areas-in-all-regions",
+    "title": "Take Home Exercise 1A",
+    "section": "1.5.3 Total Population by Planning Areas in all Regions",
+    "text": "1.5.3 Total Population by Planning Areas in all Regions\n\n\nCode\n# Summarize total population by planning area for each region\nplanning_area_summary &lt;- respop_cleaned %&gt;%\n  group_by(Region, PA) %&gt;%\n  summarise(Total_Pop = sum(Pop), .groups = \"drop\")\n\n# Bar chart\nggplot(planning_area_summary, aes(x = reorder(PA, -Total_Pop), y = Total_Pop, fill = Region)) +\n  geom_col() +\n  facet_wrap(~ Region, scales = \"free_x\") +\n  labs(title = \"Total Population by Planning Area (within Each Region)\", x = \"Planning Area\", y = \"Population\") +\n  scale_y_continuous(labels = scales::comma) +\n  theme_minimal(base_family = \"nunito\",base_size = 25) +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5),plot.title = element_text(hjust = 0.5, size = 30, face = \"bold\", family = \"nunito\")) +\n  scale_fill_manual(values = c(\"West\" = \"#145C47\", \"East\" = \"#2C3C60\", \"North\" = \"#662633\",\"North-East\" = \"#4B2C60\",\"Central\" = \"#665C26\"))\n\n\n\n\n\n\n\n\n\nInsights:\n\nPopulation is heavily concentrated in a few dominant planning areas within each region. For example, Tampines (East), Woodlands (North), Sengkang (North-East), and Jurong West (West) stand out as the most populous planning areas, suggesting that they are clearly urban hubs.\nWhile there are numerous planning areas in Central, only a few (like Bukit Merah, Queenstown, and Toa Payoh) hold large populations. Other areas have relatively small populations of Singaporean residents, due to the presence of commercial, or low-residence zones like Orchard and Marina South.\nSome planning areas have extremely low or negligible residential populations. Places like Lim Chu Kang, Central Water Catchment, and Western Islands show almost no population, indicating these are likely reserved for industrial, military, or nature conservation purposes."
   }
 ]

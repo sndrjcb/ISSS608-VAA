@@ -59,7 +59,6 @@ exam <- read_csv("Exam_data.csv")
 
 ```
 
-
 # 11.3 Visualizing the uncertainty of point estimates: ggplot2 methods
 
 A point estimate is a single number, such as a mean. Uncertainty, on the other hand, is expressed as standard error, confidence interval, or credible interval. Don’t confuse the uncertainty of a point estimate with the variation in the sample
@@ -227,6 +226,7 @@ exam %>%
     subtitle = "Median Point + Multiple-interval plot")
 
 ```
+
 ## 11.4.2 Visualizing the uncertainty of point estimates: ggdist methods
 
 ```{r}

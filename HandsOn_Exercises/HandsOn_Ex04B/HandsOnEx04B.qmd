@@ -73,14 +73,14 @@ gghistostats(
 
 # 10.3.6 Two-sample mean test: *ggbetweenstats()*
 
-In the code chunk below, [*ggbetweenstats()*](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.html) is used to build a visual for two-sample mean test of Maths scores by gender.
+In the code chunk below, [*ggbetweenstats()*](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.html) is used to build a visual for two-sample mean test of Maths scores by gender. 'np' stands for non-parametric.
 
 ```{r}
 ggbetweenstats(
   data = exam,
   x = GENDER, 
   y = MATHS,
-  type = "np",
+  type = "p", 
   messages = FALSE
 )
 
@@ -114,7 +114,7 @@ ggscatterstats(
   data = exam,
   x = MATHS,
   y = ENGLISH,
-  marginal = FALSE,
+  marginal = TRUE,
   )
 
 ```

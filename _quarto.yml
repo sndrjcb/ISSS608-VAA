@@ -31,8 +31,11 @@ website:
           href: "InClass_Exercises/InClass_Ex01/InClassEx01.html"
     - text: "Take Home Exercises"
       menu:
-        - text: "Take Home Exercise 1"
-          href: "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html"
+        - text: "Take Home Exercise 1A"
+          href: "TakeHome_Exercises/TakeHome_Ex01A/TakeHomeEx01A.html"
+        - text: "Take Home Exercise 1B"
+          href: "TakeHome_Exercises/TakeHome_Ex01B/TakeHomeEx01B.html"
+          
     
     tools:
       - icon: github
