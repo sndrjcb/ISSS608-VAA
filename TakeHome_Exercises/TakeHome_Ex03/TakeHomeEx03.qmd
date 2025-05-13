@@ -1,0 +1,18 @@
+---
+title: "Take Home Exercise 3"
+subtitle: "To be Updated"
+format: html
+date: 05/13/2025
+date-format: long
+date-modified: last-modified
+editor: visual
+execute:
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
+---
+
+[*Note: Please toggle between 'Show' and 'Hide' above based on your preference for viewing the R codes.*]{.underline}
+
+# 1.1 Setting the Scene

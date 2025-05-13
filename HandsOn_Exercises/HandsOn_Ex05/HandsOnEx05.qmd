@@ -1,0 +1,43 @@
+---
+title: "Hands On Exercise 5"
+subtitle: "Modelling, Visualising and Analysing Network Data with R"
+format: html
+date: 05/14/2025
+date-format: long
+date-modified: last-modified
+editor: visual
+execute:
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
+---
+
+# 5.1 Learning Outcome
+
+In this hands-on exercise, you will learn how to model, analyse and visualise network data using R.
+
+By the end of this hands-on exercise, you will be able to:
+
+-   create graph object data frames, manipulate them using appropriate functions of *dplyr*, *lubridate*, and *tidygraph*,
+
+-   build network graph visualisation using appropriate functions of *ggraph*,
+
+-   compute network geometrics using *tidygraph*,
+
+-   build advanced graph visualisation by incorporating the network geometrics, and
+
+-   build interactive network visualisation using *visNetwork* package.
+
+# 5.2 Getting Started
+
+## 5.2.1 Installing and **launching R packages**
+
+In this hands-on exercise, four network data modelling and visualisation packages will be installed and launched. They are igraph, tidygraph, ggraph and visNetwork. Beside these four packages, tidyverse and [lubridate](https://lubridate.tidyverse.org/), an R package specially designed to handle and wrangling time data will be installed and launched too.
+
+```{r}
+pacman::p_load(igraph, tidygraph, ggraph, 
+               visNetwork, lubridate, clock,
+               tidyverse, graphlayouts, 
+               concaveman, ggforce)
+```
