@@ -77,6 +77,97 @@
     "text": "1.5.3 Total Population by Planning Areas in all Regions\n\n\nCode\n# Summarize total population by planning area for each region\nplanning_area_summary &lt;- respop_cleaned %&gt;%\n  group_by(Region, PA) %&gt;%\n  summarise(Total_Pop = sum(Pop), .groups = \"drop\")\n\n# Bar chart\nggplot(planning_area_summary, aes(x = reorder(PA, -Total_Pop), y = Total_Pop, fill = Region)) +\n  geom_col() +\n  facet_wrap(~ Region, scales = \"free_x\") +\n  labs(title = \"Total Population by Planning Area (within Each Region)\", x = \"Planning Area\", y = \"Population\") +\n  scale_y_continuous(labels = scales::comma) +\n  theme_minimal(base_family = \"nunito\",base_size = 25) +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5),plot.title = element_text(hjust = 0.5, size = 30, face = \"bold\", family = \"nunito\")) +\n  scale_fill_manual(values = c(\"West\" = \"#145C47\", \"East\" = \"#2C3C60\", \"North\" = \"#662633\",\"North-East\" = \"#4B2C60\",\"Central\" = \"#665C26\"))\n\n\n\n\n\n\n\n\n\nInsights:\n\nPopulation is heavily concentrated in a few dominant planning areas within each region. For example, Tampines (East), Woodlands (North), Sengkang (North-East), and Jurong West (West) stand out as the most populous planning areas, suggesting that they are clearly urban hubs.\nWhile there are numerous planning areas in Central, only a few (like Bukit Merah, Queenstown, and Toa Payoh) hold large populations. Other areas have relatively small populations of Singaporean residents, due to the presence of commercial, or low-residence zones like Orchard and Marina South.\nSome planning areas have extremely low or negligible residential populations. Places like Lim Chu Kang, Central Water Catchment, and Western Islands show almost no population, indicating these are likely reserved for industrial, military, or nature conservation purposes."
   },
   {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#three-good-design-principles",
+    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#three-good-design-principles",
+    "title": "Take Home Exercise 1",
+    "section": "1.7.1 Three Good Design Principles",
+    "text": "1.7.1 Three Good Design Principles\n\nClear Comparison Between Groups: Using side-by-side bars for total vs. elderly population enables a quick visual comparison, making it easy to spot which planning areas have larger elderly proportions.\nEffective Use of Color and Labels: The contrasting colors (gold and purple) and direct value labels on bars improve readability and help viewers interpret values without needing to refer to the axis constantly.\nInsightful Focus: Highlighting elderly population (65+) alongside total population adds value by addressing demographic trends — a relevant and important lens for policy and planning."
+  },
+  {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#three-areas-for-further-improvement",
+    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#three-areas-for-further-improvement",
+    "title": "Take Home Exercise 1",
+    "section": "1.7.2 Three Areas for Further Improvement",
+    "text": "1.7.2 Three Areas for Further Improvement\n\nOverlapping Bars and Misleading Lengths: Since both bars start from the same axis, the elderly population bar is visually “on top of” the total bar, but this could mislead viewers into thinking they are stacked or directly proportional. A grouped bar chart or dual-axis plot might reduce confusion.\nMissing Percentage Context: Including the percentage of elderly population relative to the total for each planning area (e.g., as text labels or a separate line plot) would add deeper insight beyond raw counts.\nVisual Hierarchy Could Be Improved: Right now, the gold bars stand out more than the purple bars, even though the purple ones represent the main variable (total population). Consider reversing this emphasis or softening the elderly bar color to reflect its subset nature."
+  },
+  {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#enhanced-visualization",
+    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#enhanced-visualization",
+    "title": "Take Home Exercise 1",
+    "section": "1.7.3 Enhanced Visualization",
+    "text": "1.7.3 Enhanced Visualization\nBelow is the improved version of the plot. The enhancements include:\n\nA reversed bar order, with the largest on top for easier scanning.\nBolded key text for title, axis and labels.\nFine-tuned label positions to prevent overlap and improve balance.\nCleaned up legend and theme for a polished look.\n\n\n\nCode\npacman::p_load(tidyverse, haven,\n               ggrepel, ggthemes,\n               ggridges, ggdist,colorspace,ggdist,\n               patchwork, scales, ggplot2, \n               matrixStats, treemapify, showtext)\n\n\n\n\nCode\npop_data &lt;- read_csv(\"respopagesex2024.csv\")\n\nlibrary(tidyverse)\nlibrary(scales)\nlibrary(forcats)\n\npop_data &lt;- read_csv(\"respopagesex2024.csv\")\n\n# Summarise total and elderly population by PA\ntop_areas &lt;- pop_data %&gt;%\n  group_by(PA) %&gt;%\n  summarise(\n    Total = sum(Pop),\n    Elderly = sum(Pop[Age &gt;= 65]),\n    .groups = \"drop\"\n  ) %&gt;%\n  top_n(15, Total)\n\n# Reshape into long format\nplot_data &lt;- top_areas %&gt;%\n  pivot_longer(cols = c(Total, Elderly),\n               names_to = \"Type\",\n               values_to = \"Population\") %&gt;%\n  mutate(\n    Type = recode(Type,\n                  \"Total\" = \"Total Population\",\n                  \"Elderly\" = \"Elderly (65+)\")\n  )\n\n# Reorder PA by Total Population (largest on top)\nplot_data &lt;- plot_data %&gt;%\n  left_join(top_areas %&gt;% select(PA, Total), by = \"PA\") %&gt;%\n  mutate(PA = fct_reorder(PA, Total, .desc = TRUE))\n\n# Plot\nggplot(plot_data, aes(x = PA, y = Population, fill = Type)) +\n  geom_col(position = position_dodge(width = 0.85), width = 0.7) +\n  geom_text(aes(label = comma(Population)),\n            position = position_dodge(width = 0.85),\n            hjust = -0.1, size = 3) +\n  scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.15))) +\n  scale_fill_manual(values = c(\"Total Population\" = \"#8E7DBE\", \"Elderly (65+)\" = \"#F1C232\")) +\n  coord_flip() +\n  labs(\n    title = \"Total vs Elderly Population in Top Planning Areas (2024)\",\n    subtitle = \"Planning areas ordered by total population. Elderly population shown in gold.\",\n    x = \"Planning Area\",\n    y = \"Population\",\n    fill = NULL\n  ) +\n  theme_minimal(base_family = \"Helvetica\") +\n  theme(\n    plot.title = element_text(face = \"bold\", size = 15, hjust = 0.5),\n    plot.subtitle = element_text(size = 11, hjust = 0.5, color = \"gray40\"),\n    axis.title = element_text(size = 11),\n    axis.text = element_text(size = 9),\n    legend.position = \"top\",\n    legend.text = element_text(size = 9)\n  )"
+  },
+  {
+    "objectID": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html",
+    "href": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html",
+    "title": "In Class Exercise 3",
+    "section": "",
+    "text": "Code\npacman::p_load(tidyverse, jsonlite, SmartEDA, tidygraph, ggraph)"
+  },
+  {
+    "objectID": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#mapping-from-node-id-to-row-index",
+    "href": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#mapping-from-node-id-to-row-index",
+    "title": "In Class Exercise 3",
+    "section": "3.6.1 Mapping from node id to row index",
+    "text": "3.6.1 Mapping from node id to row index\n\n\nCode\nid_map &lt;- tibble(id = nodes_tbl$id,\n                 index = seq_len(\n                   nrow(nodes_tbl)))\n\n\nThis ensures each id from your node list is mapped to the correct row number."
+  },
+  {
+    "objectID": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#map-source-and-target-ids-to-row-indices",
+    "href": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#map-source-and-target-ids-to-row-indices",
+    "title": "In Class Exercise 3",
+    "section": "3.6.2 Map source and target IDs to row indices",
+    "text": "3.6.2 Map source and target IDs to row indices\n\n\nCode\nedges_tbl &lt;- edges_tbl %&gt;%\n  left_join(id_map, by = c(\"source\" = \"id\")) %&gt;%\n  rename(from = index) %&gt;%\n  left_join(id_map, by = c(\"target\" = \"id\")) %&gt;%\n  rename(to = index)"
+  },
+  {
+    "objectID": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#invalid-edges",
+    "href": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#invalid-edges",
+    "title": "In Class Exercise 3",
+    "section": "3.6.3 Invalid Edges",
+    "text": "3.6.3 Invalid Edges\n\n\nCode\nedges_tbl &lt;- edges_tbl %&gt;%\n  filter(!is.na(from),!is.na(to))"
+  },
+  {
+    "objectID": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#creating-the-graph",
+    "href": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#creating-the-graph",
+    "title": "In Class Exercise 3",
+    "section": "3.6.4 Creating the Graph",
+    "text": "3.6.4 Creating the Graph\n\n\nCode\ngraph &lt;- tbl_graph(nodes = nodes_tbl,\n                   edges = edges_tbl,\n                   directed = kg$directed)"
+  },
+  {
+    "objectID": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#visualising-the-knowledge-graph",
+    "href": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#visualising-the-knowledge-graph",
+    "title": "In Class Exercise 3",
+    "section": "3.6.5 Visualising the Knowledge Graph",
+    "text": "3.6.5 Visualising the Knowledge Graph\n\n\nCode\nset.seed(1234)\n\n\n\n\nCode\n#| eval: false\nggraph(graph,layout = \"fr\") +\n  geom_edge_link(alpha = 0.3,\n                 colour = \"gray\") +\n  geom_node_point(aes(color = `Node Type`),\n                  size = 4) +\n  geom_node_text(aes(label = name),\n                 repel = TRUE,\n                 size = 2.5) + \n  theme_void()\n\n\nWarning: ggrepel: 17411 unlabeled data points (too many overlaps). Consider\nincreasing max.overlaps"
+  },
+  {
+    "objectID": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#filter-edges-to-only-memberof",
+    "href": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#filter-edges-to-only-memberof",
+    "title": "In Class Exercise 3",
+    "section": "3.7.1 Filter Edges to only “MemberOf”",
+    "text": "3.7.1 Filter Edges to only “MemberOf”\n\n\nCode\ngraph_memberof &lt;- graph %&gt;%\n  activate(edges) %&gt;%\n  filter(`Edge Type` == \"MemberOf\")"
+  },
+  {
+    "objectID": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#extract-only-connected-nodes-i.e.-used-in-these-edges",
+    "href": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#extract-only-connected-nodes-i.e.-used-in-these-edges",
+    "title": "In Class Exercise 3",
+    "section": "3.7.2 Extract only connected nodes (i.e., used in these edges)",
+    "text": "3.7.2 Extract only connected nodes (i.e., used in these edges)\n\n\nCode\nused_node_indices &lt;- graph_memberof %&gt;%\n  activate(edges) %&gt;%\n  as_tibble() %&gt;%\n  select(from, to) %&gt;%\n  unlist() %&gt;%\n  unique"
+  },
+  {
+    "objectID": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#keep-only-those-nodes",
+    "href": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#keep-only-those-nodes",
+    "title": "In Class Exercise 3",
+    "section": "3.7.3 Keep only those nodes",
+    "text": "3.7.3 Keep only those nodes\n\n\nCode\ngraph_memberof &lt;- graph_memberof %&gt;%\n  activate(nodes) %&gt;%\n  mutate(row_id = row_number()) %&gt;%\n  filter(row_id %in% used_node_indices) %&gt;%\n  select(-row_id) #optional cleanup"
+  },
+  {
+    "objectID": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#plot-the-subgraph",
+    "href": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#plot-the-subgraph",
+    "title": "In Class Exercise 3",
+    "section": "3.7.4 Plot the subgraph",
+    "text": "3.7.4 Plot the subgraph\n\n\nCode\nggraph(graph_memberof,\n       layout = \"fr\") + \n  geom_edge_link(alpha = 0.5,\n                 colour = \"gray\") +\n  geom_node_point(aes(color = `Node Type`),\n                  size = 1) + \n  geom_node_text(aes(label = name),\n                 repel = TRUE,\n                 size = 2.5) +\n  theme_void()\n\n\nWarning: ggrepel: 790 unlabeled data points (too many overlaps). Consider\nincreasing max.overlaps"
+  },
+  {
     "objectID": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html",
     "href": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html",
     "title": "Hands On Exercise 4D",
@@ -718,7 +809,14 @@
     "href": "HandsOn_Exercises/HandsOn_Ex05/HandsOnEx05.html#interactivity",
     "title": "Hands On Exercise 5",
     "section": "5.8.6 Interactivity",
-    "text": "5.8.6 Interactivity\nIn the code chunk below, visOptions() is used to incorporate interactivity features in the data visualisation.\n\nThe argument highlightNearest highlights nearest when clicking a node.\nThe argument nodesIdSelection adds an id node selection creating an HTML select element.\n\n\n\nCode\nvisNetwork(GAStech_nodes,\n           GAStech_edges_aggregated) %&gt;%\n  visIgraphLayout(layout = \"layout_with_fr\") %&gt;%\n  visOptions(highlightNearest = TRUE,\n             nodesIdSelection = TRUE) %&gt;%\n  visLegend() %&gt;%\n  visLayout(randomSeed = 123)"
+    "text": "5.8.6 Interactivity\nIn the code chunk below, visOptions() is used to incorporate interactivity features in the data visualisation.\n\nThe argument highlightNearest highlights nearest when clicking a node.\nThe argument nodesIdSelection adds an id node selection creating an HTML select element.\n\n\n\nCode\nvisNetwork(GAStech_nodes,\n           GAStech_edges_aggregated) %&gt;%\n  visIgraphLayout(layout = \"layout_with_fr\") %&gt;%\n  visOptions(highlightNearest = TRUE,\n             nodesIdSelection = TRUE) %&gt;%\n  visLegend() %&gt;%\n  visLayout(randomSeed = 123)\n\n\n\n\n\n\nAdditional\n\n\nCode\ncolnames(GAStech_nodes)\n\n\n[1] \"id\"    \"label\" \"group\" \"Title\""
+  },
+  {
+    "objectID": "InClass_Exercises/InClass_Ex02/InClassEx02.html",
+    "href": "InClass_Exercises/InClass_Ex02/InClassEx02.html",
+    "title": "In Class Exercise 2",
+    "section": "",
+    "text": "&lt;img src=“https://public.tableau.com/static/images/Su/SuperstoreIn-ClassExercise03/Salesvs_Profit/1_rss.png’ alt=‘Sales vs Profit’ style=‘border: none’/&gt;"
   },
   {
     "objectID": "index.html",
@@ -747,26 +845,5 @@
     "title": "Take Home Exercise 2",
     "section": "",
     "text": "Note: Please toggle between ‘Show’ and ‘Hide’ above based on your preference for viewing the R codes.\n\n1.1 Setting the Scene"
-  },
-  {
-    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#three-good-design-principles",
-    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#three-good-design-principles",
-    "title": "Take Home Exercise 1",
-    "section": "1.7.1 Three Good Design Principles",
-    "text": "1.7.1 Three Good Design Principles\n\nClear Comparison Between Groups: Using side-by-side bars for total vs. elderly population enables a quick visual comparison, making it easy to spot which planning areas have larger elderly proportions.\nEffective Use of Color and Labels: The contrasting colors (gold and purple) and direct value labels on bars improve readability and help viewers interpret values without needing to refer to the axis constantly.\nInsightful Focus: Highlighting elderly population (65+) alongside total population adds value by addressing demographic trends — a relevant and important lens for policy and planning."
-  },
-  {
-    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#three-areas-for-further-improvement",
-    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#three-areas-for-further-improvement",
-    "title": "Take Home Exercise 1",
-    "section": "1.7.2 Three Areas for Further Improvement",
-    "text": "1.7.2 Three Areas for Further Improvement\n\nOverlapping Bars and Misleading Lengths: Since both bars start from the same axis, the elderly population bar is visually “on top of” the total bar, but this could mislead viewers into thinking they are stacked or directly proportional. A grouped bar chart or dual-axis plot might reduce confusion.\nMissing Percentage Context: Including the percentage of elderly population relative to the total for each planning area (e.g., as text labels or a separate line plot) would add deeper insight beyond raw counts.\nVisual Hierarchy Could Be Improved: Right now, the gold bars stand out more than the purple bars, even though the purple ones represent the main variable (total population). Consider reversing this emphasis or softening the elderly bar color to reflect its subset nature."
-  },
-  {
-    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#enhanced-visualization",
-    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#enhanced-visualization",
-    "title": "Take Home Exercise 1",
-    "section": "1.7.3 Enhanced Visualization",
-    "text": "1.7.3 Enhanced Visualization\nBelow is the improved version of the plot. The enhancements include:\n\nA reversed bar order, with the largest on top for easier scanning.\nBolded key text for title, axis and labels.\nFine-tuned label positions to prevent overlap and improve balance.\nCleaned up legend and theme for a polished look.\n\n\n\nCode\npacman::p_load(tidyverse, haven,\n               ggrepel, ggthemes,\n               ggridges, ggdist,colorspace,ggdist,\n               patchwork, scales, ggplot2, \n               matrixStats, treemapify, showtext)\n\n\n\n\nCode\npop_data &lt;- read_csv(\"respopagesex2024.csv\")\n\nlibrary(tidyverse)\nlibrary(scales)\nlibrary(forcats)\n\npop_data &lt;- read_csv(\"respopagesex2024.csv\")\n\n# Summarise total and elderly population by PA\ntop_areas &lt;- pop_data %&gt;%\n  group_by(PA) %&gt;%\n  summarise(\n    Total = sum(Pop),\n    Elderly = sum(Pop[Age &gt;= 65]),\n    .groups = \"drop\"\n  ) %&gt;%\n  top_n(15, Total)\n\n# Reshape into long format\nplot_data &lt;- top_areas %&gt;%\n  pivot_longer(cols = c(Total, Elderly),\n               names_to = \"Type\",\n               values_to = \"Population\") %&gt;%\n  mutate(\n    Type = recode(Type,\n                  \"Total\" = \"Total Population\",\n                  \"Elderly\" = \"Elderly (65+)\")\n  )\n\n# Reorder PA by Total Population (largest on top)\nplot_data &lt;- plot_data %&gt;%\n  left_join(top_areas %&gt;% select(PA, Total), by = \"PA\") %&gt;%\n  mutate(PA = fct_reorder(PA, Total, .desc = TRUE))\n\n# Plot\nggplot(plot_data, aes(x = PA, y = Population, fill = Type)) +\n  geom_col(position = position_dodge(width = 0.85), width = 0.7) +\n  geom_text(aes(label = comma(Population)),\n            position = position_dodge(width = 0.85),\n            hjust = -0.1, size = 3) +\n  scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.15))) +\n  scale_fill_manual(values = c(\"Total Population\" = \"#8E7DBE\", \"Elderly (65+)\" = \"#F1C232\")) +\n  coord_flip() +\n  labs(\n    title = \"Total vs Elderly Population in Top Planning Areas (2024)\",\n    subtitle = \"Planning areas ordered by total population. Elderly population shown in gold.\",\n    x = \"Planning Area\",\n    y = \"Population\",\n    fill = NULL\n  ) +\n  theme_minimal(base_family = \"Helvetica\") +\n  theme(\n    plot.title = element_text(face = \"bold\", size = 15, hjust = 0.5),\n    plot.subtitle = element_text(size = 11, hjust = 0.5, color = \"gray40\"),\n    axis.title = element_text(size = 11),\n    axis.text = element_text(size = 9),\n    legend.position = \"top\",\n    legend.text = element_text(size = 9)\n  )"
   }
 ]

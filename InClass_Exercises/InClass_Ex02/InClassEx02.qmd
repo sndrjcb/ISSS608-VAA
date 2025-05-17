@@ -1,0 +1,44 @@
+---
+title: "In Class Exercise 2"
+subtitle: " "
+format: html
+date: 05/17/2025
+date-format: long
+date-modified: last-modified
+editor: visual
+---
+
+:::: {=html}
+::: {#viz168 .tableauPlaceholder style="position: relative"}
+<noscript><a href='https://public.tableau.com/views/SuperstoreIn-ClassExercise03/Salesvs_Profit'> <img src="https://public.tableau.com/static/images/Su/SuperstoreIn-ClassExercise03/Salesvs_Profit/1_rss.png' alt='Sales vs Profit' style='border: none'/> </a></noscript>
+
+<object class='tableauViz' style='display:none;'>
+  <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+  <param name='embed_code_version' value='3' />
+  <param name='site_root' value='' />
+  <param name='name' value='SuperstoreIn-ClassExercise03/Salesvs_Profit' />
+  <param name='tabs' value='no' />
+  <param name='toolbar' value='yes' />
+  <param name='static_image' value='https://public.tableau.com/static/images/Su/SuperstoreIn-ClassExercise03/Salesvs_Profit/1.png' />
+  <param name='animate_transition' value='yes' />
+  <param name='display_static_image' value='yes' />
+  <param name='display_spinner' value='yes' />
+  <param name='display_overlay' value='yes' />
+  <param name='display_count' value='yes' />
+  <param name='language' value='en-GB' />
+</object>
+:::
+
+```{=html}
+<script type='text/javascript'>
+  var divElement = document.getElementById('viz168');
+  var vizElement = divElement.getElementsByTagName('object')[0];
+  vizElement.style.width = '100%';
+  vizElement.style.height = '800px';
+  var scriptElement = document.createElement('script');
+  scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+  vizElement.parentNode.insertBefore(scriptElement, vizElement);
+</script>
+
+```
+::::
