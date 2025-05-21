@@ -310,3 +310,130 @@ rice %>%
                 Title = "Rice Yield of Top 11 Asian Counties",
                 SubTitle = "1961-1980")
 ```
+
+# 6.6 Trying Out Plots on my Own
+
+## 6.6.1 Slopegraph
+
+```{r}
+rice %>% 
+  mutate(Year = factor(Year)) %>%
+  filter(Year %in% c(1961, 1980)) %>%
+  newggslopegraph(Year, Yield, Country,
+                Title = "Rice Yield of Top 11 Asian Counties",
+                SubTitle = "1961-1980",
+                XTextSize = 18,    # Size of the times
+                YTextSize = 2,     # Size of the groups
+                TitleTextSize = 14,
+                SubTitleTextSize = 12,
+                CaptionTextSize = 10,
+                Caption = "RICE",
+                TitleJustify = "right",
+                SubTitleJustify = "right",
+                CaptionJustify = "left",
+                DataTextSize = 2.5,
+                DataLabelPadding = 0.2,
+                DataLabelLineSize = 0.5,
+                DataLabelFillColor = "lightblue",
+                ThemeChoice = "wsj")
+
+```
+
+## 6.6.2 Cycle Plot
+
+```{r}
+
+ggplot(Vietnam, aes(x = year, y = `Vietnam`, group = month)) + 
+  geom_line(color = "black") +
+  geom_hline(data = hline.data, aes(yintercept = avgvalue),
+             linetype = "dashed", color = "red", size = 0.5) +
+  facet_wrap(~month, nrow = 2) +
+  labs(
+    title = "Visitor Arrivals from Vietnam by Air (2010–2019)",
+    subtitle = "Each line represents yearly visitor counts for a specific month. Red dashed line shows 10-year monthly average.",
+    y = "No. of Visitors",
+    x = NULL
+  ) +
+  theme_tufte(base_family = "Helvetica") +
+  theme(
+    strip.text = element_text(size = 10, face = "bold"),
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
+    plot.subtitle = element_text(size = 10, hjust = 0.5, color = "gray30")
+  )
+
+```
+
+## 6.6.3 Calendar Heat Map
+
+```{r}
+grouped <- attacks %>% 
+  count(wkday, hour) %>% 
+  ungroup() %>%
+  na.omit()
+
+ggplot(grouped, aes(x = hour, y = fct_rev(wkday), fill = n)) + 
+  geom_tile(color = "white", size = 0.2) +
+  scale_fill_gradient(
+    name = "# of Attacks",
+    low = "#f7c8d6",
+    high = "#300713"
+  ) +
+  coord_equal() +
+  labs(
+    title = "Attacks by Weekday and Time of Day",
+    subtitle = "Count of attacks by hour across weekdays",
+    x = "Hour of Day",
+    y = NULL
+  ) +
+  theme_minimal(base_family = "Helvetica") +
+  theme(
+    panel.grid = element_blank(),
+    axis.ticks = element_blank(),
+    axis.text.y = element_text(size = 9),
+    axis.text.x = element_text(size = 9),
+    plot.title = element_text(size = 14, face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(size = 10, hjust = 0.5, color = "gray30"),
+    legend.title = element_text(size = 9, face = "bold"),
+    legend.text = element_text(size = 8),
+    legend.position = "bottom"
+  )
+
+
+
+```
+
+## 6.6.4 Time Series using ggplot2
+
+```{r fig.height=5, fig.width=12}
+
+vietnam_ts <- Vietnam %>%
+  mutate(
+    date = ymd(paste(year, month, 1, sep = "-")),
+    visitors = Vietnam,
+    deviation = visitors - mean(visitors, na.rm = TRUE)
+  )
+
+ggplot(vietnam_ts, aes(x = date)) +
+  geom_area(data = subset(vietnam_ts, deviation >= 0),
+            aes(y = deviation), fill = "#e41a1c") +  # red for above avg
+  geom_area(data = subset(vietnam_ts, deviation < 0),
+            aes(y = deviation), fill = "#377eb8") +  # blue for below avg
+  geom_hline(yintercept = 0, color = "gray40", linetype = "dashed") +
+  scale_x_date(date_breaks = "6 months", date_labels = "%b %Y") +
+  labs(
+    title = "Visitor Arrivals from Vietnam (Deviation from Mean)",
+    subtitle = "Red indicates months above average, blue indicates below",
+    y = "Deviation from Average",
+    x = NULL
+  ) +
+  theme_minimal(base_family = "Helvetica") +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5, size = 10, color = "gray40"),
+    axis.text.x = element_text(size = 8)
+  )
+
+
+```
