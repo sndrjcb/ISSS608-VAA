@@ -1,0 +1,9 @@
+---
+title: "In Class Exercise 4"
+subtitle: " "
+format: html
+date: 05/31/2025
+date-format: long
+date-modified: last-modified
+editor: visual
+---

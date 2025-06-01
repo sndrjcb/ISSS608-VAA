@@ -7,165 +7,214 @@
     "text": "Note: Please toggle between ‘Show’ and ‘Hide’ above based on your preference for viewing the R codes.\n\n1.1 Setting the Scene"
   },
   {
-    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html",
-    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html",
-    "title": "Take Home Exercise 1",
-    "section": "",
-    "text": "Note: Please toggle between ‘Show’ and ‘Hide’ above based on your preference for viewing the R codes."
-  },
-  {
-    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#loading-packages",
-    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#loading-packages",
-    "title": "Take Home Exercise 1",
-    "section": "1.3.1 Loading packages",
-    "text": "1.3.1 Loading packages\nWe load the following R packages using the pacman::p_load() function:\n\ntidyverse: Core collection of R packages designed for data science.\nhaven: To read in data formats such as SAS and SPSS.\nggrepel: To provide geoms for ggplot2 to repel overlapping text labels.\nggthemes: To use additional themes for ggplot2.\npatchwork: To prepare composite figures created using ggplot2.\nggridges: To plot ridgeline plots.\nggdist: For visualizations of distributions and uncertainty.\nscales: Provides the internal scaling infrastructure used by ggplot2.\nmatrixStats: Provides efficient functions for row and column operations on matrices and data frames.\ntreemapify: Allows the creation of treemap visualizations using ggplot2 syntax.\nshowtext: Enables the use of custom fonts in R plots for better typography.\n\n\n\nCode\npacman::p_load(tidyverse, haven,\n               ggrepel, ggthemes,\n               ggridges, ggdist,colorspace,ggdist,\n               patchwork, scales, ggplot2, \n               matrixStats, treemapify, showtext)"
-  },
-  {
-    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#importing-data",
-    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#importing-data",
-    "title": "Take Home Exercise 1",
-    "section": "1.3.2 Importing Data",
-    "text": "1.3.2 Importing Data\nThe dataset used in the exercise is Singapore Residents by Planning Area / Subzone, Single Year of Age and Sex, June 2024, retrieved from the Department of Statistics, Singapore. Let’s import this dataset as rrespopagesex2024 and how the dataset looks like.\n\n\nCode\nrespopagesex2024 &lt;- read_csv(\"respopagesex2024.csv\")\nshow_col_types = FALSE\n\nknitr::kable(head(respopagesex2024))\n\n\n\n\n\nPA\nSZ\nAge\nSex\nPop\nTime\n\n\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n0\nMales\n10\n2024\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n0\nFemales\n10\n2024\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n1\nMales\n10\n2024\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n1\nFemales\n10\n2024\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n2\nMales\n10\n2024\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n2\nFemales\n10\n2024"
-  },
-  {
-    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#glimpse",
-    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#glimpse",
-    "title": "Take Home Exercise 1",
-    "section": "1.4.1 Glimpse",
-    "text": "1.4.1 Glimpse\n\n\nCode\nglimpse(respopagesex2024)\n\n\nRows: 60,424\nColumns: 6\n$ PA   &lt;chr&gt; \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo K…\n$ SZ   &lt;chr&gt; \"Ang Mo Kio Town Centre\", \"Ang Mo Kio Town Centre\", \"Ang Mo Kio T…\n$ Age  &lt;chr&gt; \"0\", \"0\", \"1\", \"1\", \"2\", \"2\", \"3\", \"3\", \"4\", \"4\", \"5\", \"5\", \"6\", …\n$ Sex  &lt;chr&gt; \"Males\", \"Females\", \"Males\", \"Females\", \"Males\", \"Females\", \"Male…\n$ Pop  &lt;dbl&gt; 10, 10, 10, 10, 10, 10, 10, 10, 30, 10, 20, 10, 20, 30, 30, 10, 3…\n$ Time &lt;dbl&gt; 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024,…\n\n\nBased on the result, there are 60,424 records, which is consistent with the CSV file, indicating that there are no missing records while importing. There are 6 variables, and the corresponding datatypes are shown as well. Take note that Age is defined as a character, so we will be converting that to a numeric data type later."
-  },
-  {
-    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#checking-for-duplicate-values",
-    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#checking-for-duplicate-values",
-    "title": "Take Home Exercise 1",
-    "section": "1.4.2 Checking for duplicate values",
-    "text": "1.4.2 Checking for duplicate values\nUsing the duplicated function, we see that there are no duplicate entries in the data.\n\n\nCode\nrespopagesex2024[duplicated(respopagesex2024),]\n\n\n# A tibble: 0 × 6\n# ℹ 6 variables: PA &lt;chr&gt;, SZ &lt;chr&gt;, Age &lt;chr&gt;, Sex &lt;chr&gt;, Pop &lt;dbl&gt;,\n#   Time &lt;dbl&gt;"
-  },
-  {
-    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#additional-variables",
-    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#additional-variables",
-    "title": "Take Home Exercise 1",
-    "section": "1.4.3 Additional Variables",
-    "text": "1.4.3 Additional Variables\nThere are 55 planning zones and 332 subzones in Singapore, which is consistent with this dataset. However, I felt that exploring each subzone individually would not be practical for a high-level analysis. So, a ‘Region’ column is added to the dataset, indicating which of the five major regions (East, West, North, North-East, or Central) each planning zone belongs to. This grouping makes it easier to understand broad demographic patterns across Singapore. To achieve this, an additional dataset from Wikipedia listing the planning zones and their corresponding regions was used. A left join is performed to link these two datasets using the function left_join().\n\n\nCode\nplanning_areas &lt;- read_csv(\"Planning_areas_of_Singapore_2.csv\")\n\n# Check column names\ncolnames(respopagesex2024)\n\n\n[1] \"PA\"   \"SZ\"   \"Age\"  \"Sex\"  \"Pop\"  \"Time\"\n\n\nCode\ncolnames(planning_areas)\n\n\n [1] \"Name (English)\" \"Malay\"          \"Chinese\"        \"Pinyin\"        \n [5] \"Tamil\"          \"Region\"         \"Area (km2)\"     \"Population\"    \n [9] \"Density (/km2)\" \"Subzones\"      \n\n\nCode\nrespop_with_region &lt;- respopagesex2024 %&gt;%\n  left_join(planning_areas, by = c(\"PA\" = \"Name (English)\"))\n\nglimpse(respop_with_region)\n\n\nRows: 60,424\nColumns: 15\n$ PA               &lt;chr&gt; \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo Kio…\n$ SZ               &lt;chr&gt; \"Ang Mo Kio Town Centre\", \"Ang Mo Kio Town Centre\", \"…\n$ Age              &lt;chr&gt; \"0\", \"0\", \"1\", \"1\", \"2\", \"2\", \"3\", \"3\", \"4\", \"4\", \"5\"…\n$ Sex              &lt;chr&gt; \"Males\", \"Females\", \"Males\", \"Females\", \"Males\", \"Fem…\n$ Pop              &lt;dbl&gt; 10, 10, 10, 10, 10, 10, 10, 10, 30, 10, 20, 10, 20, 3…\n$ Time             &lt;dbl&gt; 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024,…\n$ Malay            &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…\n$ Chinese          &lt;chr&gt; \"宏茂桥\", \"宏茂桥\", \"宏茂桥\", \"宏茂桥\", \"宏茂桥\", \"宏茂桥\", \"宏茂桥\", \"宏茂桥…\n$ Pinyin           &lt;chr&gt; \"Hóngmàoqiáo\", \"Hóngmàoqiáo\", \"Hóngmàoqiáo\", \"Hóngmào…\n$ Tamil            &lt;chr&gt; \"ஆங் மோ கியோ\", \"ஆங் மோ கியோ\", \"ஆங் மோ கியோ\", \"ஆங் மோ கியோ\", \"ஆங் மோ கியோ\"…\n$ Region           &lt;chr&gt; \"North-East\", \"North-East\", \"North-East\", \"North-East…\n$ `Area (km2)`     &lt;dbl&gt; 13.94, 13.94, 13.94, 13.94, 13.94, 13.94, 13.94, 13.9…\n$ Population       &lt;chr&gt; \"161,000\", \"161,000\", \"161,000\", \"161,000\", \"161,000\"…\n$ `Density (/km2)` &lt;chr&gt; \"13,400\", \"13,400\", \"13,400\", \"13,400\", \"13,400\", \"13…\n$ Subzones         &lt;chr&gt; \"12\", \"12\", \"12\", \"12\", \"12\", \"12\", \"12\", \"12\", \"12\",…\n\n\nCode\nknitr::kable(head(respop_with_region))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPA\nSZ\nAge\nSex\nPop\nTime\nMalay\nChinese\nPinyin\nTamil\nRegion\nArea (km2)\nPopulation\nDensity (/km2)\nSubzones\n\n\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n0\nMales\n10\n2024\nNA\n宏茂桥\nHóngmàoqiáo\nஆங் மோ கியோ\nNorth-East\n13.94\n161,000\n13,400\n12\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n0\nFemales\n10\n2024\nNA\n宏茂桥\nHóngmàoqiáo\nஆங் மோ கியோ\nNorth-East\n13.94\n161,000\n13,400\n12\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n1\nMales\n10\n2024\nNA\n宏茂桥\nHóngmàoqiáo\nஆங் மோ கியோ\nNorth-East\n13.94\n161,000\n13,400\n12\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n1\nFemales\n10\n2024\nNA\n宏茂桥\nHóngmàoqiáo\nஆங் மோ கியோ\nNorth-East\n13.94\n161,000\n13,400\n12\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n2\nMales\n10\n2024\nNA\n宏茂桥\nHóngmàoqiáo\nஆங் மோ கியோ\nNorth-East\n13.94\n161,000\n13,400\n12\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n2\nFemales\n10\n2024\nNA\n宏茂桥\nHóngmàoqiáo\nஆங் மோ கியோ\nNorth-East\n13.94\n161,000\n13,400\n12"
-  },
-  {
-    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#selecting-primary-variables",
-    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#selecting-primary-variables",
-    "title": "Take Home Exercise 1",
-    "section": "1.4.4 Selecting Primary Variables",
-    "text": "1.4.4 Selecting Primary Variables\nThe primary variables chosen for this exercise are given below.\n\n\n\n\n\n\n\nField Name\nField Description\n\n\n\n\nPA\nName of planning area where the population record belongs\n\n\nSZ\nName of subzone within the planning area\n\n\nAge\nAge of the individuals\n\n\nSex\nGender of the population group\n\n\nPop\nTotal population count for the given age, sex, and location\n\n\nRegion\nBroad geographic region linked to each planning area\n\n\n\nRemaining variables will be excluded to give the cleaned dataset - respop_cleaned.\n\n\nCode\nrespop_cleaned &lt;- respop_with_region %&gt;%\n  select(-`Time`, -`Malay`, -`Chinese`, -`Pinyin`, -`Tamil`, -`Area (km2)`, -`Population`, -`Density (/km2)`, -`Subzones`)\n\nknitr::kable(head(respop_cleaned))\n\n\n\n\n\nPA\nSZ\nAge\nSex\nPop\nRegion\n\n\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n0\nMales\n10\nNorth-East\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n0\nFemales\n10\nNorth-East\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n1\nMales\n10\nNorth-East\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n1\nFemales\n10\nNorth-East\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n2\nMales\n10\nNorth-East\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n2\nFemales\n10\nNorth-East\n\n\n\n\n\nCode\nglimpse(respop_cleaned)\n\n\nRows: 60,424\nColumns: 6\n$ PA     &lt;chr&gt; \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo…\n$ SZ     &lt;chr&gt; \"Ang Mo Kio Town Centre\", \"Ang Mo Kio Town Centre\", \"Ang Mo Kio…\n$ Age    &lt;chr&gt; \"0\", \"0\", \"1\", \"1\", \"2\", \"2\", \"3\", \"3\", \"4\", \"4\", \"5\", \"5\", \"6\"…\n$ Sex    &lt;chr&gt; \"Males\", \"Females\", \"Males\", \"Females\", \"Males\", \"Females\", \"Ma…\n$ Pop    &lt;dbl&gt; 10, 10, 10, 10, 10, 10, 10, 10, 30, 10, 20, 10, 20, 30, 30, 10,…\n$ Region &lt;chr&gt; \"North-East\", \"North-East\", \"North-East\", \"North-East\", \"North-…"
-  },
-  {
-    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#gender-ratio-analysis-by-region",
-    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#gender-ratio-analysis-by-region",
-    "title": "Take Home Exercise 1",
-    "section": "1.5.1 Gender Ratio Analysis by Region",
-    "text": "1.5.1 Gender Ratio Analysis by Region\n\n\nCode\ngender_summary_long &lt;- respop_cleaned %&gt;%\n  group_by(Region, Sex) %&gt;%\n  summarise(Total_Pop = sum(Pop), .groups = \"drop\")\n\n#Calculate total population per region\ngender_summary_long &lt;- gender_summary_long %&gt;%\n  group_by(Region) %&gt;%\n  mutate(\n    Region_Total = sum(Total_Pop),\n    Percent = (Total_Pop / Region_Total) * 100\n  )\n\n#Plot side-by-side bars\nggplot(gender_summary_long, aes(x = Region, y = Total_Pop, fill = Sex)) +\n  geom_col(position = \"dodge\") +\n  geom_text(\n    aes(label = paste0(round(Percent, 1), \"%\")),\n    position = position_dodge(width = 0.9),\n    vjust = -0.5,\n    size = 3, family = \"nunito\"\n  ) +\n  labs(\n    title = \"Male and Female Population by Region\",\n    x = \"Region\",\n    y = \"Total Population\"\n  ) +\n  scale_y_continuous(labels = scales::comma) +\n  theme_minimal(base_family = \"nunito\") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5),plot.title = element_text(hjust = 0.5, size = 15, face = \"bold\", family = \"nunito\")) +\n  scale_fill_manual(values = c(\"Females\" = \"#662633\", \"Males\" = \"#2C3C60\"))\n\n\n\n\n\n\n\n\n\nInsights:\n\nIn all five regions, females make up a slightly higher percentage of the total population, with the Central and North-East regions showing the largest gaps.\nThe total population size varies significantly by region. Central and North-East regions have noticeably larger total populations compared to the North, East, and West, highlighting regional population concentration and urban density differences.\nDespite minor percentage differences, the male-to-female split remains close to 50 - 50 in all regions, suggesting a stable and balanced gender distribution at the regional level in Singapore."
-  },
-  {
-    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#region-wise-age-distribution-using-multiple-density-plots",
-    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#region-wise-age-distribution-using-multiple-density-plots",
-    "title": "Take Home Exercise 1",
-    "section": "1.5.2 Region-wise Age Distribution Using Multiple Density Plots",
-    "text": "1.5.2 Region-wise Age Distribution Using Multiple Density Plots\nAge is stored as a character datatype because it contains values ‘90_and_Over’ to represent residents aged over 90. To simplify this for an age distribution, these records will be recoded as ‘90’ before converting them to a numeric datatype.\n\n\nCode\nrespop_cleaned &lt;- respop_cleaned %&gt;%\n  mutate(\n    Age = as.character(Age),\n    Age = ifelse(Age == \"90_and_Over\", \"90\", Age),\n    Age = as.numeric(Age)\n)\n\n# Calculate age with highest density per region\nmode_age &lt;- respop_cleaned %&gt;%\n  group_by(Region) %&gt;%\n  group_split() %&gt;%\n  map_df(~ {\n    d &lt;- density(rep(.x$Age, .x$Pop))\n    data.frame(\n      Region = unique(.x$Region),\n      mode_age = d$x[which.max(d$y)]\n    )\n  })\n\n# Plot with vertical mode lines\nggplot(respop_cleaned, aes(x = Age, weight = Pop, fill = Region)) +\n  geom_density(alpha = 0.6, adjust = 1) +\n  geom_vline(data = mode_age, aes(xintercept = mode_age), color = \"black\", linetype = \"dashed\", size = 0.8) + \n  geom_text(\n    data = mode_age,\n    mapping = aes(x = mode_age, y = 0, label = paste0(\"Peak: \", round(mode_age, 1))),\n    inherit.aes = FALSE,\n    angle = 90, vjust = -0.5, hjust = 1.1, size = 3\n  ) +\n  facet_wrap(~ Region, scales = \"free_y\", ncol = 2) +\n  labs(\n    title = \"Age Distribution by Region in Singapore (Weighted by Population)\",\n    subtitle = \"Dashed line indicates age with highest density (mode)\",\n    x = \"Age\",\n    y = \"Density\"\n  ) +\n  theme(legend.position = \"none\") +\n  theme_minimal(base_family = \"nunito\") + theme(legend.position = \"none\",axis.text.x = element_text(angle = 90, vjust = 0.5),plot.title = element_text(hjust = 0.5, size = 30, face = \"bold\", family = \"nunito\")) +\n  scale_fill_manual(values = c(\"West\" = \"#145C47\", \"East\" = \"#2C3C60\", \"North\" = \"#662633\",\"North-East\" = \"#4B2C60\",\"Central\" = \"#665C26\"))\n\n\n\n\n\n\n\n\n\nInsights:\n\nAcross all five regions in Singapore, the density curves show peaks between ages 20 – 40, suggesting these age groups make up the largest share of the population. This reflects a working-age dominance that is prevalent in urban and developed countries.\nThe dashed vertical lines marking the modal age (most common) appear at nearly the same point for all regions, which is around 30 - 35 year olds. This indicates a consistent demographic structure across Singapore’s regions.\nWhile younger and middle-aged groups dominate, all regions show a gradual decline in density after age 50 – 60, reflecting lower population counts at older ages. Future policies focus on potential improvements for aging populations, like healthcare support and elderly welfare."
-  },
-  {
-    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#total-population-by-planning-areas-in-all-regions",
-    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#total-population-by-planning-areas-in-all-regions",
-    "title": "Take Home Exercise 1",
-    "section": "1.5.3 Total Population by Planning Areas in all Regions",
-    "text": "1.5.3 Total Population by Planning Areas in all Regions\n\n\nCode\n# Summarize total population by planning area for each region\nplanning_area_summary &lt;- respop_cleaned %&gt;%\n  group_by(Region, PA) %&gt;%\n  summarise(Total_Pop = sum(Pop), .groups = \"drop\")\n\n# Bar chart\nggplot(planning_area_summary, aes(x = reorder(PA, -Total_Pop), y = Total_Pop, fill = Region)) +\n  geom_col() +\n  facet_wrap(~ Region, scales = \"free_x\") +\n  labs(title = \"Total Population by Planning Area (within Each Region)\", x = \"Planning Area\", y = \"Population\") +\n  scale_y_continuous(labels = scales::comma) +\n  theme_minimal(base_family = \"nunito\",base_size = 25) +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5),plot.title = element_text(hjust = 0.5, size = 30, face = \"bold\", family = \"nunito\")) +\n  scale_fill_manual(values = c(\"West\" = \"#145C47\", \"East\" = \"#2C3C60\", \"North\" = \"#662633\",\"North-East\" = \"#4B2C60\",\"Central\" = \"#665C26\"))\n\n\n\n\n\n\n\n\n\nInsights:\n\nPopulation is heavily concentrated in a few dominant planning areas within each region. For example, Tampines (East), Woodlands (North), Sengkang (North-East), and Jurong West (West) stand out as the most populous planning areas, suggesting that they are clearly urban hubs.\nWhile there are numerous planning areas in Central, only a few (like Bukit Merah, Queenstown, and Toa Payoh) hold large populations. Other areas have relatively small populations of Singaporean residents, due to the presence of commercial, or low-residence zones like Orchard and Marina South.\nSome planning areas have extremely low or negligible residential populations. Places like Lim Chu Kang, Central Water Catchment, and Western Islands show almost no population, indicating these are likely reserved for industrial, military, or nature conservation purposes."
-  },
-  {
-    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#three-good-design-principles",
-    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#three-good-design-principles",
-    "title": "Take Home Exercise 1",
-    "section": "1.7.1 Three Good Design Principles",
-    "text": "1.7.1 Three Good Design Principles\n\nClear Comparison Between Groups: Using side-by-side bars for total vs. elderly population enables a quick visual comparison, making it easy to spot which planning areas have larger elderly proportions.\nEffective Use of Color and Labels: The contrasting colors (gold and purple) and direct value labels on bars improve readability and help viewers interpret values without needing to refer to the axis constantly.\nInsightful Focus: Highlighting elderly population (65+) alongside total population adds value by addressing demographic trends — a relevant and important lens for policy and planning."
-  },
-  {
-    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#three-areas-for-further-improvement",
-    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#three-areas-for-further-improvement",
-    "title": "Take Home Exercise 1",
-    "section": "1.7.2 Three Areas for Further Improvement",
-    "text": "1.7.2 Three Areas for Further Improvement\n\nOverlapping Bars and Misleading Lengths: Since both bars start from the same axis, the elderly population bar is visually “on top of” the total bar, but this could mislead viewers into thinking they are stacked or directly proportional. A grouped bar chart or dual-axis plot might reduce confusion.\nMissing Percentage Context: Including the percentage of elderly population relative to the total for each planning area (e.g., as text labels or a separate line plot) would add deeper insight beyond raw counts.\nVisual Hierarchy Could Be Improved: Right now, the gold bars stand out more than the purple bars, even though the purple ones represent the main variable (total population). Consider reversing this emphasis or softening the elderly bar color to reflect its subset nature."
-  },
-  {
-    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#enhanced-visualization",
-    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#enhanced-visualization",
-    "title": "Take Home Exercise 1",
-    "section": "1.7.3 Enhanced Visualization",
-    "text": "1.7.3 Enhanced Visualization\nBelow is the improved version of the plot. The enhancements include:\n\nA reversed bar order, with the largest on top for easier scanning.\nBolded key text for title, axis and labels.\nFine-tuned label positions to prevent overlap and improve balance.\nCleaned up legend and theme for a polished look.\n\n\n\nCode\npacman::p_load(tidyverse, haven,\n               ggrepel, ggthemes,\n               ggridges, ggdist,colorspace,ggdist,\n               patchwork, scales, ggplot2, \n               matrixStats, treemapify, showtext)\n\n\n\n\nCode\npop_data &lt;- read_csv(\"respopagesex2024.csv\")\n\nlibrary(tidyverse)\nlibrary(scales)\nlibrary(forcats)\n\npop_data &lt;- read_csv(\"respopagesex2024.csv\")\n\n# Summarise total and elderly population by PA\ntop_areas &lt;- pop_data %&gt;%\n  group_by(PA) %&gt;%\n  summarise(\n    Total = sum(Pop),\n    Elderly = sum(Pop[Age &gt;= 65]),\n    .groups = \"drop\"\n  ) %&gt;%\n  top_n(15, Total)\n\n# Reshape into long format\nplot_data &lt;- top_areas %&gt;%\n  pivot_longer(cols = c(Total, Elderly),\n               names_to = \"Type\",\n               values_to = \"Population\") %&gt;%\n  mutate(\n    Type = recode(Type,\n                  \"Total\" = \"Total Population\",\n                  \"Elderly\" = \"Elderly (65+)\")\n  )\n\n# Reorder PA by Total Population (largest on top)\nplot_data &lt;- plot_data %&gt;%\n  left_join(top_areas %&gt;% select(PA, Total), by = \"PA\") %&gt;%\n  mutate(PA = fct_reorder(PA, Total, .desc = TRUE))\n\n# Plot\nggplot(plot_data, aes(x = PA, y = Population, fill = Type)) +\n  geom_col(position = position_dodge(width = 0.85), width = 0.7) +\n  geom_text(aes(label = comma(Population)),\n            position = position_dodge(width = 0.85),\n            hjust = -0.1, size = 3) +\n  scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.15))) +\n  scale_fill_manual(values = c(\"Total Population\" = \"#8E7DBE\", \"Elderly (65+)\" = \"#F1C232\")) +\n  coord_flip() +\n  labs(\n    title = \"Total vs Elderly Population in Top Planning Areas (2024)\",\n    subtitle = \"Planning areas ordered by total population. Elderly population shown in gold.\",\n    x = \"Planning Area\",\n    y = \"Population\",\n    fill = NULL\n  ) +\n  theme_minimal(base_family = \"Helvetica\") +\n  theme(\n    plot.title = element_text(face = \"bold\", size = 15, hjust = 0.5),\n    plot.subtitle = element_text(size = 11, hjust = 0.5, color = \"gray40\"),\n    axis.title = element_text(size = 11),\n    axis.text = element_text(size = 9),\n    legend.position = \"top\",\n    legend.text = element_text(size = 9)\n  )"
-  },
-  {
-    "objectID": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html",
-    "href": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html",
+    "objectID": "TakeHome_Exercises/TakeHome_Ex02/MC1/InClassEx03.html",
+    "href": "TakeHome_Exercises/TakeHome_Ex02/MC1/InClassEx03.html",
     "title": "In Class Exercise 3",
     "section": "",
     "text": "Code\npacman::p_load(tidyverse, jsonlite, SmartEDA, tidygraph, ggraph)"
   },
   {
-    "objectID": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#mapping-from-node-id-to-row-index",
-    "href": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#mapping-from-node-id-to-row-index",
+    "objectID": "TakeHome_Exercises/TakeHome_Ex02/MC1/InClassEx03.html#mapping-from-node-id-to-row-index",
+    "href": "TakeHome_Exercises/TakeHome_Ex02/MC1/InClassEx03.html#mapping-from-node-id-to-row-index",
     "title": "In Class Exercise 3",
     "section": "3.6.1 Mapping from node id to row index",
     "text": "3.6.1 Mapping from node id to row index\n\n\nCode\nid_map &lt;- tibble(id = nodes_tbl$id,\n                 index = seq_len(\n                   nrow(nodes_tbl)))\n\n\nThis ensures each id from your node list is mapped to the correct row number."
   },
   {
-    "objectID": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#map-source-and-target-ids-to-row-indices",
-    "href": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#map-source-and-target-ids-to-row-indices",
+    "objectID": "TakeHome_Exercises/TakeHome_Ex02/MC1/InClassEx03.html#map-source-and-target-ids-to-row-indices",
+    "href": "TakeHome_Exercises/TakeHome_Ex02/MC1/InClassEx03.html#map-source-and-target-ids-to-row-indices",
     "title": "In Class Exercise 3",
     "section": "3.6.2 Map source and target IDs to row indices",
     "text": "3.6.2 Map source and target IDs to row indices\n\n\nCode\nedges_tbl &lt;- edges_tbl %&gt;%\n  left_join(id_map, by = c(\"source\" = \"id\")) %&gt;%\n  rename(from = index) %&gt;%\n  left_join(id_map, by = c(\"target\" = \"id\")) %&gt;%\n  rename(to = index)"
   },
   {
-    "objectID": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#invalid-edges",
-    "href": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#invalid-edges",
+    "objectID": "TakeHome_Exercises/TakeHome_Ex02/MC1/InClassEx03.html#invalid-edges",
+    "href": "TakeHome_Exercises/TakeHome_Ex02/MC1/InClassEx03.html#invalid-edges",
     "title": "In Class Exercise 3",
     "section": "3.6.3 Invalid Edges",
     "text": "3.6.3 Invalid Edges\n\n\nCode\nedges_tbl &lt;- edges_tbl %&gt;%\n  filter(!is.na(from),!is.na(to))"
   },
   {
-    "objectID": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#creating-the-graph",
-    "href": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#creating-the-graph",
+    "objectID": "TakeHome_Exercises/TakeHome_Ex02/MC1/InClassEx03.html#creating-the-graph",
+    "href": "TakeHome_Exercises/TakeHome_Ex02/MC1/InClassEx03.html#creating-the-graph",
     "title": "In Class Exercise 3",
     "section": "3.6.4 Creating the Graph",
     "text": "3.6.4 Creating the Graph\n\n\nCode\ngraph &lt;- tbl_graph(nodes = nodes_tbl,\n                   edges = edges_tbl,\n                   directed = kg$directed)"
   },
   {
-    "objectID": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#visualising-the-knowledge-graph",
-    "href": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#visualising-the-knowledge-graph",
+    "objectID": "TakeHome_Exercises/TakeHome_Ex02/MC1/InClassEx03.html#visualising-the-knowledge-graph",
+    "href": "TakeHome_Exercises/TakeHome_Ex02/MC1/InClassEx03.html#visualising-the-knowledge-graph",
     "title": "In Class Exercise 3",
     "section": "3.6.5 Visualising the Knowledge Graph",
     "text": "3.6.5 Visualising the Knowledge Graph\n\n\nCode\nset.seed(1234)\n\n\n\n\nCode\n#| eval: false\nggraph(graph,layout = \"fr\") +\n  geom_edge_link(alpha = 0.3,\n                 colour = \"gray\") +\n  geom_node_point(aes(color = `Node Type`),\n                  size = 4) +\n  geom_node_text(aes(label = name),\n                 repel = TRUE,\n                 size = 2.5) + \n  theme_void()\n\n\nWarning: ggrepel: 17411 unlabeled data points (too many overlaps). Consider\nincreasing max.overlaps"
   },
   {
-    "objectID": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#filter-edges-to-only-memberof",
-    "href": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#filter-edges-to-only-memberof",
+    "objectID": "TakeHome_Exercises/TakeHome_Ex02/MC1/InClassEx03.html#filter-edges-to-only-memberof",
+    "href": "TakeHome_Exercises/TakeHome_Ex02/MC1/InClassEx03.html#filter-edges-to-only-memberof",
     "title": "In Class Exercise 3",
     "section": "3.7.1 Filter Edges to only “MemberOf”",
     "text": "3.7.1 Filter Edges to only “MemberOf”\n\n\nCode\ngraph_memberof &lt;- graph %&gt;%\n  activate(edges) %&gt;%\n  filter(`Edge Type` == \"MemberOf\")"
   },
   {
-    "objectID": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#extract-only-connected-nodes-i.e.-used-in-these-edges",
-    "href": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#extract-only-connected-nodes-i.e.-used-in-these-edges",
+    "objectID": "TakeHome_Exercises/TakeHome_Ex02/MC1/InClassEx03.html#extract-only-connected-nodes-i.e.-used-in-these-edges",
+    "href": "TakeHome_Exercises/TakeHome_Ex02/MC1/InClassEx03.html#extract-only-connected-nodes-i.e.-used-in-these-edges",
     "title": "In Class Exercise 3",
     "section": "3.7.2 Extract only connected nodes (i.e., used in these edges)",
     "text": "3.7.2 Extract only connected nodes (i.e., used in these edges)\n\n\nCode\nused_node_indices &lt;- graph_memberof %&gt;%\n  activate(edges) %&gt;%\n  as_tibble() %&gt;%\n  select(from, to) %&gt;%\n  unlist() %&gt;%\n  unique"
   },
   {
-    "objectID": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#keep-only-those-nodes",
-    "href": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#keep-only-those-nodes",
+    "objectID": "TakeHome_Exercises/TakeHome_Ex02/MC1/InClassEx03.html#keep-only-those-nodes",
+    "href": "TakeHome_Exercises/TakeHome_Ex02/MC1/InClassEx03.html#keep-only-those-nodes",
     "title": "In Class Exercise 3",
     "section": "3.7.3 Keep only those nodes",
     "text": "3.7.3 Keep only those nodes\n\n\nCode\ngraph_memberof &lt;- graph_memberof %&gt;%\n  activate(nodes) %&gt;%\n  mutate(row_id = row_number()) %&gt;%\n  filter(row_id %in% used_node_indices) %&gt;%\n  select(-row_id) #optional cleanup"
   },
   {
-    "objectID": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#plot-the-subgraph",
-    "href": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#plot-the-subgraph",
+    "objectID": "TakeHome_Exercises/TakeHome_Ex02/MC1/InClassEx03.html#plot-the-subgraph",
+    "href": "TakeHome_Exercises/TakeHome_Ex02/MC1/InClassEx03.html#plot-the-subgraph",
     "title": "In Class Exercise 3",
     "section": "3.7.4 Plot the subgraph",
     "text": "3.7.4 Plot the subgraph\n\n\nCode\nggraph(graph_memberof,\n       layout = \"fr\") + \n  geom_edge_link(alpha = 0.5,\n                 colour = \"gray\") +\n  geom_node_point(aes(color = `Node Type`),\n                  size = 1) + \n  geom_node_text(aes(label = name),\n                 repel = TRUE,\n                 size = 2.5) +\n  theme_void()\n\n\nWarning: ggrepel: 790 unlabeled data points (too many overlaps). Consider\nincreasing max.overlaps"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Visual Analytics & Applications",
+    "section": "",
+    "text": "My website showcases my learning journey for this course in the AY2024–25 April term taught by Professor Kam Tin Seong at SMU. The course explores how visualizations can turn raw data into meaningful insights, using tools like Quarto for web-based reporting and Tableau for interactive dashboards. Throughout the semester, I’ll be sharing my coursework, projects, and reflections here — so stay tuned as this site evolves!\n\n\n\n\nI’m currently a full-time business analyst and a part-time MITB student, with a keen interest in data storytelling and analytics. My goal is to pivot into a data science role, to combine analytical techniques with strong business intuition to solve real-world problems. When I’m not coding or studying, you can usually find me at the gym, painting on a quiet weekend, or planning my next travel adventure. Feel free to reach out to me!"
+  },
+  {
+    "objectID": "index.html#about-this-course",
+    "href": "index.html#about-this-course",
+    "title": "Visual Analytics & Applications",
+    "section": "",
+    "text": "My website showcases my learning journey for this course in the AY2024–25 April term taught by Professor Kam Tin Seong at SMU. The course explores how visualizations can turn raw data into meaningful insights, using tools like Quarto for web-based reporting and Tableau for interactive dashboards. Throughout the semester, I’ll be sharing my coursework, projects, and reflections here — so stay tuned as this site evolves!"
+  },
+  {
+    "objectID": "index.html#about-myself",
+    "href": "index.html#about-myself",
+    "title": "Visual Analytics & Applications",
+    "section": "",
+    "text": "I’m currently a full-time business analyst and a part-time MITB student, with a keen interest in data storytelling and analytics. My goal is to pivot into a data science role, to combine analytical techniques with strong business intuition to solve real-world problems. When I’m not coding or studying, you can usually find me at the gym, painting on a quiet weekend, or planning my next travel adventure. Feel free to reach out to me!"
+  },
+  {
+    "objectID": "InClass_Exercises/InClass_Ex02/InClassEx02.html",
+    "href": "InClass_Exercises/InClass_Ex02/InClassEx02.html",
+    "title": "In Class Exercise 2",
+    "section": "",
+    "text": "&lt;img src=“https://public.tableau.com/static/images/Su/SuperstoreIn-ClassExercise03/Salesvs_Profit/1_rss.png’ alt=‘Sales vs Profit’ style=‘border: none’/&gt;"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html",
+    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html",
+    "title": "Hands On Exercise 6",
+    "section": "",
+    "text": "Note: Please toggle between ‘Show’ and ‘Hide’ above based on your preference for viewing the R codes."
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#importing-data",
+    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#importing-data",
+    "title": "Hands On Exercise 6",
+    "section": "6.3.1 Importing Data",
+    "text": "6.3.1 Importing Data\nFirst, you will use the code chunk below to import eventlog.csv file into R environment and called the data frame as attacks. This data file consists of 199,999 rows of time-series cyber attack records by country.\n\n\nCode\nattacks &lt;- read_csv(\"data/eventlog.csv\")"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#examining-the-data-structure",
+    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#examining-the-data-structure",
+    "title": "Hands On Exercise 6",
+    "section": "6.3.2 Examining the Data Structure",
+    "text": "6.3.2 Examining the Data Structure\nIt is always a good practice to examine the imported data frame before further analysis is performed. For example, kable() can be used to review the structure of the imported data frame.\n\n\nCode\nkable(head(attacks))\n\n\n\n\n\ntimestamp\nsource_country\ntz\n\n\n\n\n2015-03-12 15:59:16\nCN\nAsia/Shanghai\n\n\n2015-03-12 16:00:48\nFR\nEurope/Paris\n\n\n2015-03-12 16:02:26\nCN\nAsia/Shanghai\n\n\n2015-03-12 16:02:38\nUS\nAmerica/Chicago\n\n\n2015-03-12 16:03:22\nCN\nAsia/Shanghai\n\n\n2015-03-12 16:03:45\nCN\nAsia/Shanghai\n\n\n\n\n\nThere are three columns, namely timestamp, source_country and tz.\n\ntimestamp field stores date-time values in POSIXct format.\nsource_country field stores the source of the attack. It is in ISO 3166-1 alpha-2 country code.\ntz field stores time zone of the source IP address."
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#data-preparation",
+    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#data-preparation",
+    "title": "Hands On Exercise 6",
+    "section": "6.3.3 Data Preparation",
+    "text": "6.3.3 Data Preparation\nStep 1: Deriving weekday and hour of day fields\nBefore we can plot the calender heatmap, two new fields namely wkday and hour need to be derived. In this step, we will write a function to perform the task. ymd_hms() and hour() are from lubridate package, and weekdays() is a base R function.\n\n\nCode\nmake_hr_wkday &lt;- function(ts, sc, tz) \n{\n  real_times &lt;- ymd_hms(ts, \n                        tz = tz[1], \n                        quiet = TRUE)\n  dt &lt;- data.table(source_country = sc,\n                   wkday = weekdays(real_times),\n                   hour = hour(real_times))\n  return(dt)\n}\n\n\nStep 2: Deriving the attacks tibble data frame\nBeside extracting the necessary data into attacks data frame, mutate() of dplyr package is used to convert wkday and hour fields into factor so they’ll be ordered when plotting.\n\n\nCode\nwkday_levels &lt;- c('Saturday', 'Friday', \n                  'Thursday', 'Wednesday', \n                  'Tuesday', 'Monday', \n                  'Sunday')\n\nattacks &lt;- attacks %&gt;%\n  group_by(tz) %&gt;%\n  do(make_hr_wkday(.$timestamp, \n                   .$source_country, \n                   .$tz)) %&gt;% \n  ungroup() %&gt;% \n  mutate(wkday = factor(\n    wkday, levels = wkday_levels),\n    hour  = factor(\n      hour, levels = 0:23))\n\n\nThe table below shows the tidy tibble table after processing.\n\n\nCode\nkable(head(attacks))\n\n\n\n\n\ntz\nsource_country\nwkday\nhour\n\n\n\n\nAfrica/Cairo\nBG\nSaturday\n20\n\n\nAfrica/Cairo\nTW\nSunday\n6\n\n\nAfrica/Cairo\nTW\nSunday\n8\n\n\nAfrica/Cairo\nCN\nSunday\n11\n\n\nAfrica/Cairo\nUS\nSunday\n15\n\n\nAfrica/Cairo\nCA\nMonday\n11"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#building-a-calendar-heatmap",
+    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#building-a-calendar-heatmap",
+    "title": "Hands On Exercise 6",
+    "section": "6.3.4 Building a Calendar Heatmap",
+    "text": "6.3.4 Building a Calendar Heatmap\nA tibble data table called grouped is derived by aggregating the attack by wkday and hour fields. A new field called n is derived by using group_by() and count() functions. na.omit() is used to exclude missing value. geom_tile() is used to plot tiles (grids) at each x and y position. color and size arguments are used to specify the border color and line size of the tiles. theme_tufte() of ggthemes package is used to remove unnecessary chart junk. To learn which visual components of default ggplot2 have been excluded, you are encouraged to comment out this line to examine the default plot.\n\ncoord_equal() is used to ensure the plot will have an aspect ratio of 1:1.\nscale_fill_gradient() function is used to creates a two colour gradient (low-high).\n\n\n\nCode\ngrouped &lt;- attacks %&gt;% \n  count(wkday, hour) %&gt;% \n  ungroup() %&gt;%\n  na.omit()\n\nggplot(grouped, \n       aes(hour, \n           wkday, \n           fill = n)) + \ngeom_tile(color = \"white\", \n          size = 0.1) + \ntheme_tufte(base_family = \"Helvetica\") + \ncoord_equal() +\nscale_fill_gradient(name = \"# of attacks\",\n                    low = \"sky blue\", \n                    high = \"dark blue\") +\nlabs(x = NULL, \n     y = NULL, \n     title = \"Attacks by weekday and time of day\") +\ntheme(axis.ticks = element_blank(),\n      plot.title = element_text(hjust = 0.5),\n      legend.title = element_text(size = 8),\n      legend.text = element_text(size = 6) )"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#plotting-multiple-calendar-heatmaps",
+    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#plotting-multiple-calendar-heatmaps",
+    "title": "Hands On Exercise 6",
+    "section": "6.3.5 Plotting Multiple Calendar Heatmaps",
+    "text": "6.3.5 Plotting Multiple Calendar Heatmaps\nStep 1: Deriving attack by country object\nIn order to identify the top 4 countries with the highest number of attacks, you are required to do the following:\n\ncount the number of attacks by country,\ncalculate the percent of attacks by country, and\nsave the results in a tibble data frame.\n\n\n\nCode\nattacks_by_country &lt;- count(\n  attacks, source_country) %&gt;%\n  mutate(percent = percent(n/sum(n))) %&gt;%\n  arrange(desc(n))\n\n\nStep 2: Preparing the tidy data frame\nIn this step, you are required to extract the attack records of the top 4 countries from attacks data frame and save the data in a new tibble data frame (i.e. top4_attacks).\n\n\nCode\ntop4 &lt;- attacks_by_country$source_country[1:4]\ntop4_attacks &lt;- attacks %&gt;%\n  filter(source_country %in% top4) %&gt;%\n  count(source_country, wkday, hour) %&gt;%\n  ungroup() %&gt;%\n  mutate(source_country = factor(\n    source_country, levels = top4)) %&gt;%\n  na.omit()"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#plotting-multiple-calendar-heatmaps-1",
+    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#plotting-multiple-calendar-heatmaps-1",
+    "title": "Hands On Exercise 6",
+    "section": "6.3.6 Plotting Multiple Calendar Heatmaps",
+    "text": "6.3.6 Plotting Multiple Calendar Heatmaps\nStep 3: Plotting the Multiple Calender Heatmap by using ggplot2 package.\n\n\nCode\nggplot(top4_attacks, \n       aes(hour, \n           wkday, \n           fill = n)) + \n  geom_tile(color = \"white\", \n          size = 0.1) + \n  theme_tufte(base_family = \"Helvetica\") + \n  coord_equal() +\n  scale_fill_gradient(name = \"# of attacks\",\n                    low = \"sky blue\", \n                    high = \"dark blue\") +\n  facet_wrap(~source_country, ncol = 2) +\n  labs(x = NULL, y = NULL, \n     title = \"Attacks on top 4 countries by weekday and time of day\") +\n  theme(axis.ticks = element_blank(),\n        axis.text.x = element_text(size = 7),\n        plot.title = element_text(hjust = 0.5),\n        legend.title = element_text(size = 8),\n        legend.text = element_text(size = 6) )"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#importing-data-1",
+    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#importing-data-1",
+    "title": "Hands On Exercise 6",
+    "section": "6.4.1 Importing Data",
+    "text": "6.4.1 Importing Data\nFor the purpose of this hands-on exercise, arrivals_by_air.xlsx will be used. The code below imports arrivals_by_air.xlsx by using read_excel() of readxl package and save it as a tibble data frame called air.\n\n\nCode\nair &lt;- read_excel(\"data/arrivals_by_air.xlsx\")"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#deriving-month-and-year-fields",
+    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#deriving-month-and-year-fields",
+    "title": "Hands On Exercise 6",
+    "section": "6.4.2 Deriving month and year fields",
+    "text": "6.4.2 Deriving month and year fields\nNext, two new fields called month and year are derived from Month-Year field.\n\n\nCode\nair$month &lt;- factor(month(air$`Month-Year`), \n                    levels=1:12, \n                    labels=month.abb, \n                    ordered=TRUE) \nair$year &lt;- year(ymd(air$`Month-Year`))"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#extracting-the-target-country",
+    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#extracting-the-target-country",
+    "title": "Hands On Exercise 6",
+    "section": "6.4.3 Extracting the target country",
+    "text": "6.4.3 Extracting the target country\nNext, the code chunk below is use to extract data for the target country (i.e. Vietnam)\n\n\nCode\nVietnam &lt;- air %&gt;% \n  select(`Vietnam`, \n         month, \n         year) %&gt;%\n  filter(year &gt;= 2010)"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#computing-year-average-arrivals-by-month",
+    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#computing-year-average-arrivals-by-month",
+    "title": "Hands On Exercise 6",
+    "section": "6.4.4 Computing year average arrivals by month",
+    "text": "6.4.4 Computing year average arrivals by month\nThe code chunk below uses group_by() and summarise() of dplyr to compute year average arrivals by month.\n\n\nCode\nhline.data &lt;- Vietnam %&gt;% \n  group_by(month) %&gt;%\n  summarise(avgvalue = mean(`Vietnam`))"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#plotting-a-cycle-plot-1",
+    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#plotting-a-cycle-plot-1",
+    "title": "Hands On Exercise 6",
+    "section": "6.4.5 Plotting a Cycle Plot",
+    "text": "6.4.5 Plotting a Cycle Plot\nThe code chunk below is used to plot the cycle plot as shown in Slide 12/23.\n\n\nCode\nggplot() + \n  geom_line(data=Vietnam,\n            aes(x=year, \n                y=`Vietnam`, \n                group=month), \n            colour=\"black\") +\n  geom_hline(aes(yintercept=avgvalue), \n             data=hline.data, \n             linetype=6, \n             colour=\"red\", \n             size=0.5) + \n  facet_grid(~month) +\n  labs(axis.text.x = element_blank(),\n       title = \"Visitor arrivals from Vietnam by air, Jan 2010-Dec 2019\") +\n  xlab(\"\") +\n  ylab(\"No. of Visitors\") +\n  theme_tufte(base_family = \"Helvetica\")"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#slopegraph",
+    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#slopegraph",
+    "title": "Hands On Exercise 6",
+    "section": "6.6.1 Slopegraph",
+    "text": "6.6.1 Slopegraph\n\n\nCode\nrice %&gt;% \n  mutate(Year = factor(Year)) %&gt;%\n  filter(Year %in% c(1961, 1980)) %&gt;%\n  newggslopegraph(Year, Yield, Country,\n                Title = \"Rice Yield of Top 11 Asian Counties\",\n                SubTitle = \"1961-1980\",\n                XTextSize = 18,    # Size of the times\n                YTextSize = 2,     # Size of the groups\n                TitleTextSize = 14,\n                SubTitleTextSize = 12,\n                CaptionTextSize = 10,\n                Caption = \"RICE\",\n                TitleJustify = \"right\",\n                SubTitleJustify = \"right\",\n                CaptionJustify = \"left\",\n                DataTextSize = 2.5,\n                DataLabelPadding = 0.2,\n                DataLabelLineSize = 0.5,\n                DataLabelFillColor = \"lightblue\",\n                ThemeChoice = \"wsj\")"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#cycle-plot",
+    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#cycle-plot",
+    "title": "Hands On Exercise 6",
+    "section": "6.6.2 Cycle Plot",
+    "text": "6.6.2 Cycle Plot\n\n\nCode\nggplot(Vietnam, aes(x = year, y = `Vietnam`, group = month)) + \n  geom_line(color = \"black\") +\n  geom_hline(data = hline.data, aes(yintercept = avgvalue),\n             linetype = \"dashed\", color = \"red\", size = 0.5) +\n  facet_wrap(~month, nrow = 2) +\n  labs(\n    title = \"Visitor Arrivals from Vietnam by Air (2010–2019)\",\n    subtitle = \"Each line represents yearly visitor counts for a specific month. Red dashed line shows 10-year monthly average.\",\n    y = \"No. of Visitors\",\n    x = NULL\n  ) +\n  theme_tufte(base_family = \"Helvetica\") +\n  theme(\n    strip.text = element_text(size = 10, face = \"bold\"),\n    axis.text.x = element_blank(),\n    axis.ticks.x = element_blank(),\n    plot.title = element_text(face = \"bold\", size = 14, hjust = 0.5),\n    plot.subtitle = element_text(size = 10, hjust = 0.5, color = \"gray30\")\n  )"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#calendar-heat-map",
+    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#calendar-heat-map",
+    "title": "Hands On Exercise 6",
+    "section": "6.6.3 Calendar Heat Map",
+    "text": "6.6.3 Calendar Heat Map\n\n\nCode\ngrouped &lt;- attacks %&gt;% \n  count(wkday, hour) %&gt;% \n  ungroup() %&gt;%\n  na.omit()\n\nggplot(grouped, aes(x = hour, y = fct_rev(wkday), fill = n)) + \n  geom_tile(color = \"white\", size = 0.2) +\n  scale_fill_gradient(\n    name = \"# of Attacks\",\n    low = \"#f7c8d6\",\n    high = \"#300713\"\n  ) +\n  coord_equal() +\n  labs(\n    title = \"Attacks by Weekday and Time of Day\",\n    subtitle = \"Count of attacks by hour across weekdays\",\n    x = \"Hour of Day\",\n    y = NULL\n  ) +\n  theme_minimal(base_family = \"Helvetica\") +\n  theme(\n    panel.grid = element_blank(),\n    axis.ticks = element_blank(),\n    axis.text.y = element_text(size = 9),\n    axis.text.x = element_text(size = 9),\n    plot.title = element_text(size = 14, face = \"bold\", hjust = 0.5),\n    plot.subtitle = element_text(size = 10, hjust = 0.5, color = \"gray30\"),\n    legend.title = element_text(size = 9, face = \"bold\"),\n    legend.text = element_text(size = 8),\n    legend.position = \"bottom\"\n  )"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#time-series-using-ggplot2",
+    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#time-series-using-ggplot2",
+    "title": "Hands On Exercise 6",
+    "section": "6.6.4 Time Series using ggplot2",
+    "text": "6.6.4 Time Series using ggplot2\n\n\nCode\nvietnam_ts &lt;- Vietnam %&gt;%\n  mutate(\n    date = ymd(paste(year, month, 1, sep = \"-\")),\n    visitors = Vietnam,\n    deviation = visitors - mean(visitors, na.rm = TRUE)\n  )\n\nggplot(vietnam_ts, aes(x = date)) +\n  geom_area(data = subset(vietnam_ts, deviation &gt;= 0),\n            aes(y = deviation), fill = \"#e41a1c\") +  # red for above avg\n  geom_area(data = subset(vietnam_ts, deviation &lt; 0),\n            aes(y = deviation), fill = \"#377eb8\") +  # blue for below avg\n  geom_hline(yintercept = 0, color = \"gray40\", linetype = \"dashed\") +\n  scale_x_date(date_breaks = \"6 months\", date_labels = \"%b %Y\") +\n  labs(\n    title = \"Visitor Arrivals from Vietnam (Deviation from Mean)\",\n    subtitle = \"Red indicates months above average, blue indicates below\",\n    y = \"Deviation from Average\",\n    x = NULL\n  ) +\n  theme_minimal(base_family = \"Helvetica\") +\n  theme(\n    plot.title = element_text(face = \"bold\", hjust = 0.5),\n    plot.subtitle = element_text(hjust = 0.5, size = 10, color = \"gray40\"),\n    axis.text.x = element_text(size = 8)\n  )"
   },
   {
     "objectID": "HandsOn_Exercises/HandsOn_Ex04D/HandsOnEx04D.html",
@@ -812,164 +861,227 @@
     "text": "5.8.6 Interactivity\nIn the code chunk below, visOptions() is used to incorporate interactivity features in the data visualisation.\n\nThe argument highlightNearest highlights nearest when clicking a node.\nThe argument nodesIdSelection adds an id node selection creating an HTML select element.\n\n\n\nCode\nvisNetwork(GAStech_nodes,\n           GAStech_edges_aggregated) %&gt;%\n  visIgraphLayout(layout = \"layout_with_fr\") %&gt;%\n  visOptions(highlightNearest = TRUE,\n             nodesIdSelection = TRUE) %&gt;%\n  visLegend() %&gt;%\n  visLayout(randomSeed = 123)\n\n\n\n\n\n\nAdditional\n\n\nCode\ncolnames(GAStech_nodes)\n\n\n[1] \"id\"    \"label\" \"group\" \"Title\""
   },
   {
-    "objectID": "InClass_Exercises/InClass_Ex02/InClassEx02.html",
-    "href": "InClass_Exercises/InClass_Ex02/InClassEx02.html",
-    "title": "In Class Exercise 2",
+    "objectID": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html",
+    "href": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html",
+    "title": "In Class Exercise 3",
     "section": "",
-    "text": "&lt;img src=“https://public.tableau.com/static/images/Su/SuperstoreIn-ClassExercise03/Salesvs_Profit/1_rss.png’ alt=‘Sales vs Profit’ style=‘border: none’/&gt;"
+    "text": "Code\npacman::p_load(tidyverse, jsonlite, SmartEDA, tidygraph, ggraph)"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Visual Analytics & Applications",
-    "section": "",
-    "text": "My website showcases my learning journey for this course in the AY2024–25 April term taught by Professor Kam Tin Seong at SMU. The course explores how visualizations can turn raw data into meaningful insights, using tools like Quarto for web-based reporting and Tableau for interactive dashboards. Throughout the semester, I’ll be sharing my coursework, projects, and reflections here — so stay tuned as this site evolves!\n\n\n\n\nI’m currently a full-time business analyst and a part-time MITB student, with a keen interest in data storytelling and analytics. My goal is to pivot into a data science role, to combine analytical techniques with strong business intuition to solve real-world problems. When I’m not coding or studying, you can usually find me at the gym, painting on a quiet weekend, or planning my next travel adventure. Feel free to reach out to me!"
+    "objectID": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#mapping-from-node-id-to-row-index",
+    "href": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#mapping-from-node-id-to-row-index",
+    "title": "In Class Exercise 3",
+    "section": "3.6.1 Mapping from node id to row index",
+    "text": "3.6.1 Mapping from node id to row index\n\n\nCode\nid_map &lt;- tibble(id = nodes_tbl$id,\n                 index = seq_len(\n                   nrow(nodes_tbl)))\n\n\nThis ensures each id from your node list is mapped to the correct row number."
   },
   {
-    "objectID": "index.html#about-this-course",
-    "href": "index.html#about-this-course",
-    "title": "Visual Analytics & Applications",
-    "section": "",
-    "text": "My website showcases my learning journey for this course in the AY2024–25 April term taught by Professor Kam Tin Seong at SMU. The course explores how visualizations can turn raw data into meaningful insights, using tools like Quarto for web-based reporting and Tableau for interactive dashboards. Throughout the semester, I’ll be sharing my coursework, projects, and reflections here — so stay tuned as this site evolves!"
+    "objectID": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#map-source-and-target-ids-to-row-indices",
+    "href": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#map-source-and-target-ids-to-row-indices",
+    "title": "In Class Exercise 3",
+    "section": "3.6.2 Map source and target IDs to row indices",
+    "text": "3.6.2 Map source and target IDs to row indices\n\n\nCode\nedges_tbl &lt;- edges_tbl %&gt;%\n  left_join(id_map, by = c(\"source\" = \"id\")) %&gt;%\n  rename(from = index) %&gt;%\n  left_join(id_map, by = c(\"target\" = \"id\")) %&gt;%\n  rename(to = index)"
   },
   {
-    "objectID": "index.html#about-myself",
-    "href": "index.html#about-myself",
-    "title": "Visual Analytics & Applications",
+    "objectID": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#invalid-edges",
+    "href": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#invalid-edges",
+    "title": "In Class Exercise 3",
+    "section": "3.6.3 Invalid Edges",
+    "text": "3.6.3 Invalid Edges\n\n\nCode\nedges_tbl &lt;- edges_tbl %&gt;%\n  filter(!is.na(from),!is.na(to))"
+  },
+  {
+    "objectID": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#creating-the-graph",
+    "href": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#creating-the-graph",
+    "title": "In Class Exercise 3",
+    "section": "3.6.4 Creating the Graph",
+    "text": "3.6.4 Creating the Graph\n\n\nCode\ngraph &lt;- tbl_graph(nodes = nodes_tbl,\n                   edges = edges_tbl,\n                   directed = kg$directed)"
+  },
+  {
+    "objectID": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#visualising-the-knowledge-graph",
+    "href": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#visualising-the-knowledge-graph",
+    "title": "In Class Exercise 3",
+    "section": "3.6.5 Visualising the Knowledge Graph",
+    "text": "3.6.5 Visualising the Knowledge Graph\n\n\nCode\nset.seed(1234)\n\n\n\n\nCode\n#| eval: false\nggraph(graph,layout = \"fr\") +\n  geom_edge_link(alpha = 0.3,\n                 colour = \"gray\") +\n  geom_node_point(aes(color = `Node Type`),\n                  size = 4) +\n  geom_node_text(aes(label = name),\n                 repel = TRUE,\n                 size = 2.5) + \n  theme_void()\n\n\nWarning: ggrepel: 17411 unlabeled data points (too many overlaps). Consider\nincreasing max.overlaps"
+  },
+  {
+    "objectID": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#filter-edges-to-only-memberof",
+    "href": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#filter-edges-to-only-memberof",
+    "title": "In Class Exercise 3",
+    "section": "3.7.1 Filter Edges to only “MemberOf”",
+    "text": "3.7.1 Filter Edges to only “MemberOf”\n\n\nCode\ngraph_memberof &lt;- graph %&gt;%\n  activate(edges) %&gt;%\n  filter(`Edge Type` == \"MemberOf\")"
+  },
+  {
+    "objectID": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#extract-only-connected-nodes-i.e.-used-in-these-edges",
+    "href": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#extract-only-connected-nodes-i.e.-used-in-these-edges",
+    "title": "In Class Exercise 3",
+    "section": "3.7.2 Extract only connected nodes (i.e., used in these edges)",
+    "text": "3.7.2 Extract only connected nodes (i.e., used in these edges)\n\n\nCode\nused_node_indices &lt;- graph_memberof %&gt;%\n  activate(edges) %&gt;%\n  as_tibble() %&gt;%\n  select(from, to) %&gt;%\n  unlist() %&gt;%\n  unique"
+  },
+  {
+    "objectID": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#keep-only-those-nodes",
+    "href": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#keep-only-those-nodes",
+    "title": "In Class Exercise 3",
+    "section": "3.7.3 Keep only those nodes",
+    "text": "3.7.3 Keep only those nodes\n\n\nCode\ngraph_memberof &lt;- graph_memberof %&gt;%\n  activate(nodes) %&gt;%\n  mutate(row_id = row_number()) %&gt;%\n  filter(row_id %in% used_node_indices) %&gt;%\n  select(-row_id) #optional cleanup"
+  },
+  {
+    "objectID": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#plot-the-subgraph",
+    "href": "InClass_Exercises/InClass_Ex03/MC1/InClassEx03.html#plot-the-subgraph",
+    "title": "In Class Exercise 3",
+    "section": "3.7.4 Plot the subgraph",
+    "text": "3.7.4 Plot the subgraph\n\n\nCode\nggraph(graph_memberof,\n       layout = \"fr\") + \n  geom_edge_link(alpha = 0.5,\n                 colour = \"gray\") +\n  geom_node_point(aes(color = `Node Type`),\n                  size = 1) + \n  geom_node_text(aes(label = name),\n                 repel = TRUE,\n                 size = 2.5) +\n  theme_void()\n\n\nWarning: ggrepel: 790 unlabeled data points (too many overlaps). Consider\nincreasing max.overlaps"
+  },
+  {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html",
+    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html",
+    "title": "Take Home Exercise 1",
     "section": "",
-    "text": "I’m currently a full-time business analyst and a part-time MITB student, with a keen interest in data storytelling and analytics. My goal is to pivot into a data science role, to combine analytical techniques with strong business intuition to solve real-world problems. When I’m not coding or studying, you can usually find me at the gym, painting on a quiet weekend, or planning my next travel adventure. Feel free to reach out to me!"
+    "text": "Note: Please toggle between ‘Show’ and ‘Hide’ above based on your preference for viewing the R codes."
+  },
+  {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#loading-packages",
+    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#loading-packages",
+    "title": "Take Home Exercise 1",
+    "section": "1.3.1 Loading packages",
+    "text": "1.3.1 Loading packages\nWe load the following R packages using the pacman::p_load() function:\n\ntidyverse: Core collection of R packages designed for data science.\nhaven: To read in data formats such as SAS and SPSS.\nggrepel: To provide geoms for ggplot2 to repel overlapping text labels.\nggthemes: To use additional themes for ggplot2.\npatchwork: To prepare composite figures created using ggplot2.\nggridges: To plot ridgeline plots.\nggdist: For visualizations of distributions and uncertainty.\nscales: Provides the internal scaling infrastructure used by ggplot2.\nmatrixStats: Provides efficient functions for row and column operations on matrices and data frames.\ntreemapify: Allows the creation of treemap visualizations using ggplot2 syntax.\nshowtext: Enables the use of custom fonts in R plots for better typography.\n\n\n\nCode\npacman::p_load(tidyverse, haven,\n               ggrepel, ggthemes,\n               ggridges, ggdist,colorspace,ggdist,\n               patchwork, scales, ggplot2, \n               matrixStats, treemapify, showtext)"
+  },
+  {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#importing-data",
+    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#importing-data",
+    "title": "Take Home Exercise 1",
+    "section": "1.3.2 Importing Data",
+    "text": "1.3.2 Importing Data\nThe dataset used in the exercise is Singapore Residents by Planning Area / Subzone, Single Year of Age and Sex, June 2024, retrieved from the Department of Statistics, Singapore. Let’s import this dataset as rrespopagesex2024 and how the dataset looks like.\n\n\nCode\nrespopagesex2024 &lt;- read_csv(\"respopagesex2024.csv\")\nshow_col_types = FALSE\n\nknitr::kable(head(respopagesex2024))\n\n\n\n\n\nPA\nSZ\nAge\nSex\nPop\nTime\n\n\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n0\nMales\n10\n2024\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n0\nFemales\n10\n2024\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n1\nMales\n10\n2024\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n1\nFemales\n10\n2024\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n2\nMales\n10\n2024\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n2\nFemales\n10\n2024"
+  },
+  {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#glimpse",
+    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#glimpse",
+    "title": "Take Home Exercise 1",
+    "section": "1.4.1 Glimpse",
+    "text": "1.4.1 Glimpse\n\n\nCode\nglimpse(respopagesex2024)\n\n\nRows: 60,424\nColumns: 6\n$ PA   &lt;chr&gt; \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo K…\n$ SZ   &lt;chr&gt; \"Ang Mo Kio Town Centre\", \"Ang Mo Kio Town Centre\", \"Ang Mo Kio T…\n$ Age  &lt;chr&gt; \"0\", \"0\", \"1\", \"1\", \"2\", \"2\", \"3\", \"3\", \"4\", \"4\", \"5\", \"5\", \"6\", …\n$ Sex  &lt;chr&gt; \"Males\", \"Females\", \"Males\", \"Females\", \"Males\", \"Females\", \"Male…\n$ Pop  &lt;dbl&gt; 10, 10, 10, 10, 10, 10, 10, 10, 30, 10, 20, 10, 20, 30, 30, 10, 3…\n$ Time &lt;dbl&gt; 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024,…\n\n\nBased on the result, there are 60,424 records, which is consistent with the CSV file, indicating that there are no missing records while importing. There are 6 variables, and the corresponding datatypes are shown as well. Take note that Age is defined as a character, so we will be converting that to a numeric data type later."
+  },
+  {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#checking-for-duplicate-values",
+    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#checking-for-duplicate-values",
+    "title": "Take Home Exercise 1",
+    "section": "1.4.2 Checking for duplicate values",
+    "text": "1.4.2 Checking for duplicate values\nUsing the duplicated function, we see that there are no duplicate entries in the data.\n\n\nCode\nrespopagesex2024[duplicated(respopagesex2024),]\n\n\n# A tibble: 0 × 6\n# ℹ 6 variables: PA &lt;chr&gt;, SZ &lt;chr&gt;, Age &lt;chr&gt;, Sex &lt;chr&gt;, Pop &lt;dbl&gt;,\n#   Time &lt;dbl&gt;"
+  },
+  {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#additional-variables",
+    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#additional-variables",
+    "title": "Take Home Exercise 1",
+    "section": "1.4.3 Additional Variables",
+    "text": "1.4.3 Additional Variables\nThere are 55 planning zones and 332 subzones in Singapore, which is consistent with this dataset. However, I felt that exploring each subzone individually would not be practical for a high-level analysis. So, a ‘Region’ column is added to the dataset, indicating which of the five major regions (East, West, North, North-East, or Central) each planning zone belongs to. This grouping makes it easier to understand broad demographic patterns across Singapore. To achieve this, an additional dataset from Wikipedia listing the planning zones and their corresponding regions was used. A left join is performed to link these two datasets using the function left_join().\n\n\nCode\nplanning_areas &lt;- read_csv(\"Planning_areas_of_Singapore_2.csv\")\n\n# Check column names\ncolnames(respopagesex2024)\n\n\n[1] \"PA\"   \"SZ\"   \"Age\"  \"Sex\"  \"Pop\"  \"Time\"\n\n\nCode\ncolnames(planning_areas)\n\n\n [1] \"Name (English)\" \"Malay\"          \"Chinese\"        \"Pinyin\"        \n [5] \"Tamil\"          \"Region\"         \"Area (km2)\"     \"Population\"    \n [9] \"Density (/km2)\" \"Subzones\"      \n\n\nCode\nrespop_with_region &lt;- respopagesex2024 %&gt;%\n  left_join(planning_areas, by = c(\"PA\" = \"Name (English)\"))\n\nglimpse(respop_with_region)\n\n\nRows: 60,424\nColumns: 15\n$ PA               &lt;chr&gt; \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo Kio…\n$ SZ               &lt;chr&gt; \"Ang Mo Kio Town Centre\", \"Ang Mo Kio Town Centre\", \"…\n$ Age              &lt;chr&gt; \"0\", \"0\", \"1\", \"1\", \"2\", \"2\", \"3\", \"3\", \"4\", \"4\", \"5\"…\n$ Sex              &lt;chr&gt; \"Males\", \"Females\", \"Males\", \"Females\", \"Males\", \"Fem…\n$ Pop              &lt;dbl&gt; 10, 10, 10, 10, 10, 10, 10, 10, 30, 10, 20, 10, 20, 3…\n$ Time             &lt;dbl&gt; 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024,…\n$ Malay            &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…\n$ Chinese          &lt;chr&gt; \"宏茂桥\", \"宏茂桥\", \"宏茂桥\", \"宏茂桥\", \"宏茂桥\", \"宏茂桥\", \"宏茂桥\", \"宏茂桥…\n$ Pinyin           &lt;chr&gt; \"Hóngmàoqiáo\", \"Hóngmàoqiáo\", \"Hóngmàoqiáo\", \"Hóngmào…\n$ Tamil            &lt;chr&gt; \"ஆங் மோ கியோ\", \"ஆங் மோ கியோ\", \"ஆங் மோ கியோ\", \"ஆங் மோ கியோ\", \"ஆங் மோ கியோ\"…\n$ Region           &lt;chr&gt; \"North-East\", \"North-East\", \"North-East\", \"North-East…\n$ `Area (km2)`     &lt;dbl&gt; 13.94, 13.94, 13.94, 13.94, 13.94, 13.94, 13.94, 13.9…\n$ Population       &lt;chr&gt; \"161,000\", \"161,000\", \"161,000\", \"161,000\", \"161,000\"…\n$ `Density (/km2)` &lt;chr&gt; \"13,400\", \"13,400\", \"13,400\", \"13,400\", \"13,400\", \"13…\n$ Subzones         &lt;chr&gt; \"12\", \"12\", \"12\", \"12\", \"12\", \"12\", \"12\", \"12\", \"12\",…\n\n\nCode\nknitr::kable(head(respop_with_region))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPA\nSZ\nAge\nSex\nPop\nTime\nMalay\nChinese\nPinyin\nTamil\nRegion\nArea (km2)\nPopulation\nDensity (/km2)\nSubzones\n\n\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n0\nMales\n10\n2024\nNA\n宏茂桥\nHóngmàoqiáo\nஆங் மோ கியோ\nNorth-East\n13.94\n161,000\n13,400\n12\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n0\nFemales\n10\n2024\nNA\n宏茂桥\nHóngmàoqiáo\nஆங் மோ கியோ\nNorth-East\n13.94\n161,000\n13,400\n12\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n1\nMales\n10\n2024\nNA\n宏茂桥\nHóngmàoqiáo\nஆங் மோ கியோ\nNorth-East\n13.94\n161,000\n13,400\n12\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n1\nFemales\n10\n2024\nNA\n宏茂桥\nHóngmàoqiáo\nஆங் மோ கியோ\nNorth-East\n13.94\n161,000\n13,400\n12\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n2\nMales\n10\n2024\nNA\n宏茂桥\nHóngmàoqiáo\nஆங் மோ கியோ\nNorth-East\n13.94\n161,000\n13,400\n12\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n2\nFemales\n10\n2024\nNA\n宏茂桥\nHóngmàoqiáo\nஆங் மோ கியோ\nNorth-East\n13.94\n161,000\n13,400\n12"
+  },
+  {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#selecting-primary-variables",
+    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#selecting-primary-variables",
+    "title": "Take Home Exercise 1",
+    "section": "1.4.4 Selecting Primary Variables",
+    "text": "1.4.4 Selecting Primary Variables\nThe primary variables chosen for this exercise are given below.\n\n\n\n\n\n\n\nField Name\nField Description\n\n\n\n\nPA\nName of planning area where the population record belongs\n\n\nSZ\nName of subzone within the planning area\n\n\nAge\nAge of the individuals\n\n\nSex\nGender of the population group\n\n\nPop\nTotal population count for the given age, sex, and location\n\n\nRegion\nBroad geographic region linked to each planning area\n\n\n\nRemaining variables will be excluded to give the cleaned dataset - respop_cleaned.\n\n\nCode\nrespop_cleaned &lt;- respop_with_region %&gt;%\n  select(-`Time`, -`Malay`, -`Chinese`, -`Pinyin`, -`Tamil`, -`Area (km2)`, -`Population`, -`Density (/km2)`, -`Subzones`)\n\nknitr::kable(head(respop_cleaned))\n\n\n\n\n\nPA\nSZ\nAge\nSex\nPop\nRegion\n\n\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n0\nMales\n10\nNorth-East\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n0\nFemales\n10\nNorth-East\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n1\nMales\n10\nNorth-East\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n1\nFemales\n10\nNorth-East\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n2\nMales\n10\nNorth-East\n\n\nAng Mo Kio\nAng Mo Kio Town Centre\n2\nFemales\n10\nNorth-East\n\n\n\n\n\nCode\nglimpse(respop_cleaned)\n\n\nRows: 60,424\nColumns: 6\n$ PA     &lt;chr&gt; \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo Kio\", \"Ang Mo…\n$ SZ     &lt;chr&gt; \"Ang Mo Kio Town Centre\", \"Ang Mo Kio Town Centre\", \"Ang Mo Kio…\n$ Age    &lt;chr&gt; \"0\", \"0\", \"1\", \"1\", \"2\", \"2\", \"3\", \"3\", \"4\", \"4\", \"5\", \"5\", \"6\"…\n$ Sex    &lt;chr&gt; \"Males\", \"Females\", \"Males\", \"Females\", \"Males\", \"Females\", \"Ma…\n$ Pop    &lt;dbl&gt; 10, 10, 10, 10, 10, 10, 10, 10, 30, 10, 20, 10, 20, 30, 30, 10,…\n$ Region &lt;chr&gt; \"North-East\", \"North-East\", \"North-East\", \"North-East\", \"North-…"
+  },
+  {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#gender-ratio-analysis-by-region",
+    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#gender-ratio-analysis-by-region",
+    "title": "Take Home Exercise 1",
+    "section": "1.5.1 Gender Ratio Analysis by Region",
+    "text": "1.5.1 Gender Ratio Analysis by Region\n\n\nCode\ngender_summary_long &lt;- respop_cleaned %&gt;%\n  group_by(Region, Sex) %&gt;%\n  summarise(Total_Pop = sum(Pop), .groups = \"drop\")\n\n#Calculate total population per region\ngender_summary_long &lt;- gender_summary_long %&gt;%\n  group_by(Region) %&gt;%\n  mutate(\n    Region_Total = sum(Total_Pop),\n    Percent = (Total_Pop / Region_Total) * 100\n  )\n\n#Plot side-by-side bars\nggplot(gender_summary_long, aes(x = Region, y = Total_Pop, fill = Sex)) +\n  geom_col(position = \"dodge\") +\n  geom_text(\n    aes(label = paste0(round(Percent, 1), \"%\")),\n    position = position_dodge(width = 0.9),\n    vjust = -0.5,\n    size = 3, family = \"nunito\"\n  ) +\n  labs(\n    title = \"Male and Female Population by Region\",\n    x = \"Region\",\n    y = \"Total Population\"\n  ) +\n  scale_y_continuous(labels = scales::comma) +\n  theme_minimal(base_family = \"nunito\") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5),plot.title = element_text(hjust = 0.5, size = 15, face = \"bold\", family = \"nunito\")) +\n  scale_fill_manual(values = c(\"Females\" = \"#662633\", \"Males\" = \"#2C3C60\"))\n\n\n\n\n\n\n\n\n\nInsights:\n\nIn all five regions, females make up a slightly higher percentage of the total population, with the Central and North-East regions showing the largest gaps.\nThe total population size varies significantly by region. Central and North-East regions have noticeably larger total populations compared to the North, East, and West, highlighting regional population concentration and urban density differences.\nDespite minor percentage differences, the male-to-female split remains close to 50 - 50 in all regions, suggesting a stable and balanced gender distribution at the regional level in Singapore."
+  },
+  {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#region-wise-age-distribution-using-multiple-density-plots",
+    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#region-wise-age-distribution-using-multiple-density-plots",
+    "title": "Take Home Exercise 1",
+    "section": "1.5.2 Region-wise Age Distribution Using Multiple Density Plots",
+    "text": "1.5.2 Region-wise Age Distribution Using Multiple Density Plots\nAge is stored as a character datatype because it contains values ‘90_and_Over’ to represent residents aged over 90. To simplify this for an age distribution, these records will be recoded as ‘90’ before converting them to a numeric datatype.\n\n\nCode\nrespop_cleaned &lt;- respop_cleaned %&gt;%\n  mutate(\n    Age = as.character(Age),\n    Age = ifelse(Age == \"90_and_Over\", \"90\", Age),\n    Age = as.numeric(Age)\n)\n\n# Calculate age with highest density per region\nmode_age &lt;- respop_cleaned %&gt;%\n  group_by(Region) %&gt;%\n  group_split() %&gt;%\n  map_df(~ {\n    d &lt;- density(rep(.x$Age, .x$Pop))\n    data.frame(\n      Region = unique(.x$Region),\n      mode_age = d$x[which.max(d$y)]\n    )\n  })\n\n# Plot with vertical mode lines\nggplot(respop_cleaned, aes(x = Age, weight = Pop, fill = Region)) +\n  geom_density(alpha = 0.6, adjust = 1) +\n  geom_vline(data = mode_age, aes(xintercept = mode_age), color = \"black\", linetype = \"dashed\", size = 0.8) + \n  geom_text(\n    data = mode_age,\n    mapping = aes(x = mode_age, y = 0, label = paste0(\"Peak: \", round(mode_age, 1))),\n    inherit.aes = FALSE,\n    angle = 90, vjust = -0.5, hjust = 1.1, size = 3\n  ) +\n  facet_wrap(~ Region, scales = \"free_y\", ncol = 2) +\n  labs(\n    title = \"Age Distribution by Region in Singapore (Weighted by Population)\",\n    subtitle = \"Dashed line indicates age with highest density (mode)\",\n    x = \"Age\",\n    y = \"Density\"\n  ) +\n  theme(legend.position = \"none\") +\n  theme_minimal(base_family = \"nunito\") + theme(legend.position = \"none\",axis.text.x = element_text(angle = 90, vjust = 0.5),plot.title = element_text(hjust = 0.5, size = 30, face = \"bold\", family = \"nunito\")) +\n  scale_fill_manual(values = c(\"West\" = \"#145C47\", \"East\" = \"#2C3C60\", \"North\" = \"#662633\",\"North-East\" = \"#4B2C60\",\"Central\" = \"#665C26\"))\n\n\n\n\n\n\n\n\n\nInsights:\n\nAcross all five regions in Singapore, the density curves show peaks between ages 20 – 40, suggesting these age groups make up the largest share of the population. This reflects a working-age dominance that is prevalent in urban and developed countries.\nThe dashed vertical lines marking the modal age (most common) appear at nearly the same point for all regions, which is around 30 - 35 year olds. This indicates a consistent demographic structure across Singapore’s regions.\nWhile younger and middle-aged groups dominate, all regions show a gradual decline in density after age 50 – 60, reflecting lower population counts at older ages. Future policies focus on potential improvements for aging populations, like healthcare support and elderly welfare."
+  },
+  {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#total-population-by-planning-areas-in-all-regions",
+    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#total-population-by-planning-areas-in-all-regions",
+    "title": "Take Home Exercise 1",
+    "section": "1.5.3 Total Population by Planning Areas in all Regions",
+    "text": "1.5.3 Total Population by Planning Areas in all Regions\n\n\nCode\n# Summarize total population by planning area for each region\nplanning_area_summary &lt;- respop_cleaned %&gt;%\n  group_by(Region, PA) %&gt;%\n  summarise(Total_Pop = sum(Pop), .groups = \"drop\")\n\n# Bar chart\nggplot(planning_area_summary, aes(x = reorder(PA, -Total_Pop), y = Total_Pop, fill = Region)) +\n  geom_col() +\n  facet_wrap(~ Region, scales = \"free_x\") +\n  labs(title = \"Total Population by Planning Area (within Each Region)\", x = \"Planning Area\", y = \"Population\") +\n  scale_y_continuous(labels = scales::comma) +\n  theme_minimal(base_family = \"nunito\",base_size = 25) +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5),plot.title = element_text(hjust = 0.5, size = 30, face = \"bold\", family = \"nunito\")) +\n  scale_fill_manual(values = c(\"West\" = \"#145C47\", \"East\" = \"#2C3C60\", \"North\" = \"#662633\",\"North-East\" = \"#4B2C60\",\"Central\" = \"#665C26\"))\n\n\n\n\n\n\n\n\n\nInsights:\n\nPopulation is heavily concentrated in a few dominant planning areas within each region. For example, Tampines (East), Woodlands (North), Sengkang (North-East), and Jurong West (West) stand out as the most populous planning areas, suggesting that they are clearly urban hubs.\nWhile there are numerous planning areas in Central, only a few (like Bukit Merah, Queenstown, and Toa Payoh) hold large populations. Other areas have relatively small populations of Singaporean residents, due to the presence of commercial, or low-residence zones like Orchard and Marina South.\nSome planning areas have extremely low or negligible residential populations. Places like Lim Chu Kang, Central Water Catchment, and Western Islands show almost no population, indicating these are likely reserved for industrial, military, or nature conservation purposes."
+  },
+  {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#three-good-design-principles",
+    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#three-good-design-principles",
+    "title": "Take Home Exercise 1",
+    "section": "1.7.1 Three Good Design Principles",
+    "text": "1.7.1 Three Good Design Principles\n\nClear Comparison Between Groups: Using side-by-side bars for total vs. elderly population enables a quick visual comparison, making it easy to spot which planning areas have larger elderly proportions.\nEffective Use of Color and Labels: The contrasting colors (gold and purple) and direct value labels on bars improve readability and help viewers interpret values without needing to refer to the axis constantly.\nInsightful Focus: Highlighting elderly population (65+) alongside total population adds value by addressing demographic trends — a relevant and important lens for policy and planning."
+  },
+  {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#three-areas-for-further-improvement",
+    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#three-areas-for-further-improvement",
+    "title": "Take Home Exercise 1",
+    "section": "1.7.2 Three Areas for Further Improvement",
+    "text": "1.7.2 Three Areas for Further Improvement\n\nOverlapping Bars and Misleading Lengths: Since both bars start from the same axis, the elderly population bar is visually “on top of” the total bar, but this could mislead viewers into thinking they are stacked or directly proportional. A grouped bar chart or dual-axis plot might reduce confusion.\nMissing Percentage Context: Including the percentage of elderly population relative to the total for each planning area (e.g., as text labels or a separate line plot) would add deeper insight beyond raw counts.\nVisual Hierarchy Could Be Improved: Right now, the gold bars stand out more than the purple bars, even though the purple ones represent the main variable (total population). Consider reversing this emphasis or softening the elderly bar color to reflect its subset nature."
+  },
+  {
+    "objectID": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#enhanced-visualization",
+    "href": "TakeHome_Exercises/TakeHome_Ex01/TakeHomeEx01.html#enhanced-visualization",
+    "title": "Take Home Exercise 1",
+    "section": "1.7.3 Enhanced Visualization",
+    "text": "1.7.3 Enhanced Visualization\nBelow is the improved version of the plot. The enhancements include:\n\nA reversed bar order, with the largest on top for easier scanning.\nBolded key text for title, axis and labels.\nFine-tuned label positions to prevent overlap and improve balance.\nCleaned up legend and theme for a polished look.\n\n\n\nCode\npacman::p_load(tidyverse, haven,\n               ggrepel, ggthemes,\n               ggridges, ggdist,colorspace,ggdist,\n               patchwork, scales, ggplot2, \n               matrixStats, treemapify, showtext)\n\n\n\n\nCode\npop_data &lt;- read_csv(\"respopagesex2024.csv\")\n\nlibrary(tidyverse)\nlibrary(scales)\nlibrary(forcats)\n\npop_data &lt;- read_csv(\"respopagesex2024.csv\")\n\n# Summarise total and elderly population by PA\ntop_areas &lt;- pop_data %&gt;%\n  group_by(PA) %&gt;%\n  summarise(\n    Total = sum(Pop),\n    Elderly = sum(Pop[Age &gt;= 65]),\n    .groups = \"drop\"\n  ) %&gt;%\n  top_n(15, Total)\n\n# Reshape into long format\nplot_data &lt;- top_areas %&gt;%\n  pivot_longer(cols = c(Total, Elderly),\n               names_to = \"Type\",\n               values_to = \"Population\") %&gt;%\n  mutate(\n    Type = recode(Type,\n                  \"Total\" = \"Total Population\",\n                  \"Elderly\" = \"Elderly (65+)\")\n  )\n\n# Reorder PA by Total Population (largest on top)\nplot_data &lt;- plot_data %&gt;%\n  left_join(top_areas %&gt;% select(PA, Total), by = \"PA\") %&gt;%\n  mutate(PA = fct_reorder(PA, Total, .desc = TRUE))\n\n# Plot\nggplot(plot_data, aes(x = PA, y = Population, fill = Type)) +\n  geom_col(position = position_dodge(width = 0.85), width = 0.7) +\n  geom_text(aes(label = comma(Population)),\n            position = position_dodge(width = 0.85),\n            hjust = -0.1, size = 3) +\n  scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.15))) +\n  scale_fill_manual(values = c(\"Total Population\" = \"#8E7DBE\", \"Elderly (65+)\" = \"#F1C232\")) +\n  coord_flip() +\n  labs(\n    title = \"Total vs Elderly Population in Top Planning Areas (2024)\",\n    subtitle = \"Planning areas ordered by total population. Elderly population shown in gold.\",\n    x = \"Planning Area\",\n    y = \"Population\",\n    fill = NULL\n  ) +\n  theme_minimal(base_family = \"Helvetica\") +\n  theme(\n    plot.title = element_text(face = \"bold\", size = 15, hjust = 0.5),\n    plot.subtitle = element_text(size = 11, hjust = 0.5, color = \"gray40\"),\n    axis.title = element_text(size = 11),\n    axis.text = element_text(size = 9),\n    legend.position = \"top\",\n    legend.text = element_text(size = 9)\n  )"
   },
   {
     "objectID": "TakeHome_Exercises/TakeHome_Ex02/TakeHomeEx02.html",
     "href": "TakeHome_Exercises/TakeHome_Ex02/TakeHomeEx02.html",
     "title": "Take Home Exercise 2",
     "section": "",
-    "text": "Note: Please toggle between ‘Show’ and ‘Hide’ above based on your preference for viewing the R codes.\n\n1.1 Setting the Scene"
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html",
-    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html",
-    "title": "Hands On Exercise 6",
-    "section": "",
     "text": "Note: Please toggle between ‘Show’ and ‘Hide’ above based on your preference for viewing the R codes."
   },
   {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#importing-data",
-    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#importing-data",
-    "title": "Hands On Exercise 6",
-    "section": "6.3.1 Importing Data",
-    "text": "6.3.1 Importing Data\nFirst, you will use the code chunk below to import eventlog.csv file into R environment and called the data frame as attacks. This data file consists of 199,999 rows of time-series cyber attack records by country.\n\n\nCode\nattacks &lt;- read_csv(\"data/eventlog.csv\")"
+    "objectID": "TakeHome_Exercises/TakeHome_Ex02/TakeHomeEx02.html#loading-packages",
+    "href": "TakeHome_Exercises/TakeHome_Ex02/TakeHomeEx02.html#loading-packages",
+    "title": "Take Home Exercise 2",
+    "section": "3.1 Loading packages",
+    "text": "3.1 Loading packages\nThe following R packages were loaded using the pacman::p_load() function.\n\ntidyverse – Data manipulation and plotting\njsonlite – Parsing JSON files\nSmartEDA – Exploratory data analysis\nggrepel – Prevent overlapping text labels in plots\nggthemes – Additional ggplot2 themes\nggridges / ggdist – Density and distribution plots\ncolorspace / scales – Color and scale customization\ndplyr, lubridate – Tidy data transformation and date handling\npatchwork – Combining multiple ggplots\nmatrixStats – Efficient statistical functions for matrices\ntreemapify – Treemap visualizations\nshowtext – Custom font support in plots\nigraph, ggraph, tidygraph – Network and graph analysis\nnaniar – Missing data visualization\nreadr – Fast CSV and delimited file reading\nvisNetwork – Interactive network graphs\n\n\n\nCode\npacman::p_load(tidyverse, jsonlite, ggrepel, ggdist, lubridate,\n               ggdist, scales, ggplot2, treemapify, igraph, ggraph, \n               tidygraph, readr, visNetwork, ggrepel, janitor, gganimate)"
   },
   {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#examining-the-data-structure",
-    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#examining-the-data-structure",
-    "title": "Hands On Exercise 6",
-    "section": "6.3.2 Examining the Data Structure",
-    "text": "6.3.2 Examining the Data Structure\nIt is always a good practice to examine the imported data frame before further analysis is performed. For example, kable() can be used to review the structure of the imported data frame.\n\n\nCode\nkable(head(attacks))\n\n\n\n\n\ntimestamp\nsource_country\ntz\n\n\n\n\n2015-03-12 15:59:16\nCN\nAsia/Shanghai\n\n\n2015-03-12 16:00:48\nFR\nEurope/Paris\n\n\n2015-03-12 16:02:26\nCN\nAsia/Shanghai\n\n\n2015-03-12 16:02:38\nUS\nAmerica/Chicago\n\n\n2015-03-12 16:03:22\nCN\nAsia/Shanghai\n\n\n2015-03-12 16:03:45\nCN\nAsia/Shanghai\n\n\n\n\n\nThere are three columns, namely timestamp, source_country and tz.\n\ntimestamp field stores date-time values in POSIXct format.\nsource_country field stores the source of the attack. It is in ISO 3166-1 alpha-2 country code.\ntz field stores time zone of the source IP address."
+    "objectID": "TakeHome_Exercises/TakeHome_Ex02/TakeHomeEx02.html#importing-data",
+    "href": "TakeHome_Exercises/TakeHome_Ex02/TakeHomeEx02.html#importing-data",
+    "title": "Take Home Exercise 2",
+    "section": "3.2 Importing Data",
+    "text": "3.2 Importing Data\nWe begin by importing the cleaned knowledge graph from the MC1_graph.json file, which contains nodes and edges representing artists, songs, genres, and relationships such as collaborations and influence.\n\n\nCode\n# Load the JSON file\nkg &lt;- fromJSON(\"MC1/data/MC1_graph.json\")\n\n# Convert to data frames\nnodes_tbl &lt;- bind_rows(kg$nodes)\nedges_tbl &lt;- as_tibble(kg$links)\n\ncolnames(nodes_tbl)\n\n\n [1] \"Node Type\"      \"name\"           \"single\"         \"release_date\"  \n [5] \"genre\"          \"notable\"        \"id\"             \"written_date\"  \n [9] \"stage_name\"     \"notoriety_date\"\n\n\nCode\ncolnames(edges_tbl)\n\n\n[1] \"Edge Type\" \"source\"    \"target\"    \"key\"      \n\n\nCode\nstr(nodes_tbl)\n\n\n'data.frame':   17412 obs. of  10 variables:\n $ Node Type     : chr  \"Song\" \"Person\" \"Person\" \"Person\" ...\n $ name          : chr  \"Breaking These Chains\" \"Carlos Duffy\" \"Min Qin\" \"Xiuying Xie\" ...\n $ single        : logi  TRUE NA NA NA NA FALSE ...\n $ release_date  : chr  \"2017\" NA NA NA ...\n $ genre         : chr  \"Oceanus Folk\" NA NA NA ...\n $ notable       : logi  TRUE NA NA NA NA TRUE ...\n $ id            : int  0 1 2 3 4 5 6 7 8 9 ...\n $ written_date  : chr  NA NA NA NA ...\n $ stage_name    : chr  NA NA NA NA ...\n $ notoriety_date: chr  NA NA NA NA ..."
   },
   {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#data-preparation",
-    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#data-preparation",
-    "title": "Hands On Exercise 6",
-    "section": "6.3.3 Data Preparation",
-    "text": "6.3.3 Data Preparation\nStep 1: Deriving weekday and hour of day fields\nBefore we can plot the calender heatmap, two new fields namely wkday and hour need to be derived. In this step, we will write a function to perform the task. ymd_hms() and hour() are from lubridate package, and weekdays() is a base R function.\n\n\nCode\nmake_hr_wkday &lt;- function(ts, sc, tz) \n{\n  real_times &lt;- ymd_hms(ts, \n                        tz = tz[1], \n                        quiet = TRUE)\n  dt &lt;- data.table(source_country = sc,\n                   wkday = weekdays(real_times),\n                   hour = hour(real_times))\n  return(dt)\n}\n\n\nStep 2: Deriving the attacks tibble data frame\nBeside extracting the necessary data into attacks data frame, mutate() of dplyr package is used to convert wkday and hour fields into factor so they’ll be ordered when plotting.\n\n\nCode\nwkday_levels &lt;- c('Saturday', 'Friday', \n                  'Thursday', 'Wednesday', \n                  'Tuesday', 'Monday', \n                  'Sunday')\n\nattacks &lt;- attacks %&gt;%\n  group_by(tz) %&gt;%\n  do(make_hr_wkday(.$timestamp, \n                   .$source_country, \n                   .$tz)) %&gt;% \n  ungroup() %&gt;% \n  mutate(wkday = factor(\n    wkday, levels = wkday_levels),\n    hour  = factor(\n      hour, levels = 0:23))\n\n\nThe table below shows the tidy tibble table after processing.\n\n\nCode\nkable(head(attacks))\n\n\n\n\n\ntz\nsource_country\nwkday\nhour\n\n\n\n\nAfrica/Cairo\nBG\nSaturday\n20\n\n\nAfrica/Cairo\nTW\nSunday\n6\n\n\nAfrica/Cairo\nTW\nSunday\n8\n\n\nAfrica/Cairo\nCN\nSunday\n11\n\n\nAfrica/Cairo\nUS\nSunday\n15\n\n\nAfrica/Cairo\nCA\nMonday\n11"
+    "objectID": "TakeHome_Exercises/TakeHome_Ex02/TakeHomeEx02.html#distribution-of-edge-types",
+    "href": "TakeHome_Exercises/TakeHome_Ex02/TakeHomeEx02.html#distribution-of-edge-types",
+    "title": "Take Home Exercise 2",
+    "section": "4.1 Distribution of Edge Types",
+    "text": "4.1 Distribution of Edge Types\nThe dataset contains a variety of edge types, each representing a specific relationship such as PerformerOf, CollaboratedWith, InspiredBy, and RecordedBy. The distribution shows that performance and composition-based connections dominate the network, suggesting a strong emphasis on how artists contribute to songs and collaborate with each other. Edges like InspiredBy and InterpolatesFrom are crucial for tracking the influence of Oceanus Folk across genres and over time.\n\n\nCode\nggplot(data = edges_tbl, aes(y = `Edge Type`)) + \n  geom_bar(fill = \"#300713\") +\n  labs(\n    title = \"Distribution of Edge Types\",\n    y = \"Edge Type\",\n    x = \"Count\"\n  ) +\n  theme_minimal()"
   },
   {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#building-the-calendar-heatmaps",
-    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#building-the-calendar-heatmaps",
-    "title": "Hands On Exercise 6",
-    "section": "6.3.4 Building the Calendar Heatmaps",
-    "text": "6.3.4 Building the Calendar Heatmaps\nA tibble data table called grouped is derived by aggregating the attack by wkday and hour fields. A new field called n is derived by using group_by() and count() functions. na.omit() is used to exclude missing value. geom_tile() is used to plot tiles (grids) at each x and y position. color and size arguments are used to specify the border color and line size of the tiles. theme_tufte() of ggthemes package is used to remove unnecessary chart junk. To learn which visual components of default ggplot2 have been excluded, you are encouraged to comment out this line to examine the default plot.\n\ncoord_equal() is used to ensure the plot will have an aspect ratio of 1:1.\nscale_fill_gradient() function is used to creates a two colour gradient (low-high).\n\n\n\nCode\ngrouped &lt;- attacks %&gt;% \n  count(wkday, hour) %&gt;% \n  ungroup() %&gt;%\n  na.omit()\n\nggplot(grouped, \n       aes(hour, \n           wkday, \n           fill = n)) + \ngeom_tile(color = \"white\", \n          size = 0.1) + \ntheme_tufte(base_family = \"Helvetica\") + \ncoord_equal() +\nscale_fill_gradient(name = \"# of attacks\",\n                    low = \"sky blue\", \n                    high = \"dark blue\") +\nlabs(x = NULL, \n     y = NULL, \n     title = \"Attacks by weekday and time of day\") +\ntheme(axis.ticks = element_blank(),\n      plot.title = element_text(hjust = 0.5),\n      legend.title = element_text(size = 8),\n      legend.text = element_text(size = 6) )"
+    "objectID": "TakeHome_Exercises/TakeHome_Ex02/TakeHomeEx02.html#distribution-of-node-types",
+    "href": "TakeHome_Exercises/TakeHome_Ex02/TakeHomeEx02.html#distribution-of-node-types",
+    "title": "Take Home Exercise 2",
+    "section": "4.2 Distribution of Node Types",
+    "text": "4.2 Distribution of Node Types\nNodes in the graph are categorized into types such as Person, Song, Genre, RecordLabel, and Album. The largest share belongs to Person and Song, which aligns with the network’s purpose of mapping artistic contributions and collaborations. This diversity allows for nuanced exploration - from individual artists to genre evolution and production labels.\n\n\nCode\nggplot(data = nodes_tbl, aes(y = `Node Type`)) + \n  geom_bar(fill = \"#2d7311\") +\n  labs(\n    title = \"Distribution of Node Types\",\n    y = \"Node Type\",\n    x = \"Count\"\n  ) +\n  theme_minimal()"
   },
   {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#building-multiple-calendar-heatmaps",
-    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#building-multiple-calendar-heatmaps",
-    "title": "Hands On Exercise 6",
-    "section": "6.3.5 Building Multiple Calendar Heatmaps",
-    "text": "6.3.5 Building Multiple Calendar Heatmaps\nChallenge: Building multiple heatmaps for the top four countries with the highest number of attacks."
+    "objectID": "TakeHome_Exercises/TakeHome_Ex02/TakeHomeEx02.html#unique-entities-by-node-type",
+    "href": "TakeHome_Exercises/TakeHome_Ex02/TakeHomeEx02.html#unique-entities-by-node-type",
+    "title": "Take Home Exercise 2",
+    "section": "4.3 Unique Entities by Node Type",
+    "text": "4.3 Unique Entities by Node Type\nThis breakdown highlights the count of distinct entities within each node type. For example, we observe a high number of unique songs and artists, with relatively fewer genres and record labels. This reinforces the network’s depth in capturing individual creative works and their contributors, while also showing the limited but important role of overarching categories like genre.\n\n\nCode\nnodes_tbl %&gt;%\n  group_by(`Node Type`) %&gt;%\n  summarise(`Number of Entities` = n()) %&gt;%\n  arrange(desc(`Number of Entities`)) %&gt;%\n  ggplot(aes(x = reorder(`Node Type`, `Number of Entities`), y = `Number of Entities`)) +\n  geom_col(fill = \"#112d73\") +\n  coord_flip() +\n  labs(\n    title = \"Number of Unique Entities by Node Type\",\n    x = \"Node Type\",\n    y = \"Count\"\n  ) +\n  theme_minimal()"
   },
   {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#plotting-multiple-calendar-heatmaps",
-    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#plotting-multiple-calendar-heatmaps",
-    "title": "Hands On Exercise 6",
-    "section": "6.3.5 Plotting Multiple Calendar Heatmaps",
-    "text": "6.3.5 Plotting Multiple Calendar Heatmaps\nStep 1: Deriving attack by country object\nIn order to identify the top 4 countries with the highest number of attacks, you are required to do the following:\n\ncount the number of attacks by country,\ncalculate the percent of attacks by country, and\nsave the results in a tibble data frame.\n\n\n\nCode\nattacks_by_country &lt;- count(\n  attacks, source_country) %&gt;%\n  mutate(percent = percent(n/sum(n))) %&gt;%\n  arrange(desc(n))\n\n\nStep 2: Preparing the tidy data frame\nIn this step, you are required to extract the attack records of the top 4 countries from attacks data frame and save the data in a new tibble data frame (i.e. top4_attacks).\n\n\nCode\ntop4 &lt;- attacks_by_country$source_country[1:4]\ntop4_attacks &lt;- attacks %&gt;%\n  filter(source_country %in% top4) %&gt;%\n  count(source_country, wkday, hour) %&gt;%\n  ungroup() %&gt;%\n  mutate(source_country = factor(\n    source_country, levels = top4)) %&gt;%\n  na.omit()"
+    "objectID": "TakeHome_Exercises/TakeHome_Ex02/TakeHomeEx02.html#spread-of-oceanus-folks-influence-over-time",
+    "href": "TakeHome_Exercises/TakeHome_Ex02/TakeHomeEx02.html#spread-of-oceanus-folks-influence-over-time",
+    "title": "Take Home Exercise 2",
+    "section": "6.1 Spread of Oceanus Folk’s Influence Over Time",
+    "text": "6.1 Spread of Oceanus Folk’s Influence Over Time\nTo assess how the influence of Oceanus Folk evolved, we visualized the number of songs influenced by the genre across different years. The results showed a gradual and consistent rise in influence beginning in the late 2020s, peaking in the 2030s following Sailor Shift’s breakthrough. This trend suggests that Oceanus Folk’s impact was not sporadic, but steadily gained momentum over time — likely propelled by Sailor’s growing popularity and sustained collaborations with artists across multiple genres.\n\n\nCode\nnodes &lt;- read_csv(\"nodes_cleaned.csv\")\n\n# Filter Oceanus Folk songs with valid release dates\noceanus_songs &lt;- nodes %&gt;%\n  filter(node_type == \"Song\", genre == \"Oceanus Folk\", !is.na(release_date))\n\n# Create new column for release year\noceanus_songs &lt;- oceanus_songs %&gt;%\n  mutate(release_year = as.integer(release_date))\n\n# Count number of Oceanus Folk songs per year\nsongs_by_year &lt;- oceanus_songs %&gt;%\n  group_by(release_year) %&gt;%\n  summarise(n = n(), .groups = \"drop\")\n\n# Plot\nggplot(songs_by_year, aes(x = release_year, y = n)) +\n  geom_col(fill = \"#112d73\", width = 0.6) +\n  geom_text(aes(label = n), vjust = -0.3, size = 3, color = \"black\") +\n  scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +\n  scale_y_continuous(expand = expansion(mult = c(0, 0.1))) +\n  labs(\n    title = \"Oceanus Folk Song Releases Over Time\",\n    subtitle = \"Count of Oceanus Folk song releases over the years\",\n    x = \"Release Year\",\n    y = \"Number of Songs\"\n  ) +\n  theme_minimal(base_size = 12) +\n  theme(\n    plot.title = element_text(face = \"bold\", size = 14),\n    plot.subtitle = element_text(size = 11),\n    axis.title.y = element_text(margin = margin(r = 10))\n  )\n\n\n\n\n\n\n\n\n\n\n\nCode\nnodes_tbl &lt;- read_csv(\"nodes_cleaned.csv\")\nedges_tbl &lt;- read_csv(\"edges_cleaned.csv\")\nnodes_tbl &lt;- as_tibble(nodes_tbl)\nedges_tbl &lt;- as_tibble(edges_tbl)\n\n# Create ID to index mapping\nid_map &lt;- tibble(id = nodes_tbl$id, index = seq_len(nrow(nodes_tbl)))\n\n# Join mapping to edges\nedges_tbl &lt;- edges_tbl %&gt;%\n  left_join(id_map, by = c(\"source\" = \"id\")) %&gt;%\n  rename(from_index = index) %&gt;%\n  left_join(id_map, by = c(\"target\" = \"id\")) %&gt;%\n  rename(to_index = index) %&gt;%\n  filter(!is.na(from_index), !is.na(to_index))\n\n# Creating graph\ngraph &lt;- tbl_graph(\n  nodes = nodes_tbl,\n  edges = edges_tbl %&gt;% select(from = from_index, to = to_index, everything()),\n  directed = TRUE\n)\n\n# Filter to Oceanus Folk\ngraph_oceanus &lt;- graph %&gt;%\n  activate(nodes) %&gt;%\n  filter(str_detect(genre, \"Oceanus Folk\"))\n\n# Step 7: Visualization\nggraph(graph_oceanus, layout = \"fr\") +\n  geom_edge_link(alpha = 0.2, color = \"gray\") +\n  geom_node_point(aes(color = node_type), size = 3) +\n  geom_node_text(aes(label = name), repel = TRUE, size = 2.5) +\n  theme_void() +\n  labs(title = \"Influence of Oceanus Folk: Knowledge Graph\")\n\n\n\n\n\n\n\n\n\nCode\n# Extract Oceanus Folk node IDs\noceanus_ids &lt;- nodes_tbl %&gt;%\n  filter(str_detect(genre, \"Oceanus Folk\")) %&gt;%\n  pull(id)\n\nedges_oceanus &lt;- edges_tbl %&gt;%\n  filter(source %in% oceanus_ids | target %in% oceanus_ids)\n\n# VisNetwork\nnodes_vis &lt;- nodes_tbl %&gt;%\n  filter(id %in% c(edges_oceanus$source, edges_oceanus$target)) %&gt;%\n  mutate(label = name,\n         title = paste0(\"&lt;b&gt;\", name, \"&lt;/b&gt;&lt;br&gt;Type: \", node_type, \"&lt;br&gt;Genre: \", genre),\n         color = case_when(\n           node_type == \"Person\" ~ \"#112d73\",\n           node_type == \"Song\" ~ \"#2d7311\",\n           node_type == \"Genre\" ~ \"#73112d\",\n           TRUE ~ \"#aaaaaa\"\n         )) %&gt;%\n  select(id, label, title, color)\n\nedges_vis &lt;- edges_oceanus %&gt;%\n  select(from = source, to = target, label = edge_type)\n\nvisNetwork(nodes_vis, edges_vis, width = \"100%\", height = \"700px\") %&gt;%\n  visEdges(arrows = \"to\") %&gt;%\n  visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE) %&gt;%\n  visLayout(randomSeed = 42) %&gt;%\n  visPhysics(stabilization = TRUE) %&gt;%\n  visLegend(addNodes = list(\n    list(label = \"Person\", color = \"#112d73\"),\n    list(label = \"Song\", color = \"#2d7311\"),\n    list(label = \"Genre\", color = \"#73112d\")\n  ), useGroups = FALSE)"
   },
   {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#plotting-multiple-calendar-heatmaps-1",
-    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#plotting-multiple-calendar-heatmaps-1",
-    "title": "Hands On Exercise 6",
-    "section": "6.3.6 Plotting Multiple Calendar Heatmaps",
-    "text": "6.3.6 Plotting Multiple Calendar Heatmaps\nStep 3: Plotting the Multiple Calender Heatmap by using ggplot2 package.\n\n\nCode\nggplot(top4_attacks, \n       aes(hour, \n           wkday, \n           fill = n)) + \n  geom_tile(color = \"white\", \n          size = 0.1) + \n  theme_tufte(base_family = \"Helvetica\") + \n  coord_equal() +\n  scale_fill_gradient(name = \"# of attacks\",\n                    low = \"sky blue\", \n                    high = \"dark blue\") +\n  facet_wrap(~source_country, ncol = 2) +\n  labs(x = NULL, y = NULL, \n     title = \"Attacks on top 4 countries by weekday and time of day\") +\n  theme(axis.ticks = element_blank(),\n        axis.text.x = element_text(size = 7),\n        plot.title = element_text(hjust = 0.5),\n        legend.title = element_text(size = 8),\n        legend.text = element_text(size = 6) )"
+    "objectID": "TakeHome_Exercises/TakeHome_Ex02/TakeHomeEx02.html#genres-and-top-artists-influenced-by-oceanus-folk",
+    "href": "TakeHome_Exercises/TakeHome_Ex02/TakeHomeEx02.html#genres-and-top-artists-influenced-by-oceanus-folk",
+    "title": "Take Home Exercise 2",
+    "section": "6.2 Genres and Top Artists Influenced by Oceanus Folk",
+    "text": "6.2 Genres and Top Artists Influenced by Oceanus Folk\nWe explored which genres and artists were most influenced by Oceanus Folk by analyzing InspiredBy and InterpolatesFrom edge relationships in the graph. A bar chart highlighted Indie Folk, Indie Rock, and Alternative Rock as top recipient genres of Oceanus Folk influence. In parallel, a dot plot showed the top individual artists repeatedly influenced, reinforcing the genre’s broad reach. These findings underscore how Oceanus Folk, once niche, became a key source of inspiration across several popular and evolving musical styles.\n\n\nCode\nnodes_tbl &lt;- read_csv(\"nodes_cleaned.csv\")\nedges_tbl &lt;- read_csv(\"edges_cleaned.csv\")\n\n# Map node IDs to row indices\nid_map &lt;- tibble(id = nodes_tbl$id, index = seq_len(nrow(nodes_tbl)))\n\n# Update edge table with node indices\nedges_tbl &lt;- edges_tbl %&gt;%\n  left_join(id_map, by = c(\"source\" = \"id\")) %&gt;%\n  rename(from_index = index) %&gt;%\n  left_join(id_map, by = c(\"target\" = \"id\")) %&gt;%\n  rename(to_index = index) %&gt;%\n  filter(!is.na(from_index), !is.na(to_index))\n\n# Main graph\ngraph &lt;- tbl_graph(\n  nodes = nodes_tbl,\n  edges = edges_tbl %&gt;% select(from = from_index, to = to_index, everything()),\n  directed = TRUE\n)\n\n# Filter nodes in Oceanus Folk\noceanus_genres &lt;- unique(nodes_tbl$genre[grepl(\"oceanus\", str_to_lower(nodes_tbl$genre))])\n\ngraph_oceanus &lt;- graph %&gt;%\n  activate(nodes) %&gt;%\n  filter(genre %in% oceanus_genres)\n\n# Get IDs of Oceanus Folk nodes\noceanus_ids &lt;- graph_oceanus %&gt;% activate(nodes) %&gt;% pull(id)\n\n# Influence edges\ninfluence_types &lt;- c(\"Influenced\", \"InterpolatesFrom\", \"InStyleOf\")\ninfluenced_edges &lt;- edges_tbl %&gt;%\n  filter(edge_type %in% influence_types & source %in% oceanus_ids)\n\ngraph_q2 &lt;- tbl_graph(\n  nodes = nodes_tbl,\n  edges = influenced_edges %&gt;%\n    left_join(id_map, by = c(\"source\" = \"id\")) %&gt;%\n    rename(from = index) %&gt;%\n    left_join(id_map, by = c(\"target\" = \"id\")) %&gt;%\n    rename(to = index) %&gt;%\n    filter(!is.na(from), !is.na(to)),\n  directed = TRUE\n)\n\n# Plot graph\nggraph(graph_q2, layout = \"fr\") +\n  geom_edge_link(alpha = 0.2, color = \"gray50\") +\n  geom_node_point(aes(color = node_type), size = 3) +\n  geom_node_text(aes(label = name), repel = TRUE, size = 2.5) +\n  scale_color_manual(values = c(\"Person\" = \"#73112d\", \"Genre\" = \"#2d7311\", \"Song\" = \"#112d73\")) +\n  theme_void() +\n  labs(title = \"Genres and Artists Influenced by Oceanus Folk\")\n\n\n\n\n\n\n\n\n\nCode\n# Subset nodes involved in influence network\nq2_node_ids &lt;- unique(c(influenced_edges$source, influenced_edges$target))\n\nnodes_vis_q2 &lt;- nodes_tbl %&gt;%\n  filter(id %in% q2_node_ids) %&gt;%\n  mutate(\n    label = name,\n    title = paste0(\"&lt;b&gt;\", name, \"&lt;/b&gt;&lt;br&gt;Type: \", node_type, \"&lt;br&gt;Genre: \", genre),\n    group = node_type,\n    color = case_when(\n      node_type == \"Person\" ~ \"#73112d\",\n      node_type == \"Genre\" ~ \"#2d7311\",\n      node_type == \"Song\" ~ \"#112d73\",\n      TRUE ~ \"#999999\"\n    )\n  ) %&gt;%\n  select(id, label, title, group, color)\n\nedges_vis_q2 &lt;- influenced_edges %&gt;%\n  select(from = source, to = target, label = edge_type)\n\n# visNetwork\nvisNetwork(nodes_vis_q2, edges_vis_q2, width = \"100%\", height = \"700px\") %&gt;%\n  visEdges(arrows = \"to\", color = list(color = \"gray\")) %&gt;%\n  visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE) %&gt;%\n  visLegend(addNodes = list(\n    list(label = \"Person\", color = \"#73112d\"),\n    list(label = \"Genre\", color = \"#2d7311\"),\n    list(label = \"Song\", color = \"#112d73\")\n  ), useGroups = FALSE) %&gt;%\n  visLayout(randomSeed = 42) %&gt;%\n  visPhysics(stabilization = TRUE)\n\n\n\n\n\n\n\n\nCode\nnodes_tbl &lt;- read_csv(\"nodes_cleaned.csv\")\nedges_tbl &lt;- read_csv(\"edges_cleaned.csv\")\nnodes_tbl &lt;- as_tibble(nodes_tbl)\nedges_tbl &lt;- as_tibble(edges_tbl)\n\n# Create ID-to-index map and re-index edges\nid_map &lt;- tibble(id = nodes_tbl$id, index = seq_len(nrow(nodes_tbl)))\n\nedges_tbl &lt;- edges_tbl %&gt;%\n  left_join(id_map, by = c(\"source\" = \"id\")) %&gt;%\n  rename(from_index = index) %&gt;%\n  left_join(id_map, by = c(\"target\" = \"id\")) %&gt;%\n  rename(to_index = index) %&gt;%\n  filter(!is.na(from_index), !is.na(to_index))\n\n# Create tbl_graph object\ngraph &lt;- tbl_graph(nodes = nodes_tbl,\n                   edges = edges_tbl %&gt;% select(from = from_index, to = to_index, everything()),\n                   directed = TRUE)\n\n# Get Oceanus Folk nodes songs/artists\noceanus_nodes &lt;- nodes_tbl %&gt;%\n  filter(str_detect(genre, regex(\"Oceanus Folk\", ignore_case = TRUE)))\n\n# Influenced edges from Oceanus Folk\ninfluenced_edges &lt;- edges_tbl %&gt;%\n  filter(edge_type %in% c(\"influenced\", \"InterpolatedFrom\", \"InStyleOf\")) %&gt;%\n  filter(source %in% oceanus_nodes$id)\n\ninfluenced_ids &lt;- influenced_edges$target\n\ninfluenced_nodes &lt;- nodes_tbl %&gt;%\n  filter(id %in% influenced_ids)\n\n# Plot graph\ninfluenced_nodes %&gt;%\n  filter(!is.na(genre)) %&gt;%\n  group_by(genre) %&gt;%\n  summarise(n = n()) %&gt;%\n  arrange(desc(n)) %&gt;%\n  slice_max(n, n = 10) %&gt;%\n  ggplot(aes(x = reorder(genre, n), y = n)) +\n  geom_col(fill = \"#73112d\") +\n  coord_flip() +\n  labs(title = \"Top 10 Genres Influenced by Oceanus Folk\",\n       x = \"Genre\", y = \"Number of Influenced Nodes\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\n\nCode\n# Load data\nnodes &lt;- read_csv(\"nodes_cleaned.csv\")\nedges &lt;- read_csv(\"edges_cleaned.csv\")\n\nedges_expanded &lt;- edges %&gt;%\n  left_join(nodes %&gt;% select(id, source_genre = genre, source_type = node_type), by = c(\"source\" = \"id\")) %&gt;%\n  left_join(nodes %&gt;% select(id, target_genre = genre, target_type = node_type), by = c(\"target\" = \"id\"))\n\n# Filter relevant influence edges targeting Oceanus Folk\ninfluences_on_oceanus &lt;- edges_expanded %&gt;%\n  filter(edge_type %in% c(\"InspiredBy\", \"InterpolatesFrom\"),\n         target_genre == \"Oceanus Folk\",\n         !is.na(source_genre)) %&gt;%\n  group_by(source_genre) %&gt;%\n  summarise(influence_count = n()) %&gt;%\n  arrange(desc(influence_count))\n\n# Plot\nggplot(influences_on_oceanus, aes(x = reorder(source_genre, influence_count), y = influence_count)) +\n  geom_col(fill = \"#73112d\") +\n  coord_flip() +\n  labs(title = \"Genres That Influenced Oceanus Folk\",\n       x = \"Source Genre\", y = \"Number of Influence Links\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\n\nCode\nnodes_graph &lt;- nodes %&gt;%\n  mutate(index = row_number())  # NO -1\n\nedges_graph &lt;- edges %&gt;%\n  left_join(nodes_graph %&gt;% select(id, source_index = index), by = c(\"source\" = \"id\")) %&gt;%\n  left_join(nodes_graph %&gt;% select(id, target_index = index), by = c(\"target\" = \"id\")) %&gt;%\n  filter(!is.na(source_index), !is.na(target_index)) %&gt;%\n  filter(source_index &lt;= nrow(nodes_graph), target_index &lt;= nrow(nodes_graph))\n\ngraph &lt;- tbl_graph(\n  nodes = nodes_graph,\n  edges = edges_graph %&gt;% select(source = source_index, target = target_index, edge_type),\n  directed = TRUE\n)\n\nggraph(graph, layout = \"fr\") +\n  geom_edge_link(aes(color = edge_type), alpha = 0.5) +\n  geom_node_point(aes(color = genre), size = 3) +\n  geom_node_text(aes(label = ifelse(name == \"Sailor Shift\", name, NA)), repel = TRUE, size = 4) +\n  labs(title = \"Oceanus Folk Influence Network\") +\n  theme_void()\n\n\n\n\n\n\n\n\n\nNetwork Graph\n\n\nCode\nnodes &lt;- read_csv(\"nodes_cleaned.csv\")\nedges &lt;- read_csv(\"edges_cleaned.csv\")\n\nnodes_graph &lt;- nodes %&gt;% mutate(index = row_number())\n\n# Find Oceanus Folk song IDs\nof_song_ids &lt;- nodes %&gt;%\n  filter(node_type == \"Song\", genre == \"Oceanus Folk\") %&gt;%\n  pull(id)\n\n# Filter influence-type edges from Oceanus Folk songs\ninfluence_edges &lt;- edges %&gt;%\n  filter(source %in% of_song_ids,\n         edge_type %in% c(\"InspiredBy\", \"InterpolatesFrom\"))\n\n# Get corresponding node index for graph\nedges_graph &lt;- influence_edges %&gt;%\n  left_join(nodes_graph %&gt;% select(id, source_index = index), by = c(\"source\" = \"id\")) %&gt;%\n  left_join(nodes_graph %&gt;% select(id, target_index = index), by = c(\"target\" = \"id\")) %&gt;%\n  filter(!is.na(source_index), !is.na(target_index)) %&gt;%\n  select(source = source_index, target = target_index, edge_type)\n\n# Find top 5 most influenced genres\ntop_genres &lt;- nodes %&gt;%\n  filter(id %in% influence_edges$target, !is.na(genre)) %&gt;%\n  group_by(genre) %&gt;%\n  summarise(n = n()) %&gt;%\n  arrange(desc(n)) %&gt;%\n  slice_head(n = 5) %&gt;%\n  pull(genre)\n\ntarget_ids_top &lt;- nodes %&gt;%\n  filter(genre %in% top_genres, node_type == \"Person\") %&gt;%\n  pull(id)\n\n# Filter influence edges further\nedges_graph &lt;- edges_graph %&gt;%\n  filter(target %in% (nodes_graph %&gt;% filter(id %in% target_ids_top) %&gt;% pull(index)))\n\n# Filter out NA genres to avoid grey dots\nnodes_graph &lt;- nodes_graph %&gt;%\n  filter(index %in% c(edges_graph$source, edges_graph$target)) %&gt;%\n  filter(!is.na(genre))\n\n# Plot graph\ngraph &lt;- tbl_graph(nodes = nodes_graph, edges = edges_graph, directed = TRUE)\n\nggraph(graph, layout = \"fr\") +\n  geom_edge_link(aes(color = edge_type), alpha = 0.4) +\n  geom_node_point(aes(color = genre), size = 3) +\n  geom_node_text(aes(label = ifelse(name %in% c(\"Sailor Shift\", \"Oceanus Folk\"), name, NA)), \n                 repel = TRUE, size = 3) +\n  theme_void() +\n  labs(title = \"Oceanus Folk's Influence on Genres and Artists\")"
   },
   {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#importing-data-1",
-    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#importing-data-1",
-    "title": "Hands On Exercise 6",
-    "section": "6.4.1 Importing Data",
-    "text": "6.4.1 Importing Data\nFor the purpose of this hands-on exercise, arrivals_by_air.xlsx will be used. The code below imports arrivals_by_air.xlsx by using read_excel() of readxl package and save it as a tibble data frame called air.\n\n\nCode\nair &lt;- read_excel(\"data/arrivals_by_air.xlsx\")"
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#deriving-month-and-year-fields",
-    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#deriving-month-and-year-fields",
-    "title": "Hands On Exercise 6",
-    "section": "6.4.2 Deriving month and year fields",
-    "text": "6.4.2 Deriving month and year fields\nNext, two new fields called month and year are derived from Month-Year field.\n\n\nCode\nair$month &lt;- factor(month(air$`Month-Year`), \n                    levels=1:12, \n                    labels=month.abb, \n                    ordered=TRUE) \nair$year &lt;- year(ymd(air$`Month-Year`))"
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#extracting-the-target-country",
-    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#extracting-the-target-country",
-    "title": "Hands On Exercise 6",
-    "section": "6.4.3 Extracting the target country",
-    "text": "6.4.3 Extracting the target country\nNext, the code chunk below is use to extract data for the target country (i.e. Vietnam)\n\n\nCode\nVietnam &lt;- air %&gt;% \n  select(`Vietnam`, \n         month, \n         year) %&gt;%\n  filter(year &gt;= 2010)"
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#computing-year-average-arrivals-by-month",
-    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#computing-year-average-arrivals-by-month",
-    "title": "Hands On Exercise 6",
-    "section": "6.4.4 Computing year average arrivals by month",
-    "text": "6.4.4 Computing year average arrivals by month\nThe code chunk below uses group_by() and summarise() of dplyr to compute year average arrivals by month.\n\n\nCode\nhline.data &lt;- Vietnam %&gt;% \n  group_by(month) %&gt;%\n  summarise(avgvalue = mean(`Vietnam`))"
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#plotting-a-cycle-plot-1",
-    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#plotting-a-cycle-plot-1",
-    "title": "Hands On Exercise 6",
-    "section": "6.4.5 Plotting a Cycle Plot",
-    "text": "6.4.5 Plotting a Cycle Plot\nThe code chunk below is used to plot the cycle plot as shown in Slide 12/23.\n\n\nCode\nggplot() + \n  geom_line(data=Vietnam,\n            aes(x=year, \n                y=`Vietnam`, \n                group=month), \n            colour=\"black\") +\n  geom_hline(aes(yintercept=avgvalue), \n             data=hline.data, \n             linetype=6, \n             colour=\"red\", \n             size=0.5) + \n  facet_grid(~month) +\n  labs(axis.text.x = element_blank(),\n       title = \"Visitor arrivals from Vietnam by air, Jan 2010-Dec 2019\") +\n  xlab(\"\") +\n  ylab(\"No. of Visitors\") +\n  theme_tufte(base_family = \"Helvetica\")"
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#building-a-calendar-heatmap",
-    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#building-a-calendar-heatmap",
-    "title": "Hands On Exercise 6",
-    "section": "6.3.4 Building a Calendar Heatmap",
-    "text": "6.3.4 Building a Calendar Heatmap\nA tibble data table called grouped is derived by aggregating the attack by wkday and hour fields. A new field called n is derived by using group_by() and count() functions. na.omit() is used to exclude missing value. geom_tile() is used to plot tiles (grids) at each x and y position. color and size arguments are used to specify the border color and line size of the tiles. theme_tufte() of ggthemes package is used to remove unnecessary chart junk. To learn which visual components of default ggplot2 have been excluded, you are encouraged to comment out this line to examine the default plot.\n\ncoord_equal() is used to ensure the plot will have an aspect ratio of 1:1.\nscale_fill_gradient() function is used to creates a two colour gradient (low-high).\n\n\n\nCode\ngrouped &lt;- attacks %&gt;% \n  count(wkday, hour) %&gt;% \n  ungroup() %&gt;%\n  na.omit()\n\nggplot(grouped, \n       aes(hour, \n           wkday, \n           fill = n)) + \ngeom_tile(color = \"white\", \n          size = 0.1) + \ntheme_tufte(base_family = \"Helvetica\") + \ncoord_equal() +\nscale_fill_gradient(name = \"# of attacks\",\n                    low = \"sky blue\", \n                    high = \"dark blue\") +\nlabs(x = NULL, \n     y = NULL, \n     title = \"Attacks by weekday and time of day\") +\ntheme(axis.ticks = element_blank(),\n      plot.title = element_text(hjust = 0.5),\n      legend.title = element_text(size = 8),\n      legend.text = element_text(size = 6) )"
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#slopegraph",
-    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#slopegraph",
-    "title": "Hands On Exercise 6",
-    "section": "6.6.1 Slopegraph",
-    "text": "6.6.1 Slopegraph\n\n\nCode\nrice %&gt;% \n  mutate(Year = factor(Year)) %&gt;%\n  filter(Year %in% c(1961, 1980)) %&gt;%\n  newggslopegraph(Year, Yield, Country,\n                Title = \"Rice Yield of Top 11 Asian Counties\",\n                SubTitle = \"1961-1980\",\n                XTextSize = 18,    # Size of the times\n                YTextSize = 2,     # Size of the groups\n                TitleTextSize = 14,\n                SubTitleTextSize = 12,\n                CaptionTextSize = 10,\n                Caption = \"RICE\",\n                TitleJustify = \"right\",\n                SubTitleJustify = \"right\",\n                CaptionJustify = \"left\",\n                DataTextSize = 2.5,\n                DataLabelPadding = 0.2,\n                DataLabelLineSize = 0.5,\n                DataLabelFillColor = \"lightblue\",\n                ThemeChoice = \"wsj\")"
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#cycle-plot",
-    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#cycle-plot",
-    "title": "Hands On Exercise 6",
-    "section": "6.6.2 Cycle Plot",
-    "text": "6.6.2 Cycle Plot\n\n\nCode\nggplot(Vietnam, aes(x = year, y = `Vietnam`, group = month)) + \n  geom_line(color = \"black\") +\n  geom_hline(data = hline.data, aes(yintercept = avgvalue),\n             linetype = \"dashed\", color = \"red\", size = 0.5) +\n  facet_wrap(~month, nrow = 2) +\n  labs(\n    title = \"Visitor Arrivals from Vietnam by Air (2010–2019)\",\n    subtitle = \"Each line represents yearly visitor counts for a specific month. Red dashed line shows 10-year monthly average.\",\n    y = \"No. of Visitors\",\n    x = NULL\n  ) +\n  theme_tufte(base_family = \"Helvetica\") +\n  theme(\n    strip.text = element_text(size = 10, face = \"bold\"),\n    axis.text.x = element_blank(),\n    axis.ticks.x = element_blank(),\n    plot.title = element_text(face = \"bold\", size = 14, hjust = 0.5),\n    plot.subtitle = element_text(size = 10, hjust = 0.5, color = \"gray30\")\n  )"
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#calendar-heat-map",
-    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#calendar-heat-map",
-    "title": "Hands On Exercise 6",
-    "section": "6.6.3 Calendar Heat Map",
-    "text": "6.6.3 Calendar Heat Map\n\n\nCode\ngrouped &lt;- attacks %&gt;% \n  count(wkday, hour) %&gt;% \n  ungroup() %&gt;%\n  na.omit()\n\nggplot(grouped, aes(x = hour, y = fct_rev(wkday), fill = n)) + \n  geom_tile(color = \"white\", size = 0.2) +\n  scale_fill_gradient(\n    name = \"# of Attacks\",\n    low = \"#f7c8d6\",\n    high = \"#300713\"\n  ) +\n  coord_equal() +\n  labs(\n    title = \"Attacks by Weekday and Time of Day\",\n    subtitle = \"Count of attacks by hour across weekdays\",\n    x = \"Hour of Day\",\n    y = NULL\n  ) +\n  theme_minimal(base_family = \"Helvetica\") +\n  theme(\n    panel.grid = element_blank(),\n    axis.ticks = element_blank(),\n    axis.text.y = element_text(size = 9),\n    axis.text.x = element_text(size = 9),\n    plot.title = element_text(size = 14, face = \"bold\", hjust = 0.5),\n    plot.subtitle = element_text(size = 10, hjust = 0.5, color = \"gray30\"),\n    legend.title = element_text(size = 9, face = \"bold\"),\n    legend.text = element_text(size = 8),\n    legend.position = \"bottom\"\n  )"
-  },
-  {
-    "objectID": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#time-series-using-ggplot2",
-    "href": "HandsOn_Exercises/HandsOn_Ex06/HandsOnEx06.html#time-series-using-ggplot2",
-    "title": "Hands On Exercise 6",
-    "section": "6.6.4 Time Series using ggplot2",
-    "text": "6.6.4 Time Series using ggplot2\n\n\nCode\nvietnam_ts &lt;- Vietnam %&gt;%\n  mutate(\n    date = ymd(paste(year, month, 1, sep = \"-\")),\n    visitors = Vietnam,\n    deviation = visitors - mean(visitors, na.rm = TRUE)\n  )\n\nggplot(vietnam_ts, aes(x = date)) +\n  geom_area(data = subset(vietnam_ts, deviation &gt;= 0),\n            aes(y = deviation), fill = \"#e41a1c\") +  # red for above avg\n  geom_area(data = subset(vietnam_ts, deviation &lt; 0),\n            aes(y = deviation), fill = \"#377eb8\") +  # blue for below avg\n  geom_hline(yintercept = 0, color = \"gray40\", linetype = \"dashed\") +\n  scale_x_date(date_breaks = \"6 months\", date_labels = \"%b %Y\") +\n  labs(\n    title = \"Visitor Arrivals from Vietnam (Deviation from Mean)\",\n    subtitle = \"Red indicates months above average, blue indicates below\",\n    y = \"Deviation from Average\",\n    x = NULL\n  ) +\n  theme_minimal(base_family = \"Helvetica\") +\n  theme(\n    plot.title = element_text(face = \"bold\", hjust = 0.5),\n    plot.subtitle = element_text(hjust = 0.5, size = 10, color = \"gray40\"),\n    axis.text.x = element_text(size = 8)\n  )"
+    "objectID": "TakeHome_Exercises/TakeHome_Ex02/TakeHomeEx02.html#the-evolution-of-oceanus-folk",
+    "href": "TakeHome_Exercises/TakeHome_Ex02/TakeHomeEx02.html#the-evolution-of-oceanus-folk",
+    "title": "Take Home Exercise 2",
+    "section": "6.3 The Evolution of Oceanus Folk",
+    "text": "6.3 The Evolution of Oceanus Folk\nTo understand how Oceanus Folk itself has changed over time, we traced the genres of songs and artists that influenced newer Oceanus Folk tracks. Our network and bar plots revealed that Sailor Shift’s collaborations often drew from Indie Pop, Electro Folk, and Experimental genres. These cross-genre influences indicate a transformation in Oceanus Folk’s sound — blending its traditional roots with more modern, eclectic styles. Sailor’s artistic direction appears to have expanded the genre’s boundaries while maintaining its core identity.\n\nThis animated network graph illustrates how songs in the Oceanus Folk genre have influenced other artists and genres over time. Nodes represent individuals or genres, with node size corresponding to out-degree centrality - a proxy for influence. Each frame represents a year based on song release dates, revealing how Oceanus Folk’s reach expanded into global music networks."
   }
 ]

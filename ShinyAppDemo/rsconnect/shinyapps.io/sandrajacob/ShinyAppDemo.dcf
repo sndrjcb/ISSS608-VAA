@@ -1,0 +1,12 @@
+name: ShinyAppDemo
+title: ShinyAppDemo
+username: sandrajacob
+account: sandrajacob
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 14856809
+bundleId: 10372298
+url: https://sandrajacob.shinyapps.io/ShinyAppDemo/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
