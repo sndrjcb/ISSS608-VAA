@@ -78,7 +78,7 @@ The following R packages were loaded using the `pacman::p_load()` function.
 ```{r}
 pacman::p_load(tidyverse, jsonlite, ggrepel, ggdist, lubridate,
                ggdist, scales, ggplot2, treemapify, igraph, ggraph, 
-               tidygraph, readr, visNetwork, ggrepel, janitor, gganimate)
+               tidygraph, readr, visNetwork, ggrepel, janitor, gganimate, dplyr)
 
 ```
 
@@ -326,6 +326,8 @@ edges_tbl <- as_tibble(edges_tbl)
 # Create ID-to-index map and re-index edges
 id_map <- tibble(id = nodes_tbl$id, index = seq_len(nrow(nodes_tbl)))
 
+left_join <- dplyr::left_join
+
 edges_tbl <- edges_tbl %>%
   left_join(id_map, by = c("source" = "id")) %>%
   rename(from_index = index) %>%
@@ -368,9 +370,9 @@ influenced_nodes %>%
 
 ```
 
-```{r}
+```{r, eval=FALSE}
 nodes_graph <- nodes %>%
-  mutate(index = row_number())  # NO -1
+  mutate(index = row_number())
 
 edges_graph <- edges %>%
   left_join(nodes_graph %>% select(id, source_index = index), by = c("source" = "id")) %>%
@@ -398,11 +400,12 @@ ggraph(graph, layout = "fr") +
 
 To understand how Oceanus Folk itself has changed over time, we traced the genres of songs and artists that influenced newer Oceanus Folk tracks. Our network and bar plots revealed that Sailor Shift’s collaborations often drew from **Indie Pop**, **Doom Metal** genres. These cross-genre influences indicate a transformation in Oceanus Folk’s sound — blending its traditional roots with more modern, eclectic styles. Sailor’s artistic direction appears to have expanded the genre’s boundaries while maintaining its core identity.
 
-```{r echo=FALSE, results='asis'}
+```{r animation, eval=FALSE}
 
 # Load data
 nodes <- read_csv("nodes_cleaned.csv")
 edges <- read_csv("edges_cleaned.csv")
+
 
 # Get Oceanus Folk song IDs
 of_ids <- nodes %>%
