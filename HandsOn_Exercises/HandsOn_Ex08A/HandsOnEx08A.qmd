@@ -1,0 +1,18 @@
+---
+title: "Hands On Exercise 8A"
+subtitle: "Choropleth Mapping in R"
+format: html
+date: 06/09/2025
+date-format: long
+date-modified: last-modified
+editor: visual
+execute:
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
+---
+
+[*Note: Please toggle between 'Show' and 'Hide' above based on your preference for viewing the R codes.*]{.underline}
+
+# 

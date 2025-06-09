@@ -2,7 +2,7 @@
 title: "Take Home Exercise 2"
 subtitle: "Mini Challenge 1 - Question 2"
 format: html
-date: 05/13/2025
+date: 06/09/2025
 date-format: long
 date-modified: last-modified
 editor: visual
