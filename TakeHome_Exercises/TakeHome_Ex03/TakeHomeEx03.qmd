@@ -1,8 +1,8 @@
 ---
 title: "Take Home Exercise 3"
-subtitle: "To be Updated"
+subtitle: "Storyboard"
 format: html
-date: 05/13/2025
+date: 06/10/2025
 date-format: long
 date-modified: last-modified
 editor: visual
@@ -15,4 +15,22 @@ execute:
 
 [*Note: Please toggle between 'Show' and 'Hide' above based on your preference for viewing the R codes.*]{.underline}
 
-# 1.1 Setting the Scene
+# 3.1 Introduction
+
+\<insert text\>
+
+# 3.2 Storyboard
+
+## 3.2.1 Exploratory Data Analysis (EDA)
+
+**Purpose:** To provide users with an overview of the dataset – artists, genres, songs, and their interconnected influence network.
+
+## 3.2.2 Statistical Analysis
+
+**Purpose:**\
+To uncover patterns and relationships using metrics like centrality, influence scores, and frequency.
+
+## 3.2.3 Predictive Analysis
+
+**Purpose:**\
+To forecast which genres and artists might rise next based on historical influence patterns.
