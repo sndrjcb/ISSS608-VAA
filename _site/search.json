@@ -189,6 +189,118 @@
     "text": "3.7.4 Plot the subgraph\n\n\nCode\nggraph(graph_memberof,\n       layout = \"fr\") + \n  geom_edge_link(alpha = 0.5,\n                 colour = \"gray\") +\n  geom_node_point(aes(color = `Node Type`),\n                  size = 1) + \n  geom_node_text(aes(label = name),\n                 repel = TRUE,\n                 size = 2.5) +\n  theme_void()\n\n\nWarning: ggrepel: 790 unlabeled data points (too many overlaps). Consider\nincreasing max.overlaps"
   },
   {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09C/HandsOnEx09C.html",
+    "href": "HandsOn_Exercises/HandsOn_Ex09C/HandsOnEx09C.html",
+    "title": "Hands On Exercise 9C",
+    "section": "",
+    "text": "Note: Please toggle between ‘Show’ and ‘Hide’ above based on your preference for viewing the R codes."
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09C/HandsOnEx09C.html#plotting-a-simple-parallel-coordinates",
+    "href": "HandsOn_Exercises/HandsOn_Ex09C/HandsOnEx09C.html#plotting-a-simple-parallel-coordinates",
+    "title": "Hands On Exercise 9C",
+    "section": "9.4.1 Plotting a simple parallel coordinates",
+    "text": "9.4.1 Plotting a simple parallel coordinates\nCode below shows a typical syntax used to plot a basic static parallel coordinates plot by using ggparcoord().\n\n\nCode\nggparcoord(data = wh, \n           columns = c(7:12))\n\n\n\n\n\n\n\n\n\nNotice that only two argument namely data and columns is used. Data argument is used to map the data object (i.e. wh) and columns is used to select the columns for preparing the parallel coordinates plot."
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09C/HandsOnEx09C.html#plotting-a-parallel-coordinates-with-boxplot",
+    "href": "HandsOn_Exercises/HandsOn_Ex09C/HandsOnEx09C.html#plotting-a-parallel-coordinates-with-boxplot",
+    "title": "Hands On Exercise 9C",
+    "section": "9.4.2 Plotting a parallel coordinates with boxplot",
+    "text": "9.4.2 Plotting a parallel coordinates with boxplot\nThe basic parallel coordinates failed to reveal any meaning understanding of the World Happiness measures. In this section, you will learn how to makeover the plot by using a collection of arguments provided by ggparcoord().\n\n\nCode\nggparcoord(data = wh, \n           columns = c(7:12), \n           groupColumn = 2,\n           scale = \"uniminmax\",\n           alphaLines = 0.2,\n           boxplot = TRUE, \n           title = \"Parallel Coordinates Plot of World Happines Variables\")\n\n\n\n\n\n\n\n\n\nThings to learn from the code chunk above.\n\ngroupColumn argument is used to group the observations (i.e. parallel lines) by using a single variable (i.e. Region) and colour the parallel coordinates lines by region name.\nscale argument is used to scale the variables in the parallel coordinate plot by using uniminmax method. The method univariately scale each variable so the minimum of the variable is zero and the maximum is one.\nalphaLines argument is used to reduce the intensity of the line colour to 0.2. The permissible value range is between 0 to 1.\nboxplot argument is used to turn on the boxplot by using logical TRUE. The default is FALSE.\ntitle argument is used to provide the parallel coordinates plot a title."
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09C/HandsOnEx09C.html#parallel-coordinates-with-facet",
+    "href": "HandsOn_Exercises/HandsOn_Ex09C/HandsOnEx09C.html#parallel-coordinates-with-facet",
+    "title": "Hands On Exercise 9C",
+    "section": "9.4.3 Parallel coordinates with facet",
+    "text": "9.4.3 Parallel coordinates with facet\nSince ggparcoord() is developed by extending ggplot2 package, we can combination use some of the ggplot2 function when plotting a parallel coordinates plot. In the code below, facet_wrap() of ggplot2 is used to plot 10 small multiple parallel coordinates plots. Each plot represent one geographical region such as East Asia.\n\n\nCode\nggparcoord(data = wh, \n           columns = c(7:12), \n           groupColumn = 2,\n           scale = \"uniminmax\",\n           alphaLines = 0.2,\n           boxplot = TRUE, \n           title = \"Multiple Parallel Coordinates Plots of World Happines Variables by Region\") +\n  facet_wrap(~ Region)\n\n\n\n\n\n\n\n\n\nOne of the aesthetic defect of the current design is that some of the variable names overlap on x-axis."
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09C/HandsOnEx09C.html#rotating-x-axis-text-label",
+    "href": "HandsOn_Exercises/HandsOn_Ex09C/HandsOnEx09C.html#rotating-x-axis-text-label",
+    "title": "Hands On Exercise 9C",
+    "section": "9.4.4 Rotating x-axis text label",
+    "text": "9.4.4 Rotating x-axis text label\nTo make the x-axis text label easy to read, let us rotate the labels by 30 degrees. We can rotate axis text labels using theme() function in ggplot2 as shown in the code chunk below\n\n\nCode\nggparcoord(data = wh, \n           columns = c(7:12), \n           groupColumn = 2,\n           scale = \"uniminmax\",\n           alphaLines = 0.2,\n           boxplot = TRUE, \n           title = \"Multiple Parallel Coordinates Plots of World Happines Variables by Region\") +\n  facet_wrap(~ Region) + \n  theme(axis.text.x = element_text(angle = 30))\n\n\n\n\n\n\n\n\n\nThing to learn from the code chunk above:\n\nTo rotate x-axis text labels, we use axis.text.x as argument to theme() function. And we specify element_text(angle = 30) to rotate the x-axis text by an angle 30 degree."
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09C/HandsOnEx09C.html#adjusting-the-rotated-x-axis-text-label",
+    "href": "HandsOn_Exercises/HandsOn_Ex09C/HandsOnEx09C.html#adjusting-the-rotated-x-axis-text-label",
+    "title": "Hands On Exercise 9C",
+    "section": "9.4.5 Adjusting the rotated x-axis text label",
+    "text": "9.4.5 Adjusting the rotated x-axis text label\nRotating x-axis text labels to 30 degrees makes the label overlap with the plot and we can avoid this by adjusting the text location using hjust argument to theme’s text element with element_text(). We use axis.text.x as we want to change the look of x-axis text.\n\n\nCode\nggparcoord(data = wh, \n           columns = c(7:12), \n           groupColumn = 2,\n           scale = \"uniminmax\",\n           alphaLines = 0.2,\n           boxplot = TRUE, \n           title = \"Multiple Parallel Coordinates Plots of World Happines Variables by Region\") +\n  facet_wrap(~ Region) + \n  theme(axis.text.x = element_text(angle = 30, hjust=1))"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09C/HandsOnEx09C.html#the-basic-plot",
+    "href": "HandsOn_Exercises/HandsOn_Ex09C/HandsOnEx09C.html#the-basic-plot",
+    "title": "Hands On Exercise 9C",
+    "section": "9.5.1 The basic plot",
+    "text": "9.5.1 The basic plot\nThe code chunk below plot an interactive parallel coordinates plot by using parallelPlot().\n\n\nCode\nwh &lt;- wh %&gt;%\n  select(\"Happiness score\", c(7:12))\nparallelPlot(wh,\n             width = 320,\n             height = 250)\n\n\n\n\n\n\nNotice that some of the axis labels are too long. You will learn how to overcome this problem in the next step."
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09C/HandsOnEx09C.html#rotate-axis-label",
+    "href": "HandsOn_Exercises/HandsOn_Ex09C/HandsOnEx09C.html#rotate-axis-label",
+    "title": "Hands On Exercise 9C",
+    "section": "9.5.2 Rotate axis label",
+    "text": "9.5.2 Rotate axis label\nIn the code chunk below, rotateTitle argument is used to avoid overlapping axis labels.\n\n\nCode\nparallelPlot(wh,\n             rotateTitle = TRUE)\n\n\n\n\n\n\nOne of the useful interactive feature of parallelPlot is we can click on a variable of interest, for example Happiness score, the monotonous blue colour (default) will change a blues with different intensity colour scheme will be used."
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09C/HandsOnEx09C.html#changing-the-colour-scheme",
+    "href": "HandsOn_Exercises/HandsOn_Ex09C/HandsOnEx09C.html#changing-the-colour-scheme",
+    "title": "Hands On Exercise 9C",
+    "section": "9.5.3 Changing the colour scheme",
+    "text": "9.5.3 Changing the colour scheme\nWe can change the default blue colour scheme by using continousCS argument as shown in the code chunl below.\n\n\nCode\nparallelPlot(wh,\n             continuousCS = \"YlOrRd\",\n             rotateTitle = TRUE)"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09C/HandsOnEx09C.html#parallel-coordinates-plot-with-histogram",
+    "href": "HandsOn_Exercises/HandsOn_Ex09C/HandsOnEx09C.html#parallel-coordinates-plot-with-histogram",
+    "title": "Hands On Exercise 9C",
+    "section": "9.5.4 Parallel coordinates plot with histogram",
+    "text": "9.5.4 Parallel coordinates plot with histogram\nIn the code chunk below, histoVisibility argument is used to plot histogram along the axis of each variables.\n\n\nCode\nhistoVisibility &lt;- rep(TRUE, ncol(wh))\nparallelPlot(wh,\n             rotateTitle = TRUE,\n             histoVisibility = histoVisibility)"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09A/HandsOnEx09A.html",
+    "href": "HandsOn_Exercises/HandsOn_Ex09A/HandsOnEx09A.html",
+    "title": "Hands On Exercise 9A",
+    "section": "",
+    "text": "Note: Please toggle between ‘Show’ and ‘Hide’ above based on your preference for viewing the R codes."
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09A/HandsOnEx09A.html#data",
+    "href": "HandsOn_Exercises/HandsOn_Ex09A/HandsOnEx09A.html#data",
+    "title": "Hands On Exercise 9A",
+    "section": "9.3.1 Data",
+    "text": "9.3.1 Data\nFor the purpose of this hands-on exercise, the Singapore Residents by Planning AreaSubzone, Age Group, Sex and Type of Dwelling, June 2000-2018 data will be used. The data set has been downloaded and included in the data sub-folder of the hands-on exercise folder. It is called respopagsex2000to2018_tidy.csv and is in csv file format."
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09A/HandsOnEx09A.html#importing-data",
+    "href": "HandsOn_Exercises/HandsOn_Ex09A/HandsOnEx09A.html#importing-data",
+    "title": "Hands On Exercise 9A",
+    "section": "9.3.2 Importing Data",
+    "text": "9.3.2 Importing Data\nTo important respopagsex2000to2018_tidy.csv into R, read_csv() function of readr package will be used.\n\n\nCode\npop_data &lt;- read_csv(\"data/respopagsex2000to2018_tidy.csv\")"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09A/HandsOnEx09A.html#data-preparation",
+    "href": "HandsOn_Exercises/HandsOn_Ex09A/HandsOnEx09A.html#data-preparation",
+    "title": "Hands On Exercise 9A",
+    "section": "9.3.3 Data Preparation",
+    "text": "9.3.3 Data Preparation\nNext, use the mutate() function of dplyr package to derive three new measures, namely: young, active, and old.\n\n\nCode\n#Deriving the young, economy active and old measures\nagpop_mutated &lt;- pop_data %&gt;%\n  mutate(`Year` = as.character(Year))%&gt;%\n  spread(AG, Population) %&gt;%\n  mutate(YOUNG = rowSums(.[4:8]))%&gt;%\n  mutate(ACTIVE = rowSums(.[9:16]))  %&gt;%\n  mutate(OLD = rowSums(.[17:21])) %&gt;%\n  mutate(TOTAL = rowSums(.[22:24])) %&gt;%\n  filter(Year == 2018)%&gt;%\n  filter(TOTAL &gt; 0)"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09A/HandsOnEx09A.html#plotting-a-static-ternary-diagram",
+    "href": "HandsOn_Exercises/HandsOn_Ex09A/HandsOnEx09A.html#plotting-a-static-ternary-diagram",
+    "title": "Hands On Exercise 9A",
+    "section": "9.4.1 Plotting a static ternary diagram",
+    "text": "9.4.1 Plotting a static ternary diagram\nUse ggtern() function of ggtern package to create a simple ternary plot.\n\n\nCode\n#Building the static ternary plot\nggtern(data=agpop_mutated,aes(x=YOUNG,y=ACTIVE, z=OLD)) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n\n\nCode\n#Building the static ternary plot\nggtern(data=agpop_mutated, aes(x=YOUNG,y=ACTIVE, z=OLD)) +\n  geom_point() +\n  labs(title=\"Population structure, 2015\") +\n  theme_rgbw()"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09A/HandsOnEx09A.html#plotting-an-interative-ternary-diagram",
+    "href": "HandsOn_Exercises/HandsOn_Ex09A/HandsOnEx09A.html#plotting-an-interative-ternary-diagram",
+    "title": "Hands On Exercise 9A",
+    "section": "9.4.2 Plotting an interative ternary diagram",
+    "text": "9.4.2 Plotting an interative ternary diagram\nThe code below create an interactive ternary plot using plot_ly() function of Plotly R.\n\n\nCode\n# reusable function for creating annotation object\nlabel &lt;- function(txt) {\n  list(\n    text = txt, \n    x = 0.1, y = 1,\n    ax = 0, ay = 0,\n    xref = \"paper\", yref = \"paper\", \n    align = \"center\",\n    font = list(family = \"serif\", size = 15, color = \"white\"),\n    bgcolor = \"#b3b3b3\", bordercolor = \"black\", borderwidth = 2\n  )\n}\n\n# reusable function for axis formatting\naxis &lt;- function(txt) {\n  list(\n    title = txt, tickformat = \".0%\", tickfont = list(size = 10)\n  )\n}\n\nternaryAxes &lt;- list(\n  aaxis = axis(\"Young\"), \n  baxis = axis(\"Active\"), \n  caxis = axis(\"Old\")\n)\n\n# Initiating a plotly visualization \nplot_ly(\n  agpop_mutated, \n  a = ~YOUNG, \n  b = ~ACTIVE, \n  c = ~OLD, \n  color = I(\"black\"), \n  type = \"scatterternary\"\n) %&gt;%\n  layout(\n    annotations = label(\"Ternary Markers\"), \n    ternary = ternaryAxes\n  )"
+  },
+  {
     "objectID": "HandsOn_Exercises/HandsOn_Ex08C/data/geospatial/MPSZ-2019.html",
     "href": "HandsOn_Exercises/HandsOn_Ex08C/data/geospatial/MPSZ-2019.html",
     "title": "",
@@ -1174,6 +1286,174 @@
     "title": "Hands On Exercise 8C",
     "section": "8.5.1 Percentile Map",
     "text": "8.5.1 Percentile Map\nThe percentile map is a special type of quantile map with six specific categories: 0-1%,1-10%, 10-50%,50-90%,90-99%, and 99-100%. The corresponding breakpoints can be derived by means of the base R quantile command, passing an explicit vector of cumulative probabilities as c(0,.01,.1,.5,.9,.99,1). Note that the begin and endpoint need to be included.\n\n8.5.1.1 Data Preparation\nStep 1: Exclude records with NA by using the code chunk below.\n\n\nCode\nNGA_wp &lt;- NGA_wp %&gt;%   \n  drop_na()\n\n\nStep 2: Creating customised classification and extracting values\n\n\nCode\npercent &lt;- c(0,.01,.1,.5,.9,.99,1)\nvar &lt;- NGA_wp[\"pct_functional\"] %&gt;%\n  st_set_geometry(NULL)\nquantile(var[,1], percent)\n\n\n       0%        1%       10%       50%       90%       99%      100% \n0.0000000 0.0000000 0.2169811 0.4791667 0.8611111 1.0000000 1.0000000 \n\n\nWhen variables are extracted from an sf data.frame, the geometry is extracted as well. For mapping and spatial manipulation, this is the expected behavior, but many base R functions cannot deal with the geometry. Specifically, the quantile() gives an error. As a result st_set_geomtry(NULL) is used to drop geomtry field.\n\n\n8.5.1.2 Why writing functions?\nWriting a function has three big advantages over using copy-and-paste:\n\nYou can give a function an evocative name that makes your code easier to understand.\nAs requirements change, you only need to update code in one place, instead of many.\nYou eliminate the chance of making incidental mistakes when you copy and paste (i.e. updating a variable name in one place, but not in another).\n\nSource: Chapter 19: Functions of R for Data Science.\n\n\n8.5.1.3 Creating the get.var function\nFirstly, we will write an R function as shown below to extract a variable (i.e. wp_nonfunctional) as a vector out of an sf data.frame.\n\narguments:\n\nvname: variable name (as character, in quotes)\ndf: name of sf data frame\n\nreturns:\n\nv: vector with values (without a column name)\n\n\n\n\nCode\nget.var &lt;- function(vname,df) {\n  v &lt;- df[vname] %&gt;% \n    st_set_geometry(NULL)\n  v &lt;- unname(v[,1])\n  return(v)\n}\n\n\n\n\n8.5.1.4 A percentile mapping function\nNext, we will write a percentile mapping function by using the code chunk below.\n\n\nCode\npercentmap &lt;- function(vnam, df, legtitle=NA, mtitle=\"Percentile Map\"){\n  percent &lt;- c(0,.01,.1,.5,.9,.99,1)\n  var &lt;- get.var(vnam, df)\n  bperc &lt;- quantile(var, percent)\n  tm_shape(df) +\n  tm_polygons() +\n  tm_shape(df) +\n     tm_polygons(vnam,\n             title=legtitle,\n             breaks=bperc,\n             palette=\"Blues\",\n          labels=c(\"&lt; 1%\", \"1% - 10%\", \"10% - 50%\", \"50% - 90%\", \"90% - 99%\", \"&gt; 99%\"))  +\n  tm_borders() +\n  tm_layout(main.title = mtitle, \n            title.position = c(\"right\",\"bottom\"))\n}\n\n\n\n\n8.5.1.5 Test drive the percentile mapping function\nTo run the function, type the code chunk as shown below.\n\n\nCode\npercentmap(\"total_wp\", NGA_wp)\n\n\n\n\n\n\n\n\n\nNote that this is just a bare bones implementation. Additional arguments such as the title, legend positioning just to name a few of them, could be passed to customise various features of the map."
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09B/HandsOnEx09B.html",
+    "href": "HandsOn_Exercises/HandsOn_Ex09B/HandsOnEx09B.html",
+    "title": "Hands On Exercise 9B",
+    "section": "",
+    "text": "Note: Please toggle between ‘Show’ and ‘Hide’ above based on your preference for viewing the R codes."
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09B/HandsOnEx09B.html#importing-data",
+    "href": "HandsOn_Exercises/HandsOn_Ex09B/HandsOnEx09B.html#importing-data",
+    "title": "Hands On Exercise 9B",
+    "section": "9.3.1 Importing Data",
+    "text": "9.3.1 Importing Data\nIn the code chunk below, read_csv() of readr is used to import WHData-2018.csv into R and parsed it into tibble R data frame format.\n\n\nCode\nwh &lt;- read_csv(\"data/WHData-2018.csv\")\n\n\nThe output tibbled data frame is called wh."
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09B/HandsOnEx09B.html#data-preparation",
+    "href": "HandsOn_Exercises/HandsOn_Ex09B/HandsOnEx09B.html#data-preparation",
+    "title": "Hands On Exercise 9B",
+    "section": "9.3.2 Data Preparation",
+    "text": "9.3.2 Data Preparation\nNext, we need to change the rows by country name instead of row number by using the code below.\n\n\nCode\nrow.names(wh) &lt;- wh$Country\n\n\nThe data was loaded into a data frame, but it has to be a data matrix to make your heatmap. The code chunk will be used to transform wh data frame into a data matrix.\n\n\nCode\nwh1 &lt;- dplyr::select(wh, c(3, 7:12)) \nwh_matrix &lt;- data.matrix(wh)\n\n\nNotice that wh_matrix is in R matrix format."
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09B/HandsOnEx09B.html#heatmap-of-r-stats",
+    "href": "HandsOn_Exercises/HandsOn_Ex09B/HandsOnEx09B.html#heatmap-of-r-stats",
+    "title": "Hands On Exercise 9B",
+    "section": "9.4.1 heatmap() of R Stats",
+    "text": "9.4.1 heatmap() of R Stats\nIn this sub-section, we will plot a heatmap by using heatmap() of Base Stats. The code chunk is given below.\n\n\nCode\nwh_heatmap &lt;- heatmap(wh_matrix, Rowv=NA, Colv=NA)\n\n\n\n\n\n\n\n\n\nNote:\n\nBy default, heatmap() plots a cluster heatmap. The arguments Rowv=NA and Colv=NA are used to switch off the option of plotting the row and column dendrograms.\n\nTo plot a cluster heatmap, we just have to use the default as shown in the code chunk below.\n\n\nCode\nwh_heatmap &lt;- heatmap(wh_matrix)\n\n\n\n\n\n\n\n\n\nNote:\n\nThe order of both rows and columns is different compare to the native wh_matrix. This is because heatmap do a reordering using clusterisation: it calculates the distance between each pair of rows and columns and try to order them by similarity. Moreover, the corresponding dendrogram are provided beside the heatmap.\n\nHere, red cells denotes small values, and red small ones. This heatmap is not really informative. Indeed, the Happiness Score variable have relatively higher values, what makes that the other variables with small values all look the same. Thus, we need to normalize this matrix. This is done using the scale argument. It can be applied to rows or to columns following your needs.\nThe code chunk below normalises the matrix column-wise.\n\n\nCode\nwh_heatmap &lt;- heatmap(wh_matrix,\n                      scale=\"column\",\n                      cexRow = 0.6, \n                      cexCol = 0.8,\n                      margins = c(10, 4))\n\n\n\n\n\n\n\n\n\nNotice that the values are scaled now. Also note that margins argument is used to ensure that the entire x-axis labels are displayed completely and, cexRow and cexCol arguments are used to define the font size used for y-axis and x-axis labels respectively."
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09B/HandsOnEx09B.html#working-with-heatmaply",
+    "href": "HandsOn_Exercises/HandsOn_Ex09B/HandsOnEx09B.html#working-with-heatmaply",
+    "title": "Hands On Exercise 9B",
+    "section": "9.5.1 Working with heatmaply",
+    "text": "9.5.1 Working with heatmaply\n\n\nCode\nheatmaply(mtcars)\n\n\n\n\n\n\nThe code chunk below shows the basic syntax needed to create n interactive heatmap by using heatmaply package.\n\n\nCode\nheatmaply(wh_matrix[, -c(1, 2, 4, 5)])\n\n\n\n\n\n\nNote that:\n\nDifferent from heatmap(), for heatmaply() the default horizontal dendrogram is placed on the left hand side of the heatmap.\nThe text label of each raw, on the other hand, is placed on the right hand side of the heat map.\nWhen the x-axis marker labels are too long, they will be rotated by 135 degree from the north."
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09B/HandsOnEx09B.html#data-transformation",
+    "href": "HandsOn_Exercises/HandsOn_Ex09B/HandsOnEx09B.html#data-transformation",
+    "title": "Hands On Exercise 9B",
+    "section": "9.5.2 Data transformation",
+    "text": "9.5.2 Data transformation\nWhen analysing multivariate data set, it is very common that the variables in the data sets includes values that reflect different types of measurement. In general, these variables’ values have their own range. In order to ensure that all the variables have comparable values, data transformation are commonly used before clustering.\nThree main data transformation methods are supported by heatmaply(), namely: scale, normalise and percentilse.\n\n9.5.2.1 Scaling method\n\nWhen all variables are came from or assumed to come from some normal distribution, then scaling (i.e.: subtract the mean and divide by the standard deviation) would bring them all close to the standard normal distribution.\nIn such a case, each value would reflect the distance from the mean in units of standard deviation.\nThe scale argument in heatmaply() supports column and row scaling.\n\nThe code chunk below is used to scale variable values columewise.\nheatmaply(wh_matrix[, -c(1, 2, 4, 5)],           scale = \"column\")\n\n\n9.5.2.2 Normalising method\n\nWhen variables in the data comes from possibly different (and non-normal) distributions, the normalize function can be used to bring data to the 0 to 1 scale by subtracting the minimum and dividing by the maximum of all observations.\nThis preserves the shape of each variable’s distribution while making them easily comparable on the same “scale”.\n\nDifferent from Scaling, the normalise method is performed on the input data set i.e. wh_matrix as shown in the code chunk below.\n\n\nCode\nheatmaply(normalize(wh_matrix[, -c(1, 2, 4, 5)]))\n\n\n\n\n\n\n\n\n9.5.2.3 Percentising method\n\nThis is similar to ranking the variables, but instead of keeping the rank values, divide them by the maximal rank.\nThis is done by using the ecdf of the variables on their own values, bringing each value to its empirical percentile.\nThe benefit of the percentize function is that each value has a relatively clear interpretation, it is the percent of observations that got that value or below it.\n\nSimilar to Normalize method, the Percentize method is also performed on the input data set i.e. wh_matrix as shown in the code chunk below.\n\n\nCode\nheatmaply(percentize(wh_matrix[, -c(1, 2, 4, 5)]))"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09B/HandsOnEx09B.html#clustering-algorithm",
+    "href": "HandsOn_Exercises/HandsOn_Ex09B/HandsOnEx09B.html#clustering-algorithm",
+    "title": "Hands On Exercise 9B",
+    "section": "9.5.3 Clustering algorithm",
+    "text": "9.5.3 Clustering algorithm\nheatmaply supports a variety of hierarchical clustering algorithm. The main arguments provided are:\n\ndistfun: function used to compute the distance (dissimilarity) between both rows and columns. Defaults to dist. The options “pearson”, “spearman” and “kendall” can be used to use correlation-based clustering, which uses as.dist(1 - cor(t(x))) as the distance metric (using the specified correlation method).\nhclustfun: function used to compute the hierarchical clustering when Rowv or Colv are not dendrograms. Defaults to hclust.\ndist_method default is NULL, which results in “euclidean” to be used. It can accept alternative character strings indicating the method to be passed to distfun. By default distfun is “dist”” hence this can be one of “euclidean”, “maximum”, “manhattan”, “canberra”, “binary” or “minkowski”.\nhclust_method default is NULL, which results in “complete” method to be used. It can accept alternative character strings indicating the method to be passed to hclustfun. By default hclustfun is hclust hence this can be one of “ward.D”, “ward.D2”, “single”, “complete”, “average” (= UPGMA), “mcquitty” (= WPGMA), “median” (= WPGMC) or “centroid” (= UPGMC).\n\nIn general, a clustering model can be calibrated either manually or statistically."
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09B/HandsOnEx09B.html#manual-approach",
+    "href": "HandsOn_Exercises/HandsOn_Ex09B/HandsOnEx09B.html#manual-approach",
+    "title": "Hands On Exercise 9B",
+    "section": "9.5.4 Manual approach",
+    "text": "9.5.4 Manual approach\nIn the code chunk below, the heatmap is plotted by using hierachical clustering algorithm with “Euclidean distance” and “ward.D” method.\n\n\nCode\nheatmaply(normalize(wh_matrix[, -c(1, 2, 4, 5)]),\n          dist_method = \"euclidean\",\n          hclust_method = \"ward.D\")"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09B/HandsOnEx09B.html#statistical-approach",
+    "href": "HandsOn_Exercises/HandsOn_Ex09B/HandsOnEx09B.html#statistical-approach",
+    "title": "Hands On Exercise 9B",
+    "section": "9.5.5 Statistical approach",
+    "text": "9.5.5 Statistical approach\nIn order to determine the best clustering method and number of cluster the dend_expend() and find_k() functions of dendextend package will be used.\nFirst, the dend_expend() will be used to determine the recommended clustering method to be used.\n\n\nCode\nwh_d &lt;- dist(normalize(wh_matrix[, -c(1, 2, 4, 5)]), method = \"euclidean\")\ndend_expend(wh_d)[[3]]\n\n\n  dist_methods hclust_methods     optim\n1      unknown         ward.D 0.6137851\n2      unknown        ward.D2 0.6289186\n3      unknown         single 0.4774362\n4      unknown       complete 0.6434009\n5      unknown        average 0.6701688\n6      unknown       mcquitty 0.5020102\n7      unknown         median 0.5901833\n8      unknown       centroid 0.6338734\n\n\nThe output table shows that “average” method should be used because it gave the high optimum value. Next, find_k() is used to determine the optimal number of cluster.\n\n\nCode\nwh_clust &lt;- hclust(wh_d, method = \"average\")\nnum_k &lt;- find_k(wh_clust)\nplot(num_k)\n\n\n\n\n\n\n\n\n\nWith reference to the statistical analysis results, we can prepare the code chunk as shown below.\n\n\nCode\nheatmaply(normalize(wh_matrix[, -c(1, 2, 4, 5)]),\n          dist_method = \"euclidean\",\n          hclust_method = \"average\",\n          k_row = 3)"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09B/HandsOnEx09B.html#seriation",
+    "href": "HandsOn_Exercises/HandsOn_Ex09B/HandsOnEx09B.html#seriation",
+    "title": "Hands On Exercise 9B",
+    "section": "9.5.6 Seriation",
+    "text": "9.5.6 Seriation\nOne of the problems with hierarchical clustering is that it doesn’t actually place the rows in a definite order, it merely constrains the space of possible orderings. Take three items A, B and C. If you ignore reflections, there are three possible orderings: ABC, ACB, BAC. If clustering them gives you ((A+B)+C) as a tree, you know that C can’t end up between A and B, but it doesn’t tell you which way to flip the A+B cluster. It doesn’t tell you if the ABC ordering will lead to a clearer-looking heatmap than the BAC ordering.\nheatmaply uses the seriation package to find an optimal ordering of rows and columns. Optimal means to optimize the Hamiltonian path length that is restricted by the dendrogram structure. This, in other words, means to rotate the branches so that the sum of distances between each adjacent leaf (label) will be minimized. This is related to a restricted version of the travelling salesman problem.\nHere we meet our first seriation algorithm: Optimal Leaf Ordering (OLO). This algorithm starts with the output of an agglomerative clustering algorithm and produces a unique ordering, one that flips the various branches of the dendrogram around so as to minimize the sum of dissimilarities between adjacent leaves. Here is the result of applying Optimal Leaf Ordering to the same clustering result as the heatmap above.\n\n\nCode\nheatmaply(normalize(wh_matrix[, -c(1, 2, 4, 5)]),                                 seriate = \"OLO\")\n\n\n\n\n\n\nThe default options is “OLO” (Optimal leaf ordering) which optimizes the above criterion (in O(n^4)). Another option is “GW” (Gruvaeus and Wainer) which aims for the same goal but uses a potentially faster heuristic.\n\n\nCode\nheatmaply(normalize(wh_matrix[, -c(1, 2, 4, 5)]),\n          seriate = \"GW\")\n\n\n\n\n\n\nThe option “mean” gives the output we would get by default from heatmap functions in other packages such as gplots::heatmap.2.\n\n\nCode\nheatmaply(normalize(wh_matrix[, -c(1, 2, 4, 5)]),\n          seriate = \"mean\")"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09B/HandsOnEx09B.html#working-with-colour-palettes",
+    "href": "HandsOn_Exercises/HandsOn_Ex09B/HandsOnEx09B.html#working-with-colour-palettes",
+    "title": "Hands On Exercise 9B",
+    "section": "9.5.7 Working with colour palettes",
+    "text": "9.5.7 Working with colour palettes\nThe default colour palette uses by heatmaply is viridis. heatmaply users, however, can use other colour palettes in order to improve the aestheticness and visual friendliness of the heatmap.\nIn the code chunk below, the Blues colour palette of rColorBrewer is used\n\n\nCode\nheatmaply(normalize(wh_matrix[, -c(1, 2, 4, 5)]),\n          seriate = \"none\",\n          colors = Blues)"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09B/HandsOnEx09B.html#the-finishing-touch",
+    "href": "HandsOn_Exercises/HandsOn_Ex09B/HandsOnEx09B.html#the-finishing-touch",
+    "title": "Hands On Exercise 9B",
+    "section": "9.5.8 The finishing touch",
+    "text": "9.5.8 The finishing touch\nBeside providing a wide collection of arguments for meeting the statistical analysis needs, heatmaply also provides many plotting features to ensure cartographic quality heatmap can be produced.\nIn the code chunk below the following arguments are used:\n\nk_row is used to produce 5 groups.\nmargins is used to change the top margin to 60 and row margin to 200.\nfontsizw_row and fontsize_col are used to change the font size for row and column labels to 4.\nmain is used to write the main title of the plot.\nxlab and ylab are used to write the x-axis and y-axis labels respectively.\n\n\n\nCode\nheatmaply(normalize(wh_matrix[, -c(1, 2, 4, 5)]),\n          Colv=NA,\n          seriate = \"none\",\n          colors = Blues,\n          k_row = 5,\n          margins = c(NA,200,60,NA),\n          fontsize_row = 4,\n          fontsize_col = 5,\n          main=\"World Happiness Score and Variables by Country, 2018 \\nDataTransformation using Normalise Method\",\n          xlab = \"World Happiness Indicators\",\n          ylab = \"World Countries\"\n          )"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09D/HandsOnEx09D.html",
+    "href": "HandsOn_Exercises/HandsOn_Ex09D/HandsOnEx09D.html",
+    "title": "Hands On Exercise 9D",
+    "section": "",
+    "text": "Note: Please toggle between ‘Show’ and ‘Hide’ above based on your preference for viewing the R codes."
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09D/HandsOnEx09D.html#building-a-basic-correlation-matrix",
+    "href": "HandsOn_Exercises/HandsOn_Ex09D/HandsOnEx09D.html#building-a-basic-correlation-matrix",
+    "title": "Hands On Exercise 9D",
+    "section": "9.4.1 Building a basic correlation matrix",
+    "text": "9.4.1 Building a basic correlation matrix\nFigure below shows the scatter plot matrix of Wine Quality Data. It is a 11 by 11 matrix.\n\n\nCode\npairs(wine[,1:11])\n\n\n\n\n\n\n\n\n\nThe required input of pairs() can be a matrix or data frame. The code chunk used to create the scatterplot matrix is relatively simple. It uses the default pairs function. Columns 2 to 12 of wine dataframe is used to build the scatterplot matrix. The variables are: fixed acidity, volatile acidity, citric acid, residual sugar, chlorides, free sulfur dioxide, total sulfur dioxide, density, pH, sulphates and alcohol.\n\n\nCode\npairs(wine[,2:12])"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09D/HandsOnEx09D.html#drawing-the-lower-corner",
+    "href": "HandsOn_Exercises/HandsOn_Ex09D/HandsOnEx09D.html#drawing-the-lower-corner",
+    "title": "Hands On Exercise 9D",
+    "section": "9.4.2 Drawing the lower corner",
+    "text": "9.4.2 Drawing the lower corner\npairs function of R Graphics provided many customisation arguments. For example, it is a common practice to show either the upper half or lower half of the correlation matrix instead of both. This is because a correlation matrix is symmetric. To show the lower half of the correlation matrix, the upper.panel argument will be used as shown in the code chunk below.\n\n\nCode\npairs(wine[,2:12], upper.panel = NULL)\n\n\n\n\n\n\n\n\n\nSimilarly, you can display the upper half of the correlation matrix by using the code chun below.\n\n\nCode\npairs(wine[,2:12], lower.panel = NULL)"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09D/HandsOnEx09D.html#including-with-correlation-coefficients",
+    "href": "HandsOn_Exercises/HandsOn_Ex09D/HandsOnEx09D.html#including-with-correlation-coefficients",
+    "title": "Hands On Exercise 9D",
+    "section": "9.4.3 Including with correlation coefficients",
+    "text": "9.4.3 Including with correlation coefficients\nTo show the correlation coefficient of each pair of variables instead of a scatter plot, panel.cor function will be used. This will also show higher correlations in a larger font. Don’t worry about the details for now-just type this code into your R session or script. Let’s have more fun way to display the correlation matrix.\n\n\nCode\npanel.cor &lt;- function(x, y, digits=2, prefix=\"\", cex.cor, ...) {\nusr &lt;- par(\"usr\")\non.exit(par(usr))\npar(usr = c(0, 1, 0, 1))\nr &lt;- abs(cor(x, y, use=\"complete.obs\"))\ntxt &lt;- format(c(r, 0.123456789), digits=digits)[1]\ntxt &lt;- paste(prefix, txt, sep=\"\")\nif(missing(cex.cor)) cex.cor &lt;- 0.8/strwidth(txt)\ntext(0.5, 0.5, txt, cex = cex.cor * (1 + r) / 2)\n}\n\npairs(wine[,2:12], \n      upper.panel = panel.cor)"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09D/HandsOnEx09D.html#the-basic-plot",
+    "href": "HandsOn_Exercises/HandsOn_Ex09D/HandsOnEx09D.html#the-basic-plot",
+    "title": "Hands On Exercise 9D",
+    "section": "9.5.1 The basic plot",
+    "text": "9.5.1 The basic plot\nOn of the advantage of using ggcorrmat() over many other methods to visualise a correlation matrix is it’s ability to provide a comprehensive and yet professional statistical report as shown in the figure below.\n\n\nCode\nggstatsplot::ggcorrmat(\n  data = wine, \n  cor.vars = 1:11)\n\n\n\n\n\n\n\n\n\nNotice that some of the axis labels are too long. You will learn how to overcome this problem in the next step.\n\n\nCode\nggstatsplot::ggcorrmat(\n  data = wine, \n  cor.vars = 1:11,\n  ggcorrplot.args = list(outline.color = \"black\", \n                         hc.order = TRUE,\n                         tl.cex = 10),\n  title    = \"Correlogram for wine dataset\",\n  subtitle = \"Four pairs are no significant at p &lt; 0.05\"\n)\n\n\n\n\n\n\n\n\n\nThings to learn from the code chunk above:\n\ncor.vars argument is used to compute the correlation matrix needed to build the corrgram.\nggcorrplot.args argument provide additional (mostly aesthetic) arguments that will be passed to ggcorrplot::ggcorrplot function. The list should avoid any of the following arguments since they are already internally being used: corr, method, p.mat, sig.level, ggtheme, colors, lab, pch, legend.title, digits."
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09D/HandsOnEx09D.html#getting-started-with-corrplot",
+    "href": "HandsOn_Exercises/HandsOn_Ex09D/HandsOnEx09D.html#getting-started-with-corrplot",
+    "title": "Hands On Exercise 9D",
+    "section": "9.7.1 Getting started with corrplot",
+    "text": "9.7.1 Getting started with corrplot\nBefore we can plot a corrgram using corrplot(), we need to compute the correlation matrix of wine data frame. In the code chunk below, cor() of R Stats is used to compute the correlation matrix of wine data frame.\n\n\nCode\nwine.cor &lt;- cor(wine[, 1:11])\n\n\nNext, corrplot() is used to plot the corrgram by using all the default setting as shown in the code chunk below.\n\n\nCode\ncorrplot(wine.cor)\n\n\n\n\n\n\n\n\n\nNotice that the default visual object used to plot the corrgram is circle. The default layout of the corrgram is a symmetric matrix. The default colour scheme is diverging blue-red. Blue colours are used to represent pair variables with positive correlation coefficients and red colours are used to represent pair variables with negative correlation coefficients. The intensity of the colour or also know as saturation is used to represent the strength of the correlation coefficient. Darker colours indicate relatively stronger linear relationship between the paired variables. On the other hand, lighter colours indicates relatively weaker linear relationship."
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09D/HandsOnEx09D.html#working-with-visual-geometrics",
+    "href": "HandsOn_Exercises/HandsOn_Ex09D/HandsOnEx09D.html#working-with-visual-geometrics",
+    "title": "Hands On Exercise 9D",
+    "section": "9.7.2 Working with visual geometrics",
+    "text": "9.7.2 Working with visual geometrics\nIn corrplot package, there are seven visual geometrics (parameter method) can be used to encode the attribute values. They are: circle, square, ellipse, number, shade, color and pie. The default is circle. As shown in the previous section, the default visual geometric of corrplot matrix is circle. However, this default setting can be changed by using the method argument as shown in the code chunk below.\n\n\nCode\ncorrplot(wine.cor, \n         method = \"ellipse\")"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09D/HandsOnEx09D.html#working-with-layout",
+    "href": "HandsOn_Exercises/HandsOn_Ex09D/HandsOnEx09D.html#working-with-layout",
+    "title": "Hands On Exercise 9D",
+    "section": "9.7.3 Working with layout",
+    "text": "9.7.3 Working with layout\ncorrplor() supports three layout types, namely: “full”, “upper” or “lower”. The default is “full” which display full matrix. The default setting can be changed by using the type argument of corrplot().\n\n\nCode\ncorrplot(wine.cor, \n         method = \"ellipse\", \n         type=\"lower\")\n\n\n\n\n\n\n\n\n\nThe default layout of the corrgram can be further customised. For example, arguments diag and tl.col are used to turn off the diagonal cells and to change the axis text label colour to black colour respectively as shown in the code chunk and figure below.\n\n\nCode\ncorrplot.mixed(wine.cor, \n               lower = \"ellipse\", \n               upper = \"number\",\n               tl.pos = \"lt\",\n               diag = \"l\",\n               tl.col = \"black\")\n\n\n\n\n\n\n\n\n\nPlease feel free to experiment with other layout design argument such as tl.pos, tl.cex, tl.offset, cl.pos, cl.cex and cl.offset, just to mention a few of them."
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09D/HandsOnEx09D.html#working-with-mixed-layout",
+    "href": "HandsOn_Exercises/HandsOn_Ex09D/HandsOnEx09D.html#working-with-mixed-layout",
+    "title": "Hands On Exercise 9D",
+    "section": "9.7.4 Working with mixed layout",
+    "text": "9.7.4 Working with mixed layout\nWith corrplot package, it is possible to design corrgram with mixed visual matrix of one half and numerical matrix on the other half. In order to create a coorgram with mixed layout, the corrplot.mixed(), a wrapped function for mixed visualisation style will be used.\nFigure below shows a mixed layout corrgram plotted using wine quality data.\n\n\nCode\ncorrplot.mixed(wine.cor, \n               lower = \"ellipse\", \n               upper = \"number\",\n               tl.pos = \"lt\",\n               diag = \"l\",\n               tl.col = \"black\")\n\n\n\n\n\n\n\n\n\nNotice that argument lower and upper are used to define the visualisation method used. In this case ellipse is used to map the lower half of the corrgram and numerical matrix (i.e. number) is used to map the upper half of the corrgram. The argument tl.pos, on the other, is used to specify the placement of the axis label. Lastly, the diag argument is used to specify the glyph on the principal diagonal of the corrgram."
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09D/HandsOnEx09D.html#combining-corrgram-with-the-significant-test",
+    "href": "HandsOn_Exercises/HandsOn_Ex09D/HandsOnEx09D.html#combining-corrgram-with-the-significant-test",
+    "title": "Hands On Exercise 9D",
+    "section": "9.7.5 Combining corrgram with the significant test",
+    "text": "9.7.5 Combining corrgram with the significant test\nIn statistical analysis, we are also interested to know which pair of variables their correlation coefficients are statistically significant.\nFigure below shows a corrgram combined with the significant test. The corrgram reveals that not all correlation pairs are statistically significant. For example the correlation between total sulfur dioxide and free surfur dioxide is statistically significant at significant level of 0.1 but not the pair between total sulfur dioxide and citric acid.\nWith corrplot package, we can use the cor.mtest() to compute the p-values and confidence interval for each pair of variables.\n\n\nCode\nwine.sig = cor.mtest(wine.cor, conf.level= .95)\n\n\nWe can then use the p.mat argument of corrplot function as shown in the code chunk below.\n\n\nCode\ncorrplot(wine.cor,\n         method = \"number\",\n         type = \"lower\",\n         diag = FALSE,\n         tl.col = \"black\",\n         tl.srt = 45,\n         p.mat = wine.sig$p,\n         sig.level = .05)"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09D/HandsOnEx09D.html#reorder-a-corrgram",
+    "href": "HandsOn_Exercises/HandsOn_Ex09D/HandsOnEx09D.html#reorder-a-corrgram",
+    "title": "Hands On Exercise 9D",
+    "section": "9.7.6 Reorder a corrgram",
+    "text": "9.7.6 Reorder a corrgram\nMatrix reorder is very important for mining the hiden structure and pattern in a corrgram. By default, the order of attributes of a corrgram is sorted according to the correlation matrix (i.e. “original”). The default setting can be over-write by using the order argument of corrplot(). Currently, corrplot package support four sorting methods, they are:\n\n“AOE” is for the angular order of the eigenvectors. See Michael Friendly (2002) for details.\n“FPC” for the first principal component order.\n“hclust” for hierarchical clustering order, and “hclust.method” for the agglomeration method to be used.\n\n“hclust.method” should be one of “ward”, “single”, “complete”, “average”, “mcquitty”, “median” or “centroid”.\n\n“alphabet” for alphabetical order.\n\n“AOE”, “FPC”, “hclust”, “alphabet”. More algorithms can be found in seriation package.\n\n\nCode\ncorrplot.mixed(wine.cor, \n               lower = \"ellipse\", \n               upper = \"number\",\n               tl.pos = \"lt\",\n               diag = \"l\",\n               order=\"AOE\",\n               tl.col = \"black\")"
+  },
+  {
+    "objectID": "HandsOn_Exercises/HandsOn_Ex09D/HandsOnEx09D.html#reordering-a-correlation-matrix-using-hclust",
+    "href": "HandsOn_Exercises/HandsOn_Ex09D/HandsOnEx09D.html#reordering-a-correlation-matrix-using-hclust",
+    "title": "Hands On Exercise 9D",
+    "section": "9.7.7 Reordering a correlation matrix using hclust",
+    "text": "9.7.7 Reordering a correlation matrix using hclust\nIf using hclust, corrplot() can draw rectangles around the corrgram based on the results of hierarchical clustering.\n\n\nCode\ncorrplot(wine.cor, \n         method = \"ellipse\", \n         tl.pos = \"lt\",\n         tl.col = \"black\",\n         order=\"hclust\",\n         hclust.method = \"ward.D\",\n         addrect = 3)"
   },
   {
     "objectID": "InClass_Exercises/InClass_Ex02/InClassEx02.html",
