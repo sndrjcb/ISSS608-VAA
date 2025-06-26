@@ -1,6 +1,3 @@
-# Shiny Dashboard: Statistical Analysis of Oceanus Folk Influence
-
-# This Shiny app shows how the influence of "Oceanus Folk" music spreads using statistical analysis (out-degree centrality & chi-square test)
 
 library(shiny)
 library(tidyverse)
@@ -11,100 +8,87 @@ library(ggraph)
 library(visNetwork)
 
 ui <- fluidPage(
-  titlePanel("Exploratory Data Analysis: Oceanus Folk Knowledge Graph"),
+  titlePanel("Temporal Trend of Oceanus Folk Influence"),
   
   sidebarLayout(
     sidebarPanel(
-      selectInput("genre_select", "Select Genre:",
-                  choices = NULL, multiple = TRUE),
-      
       sliderInput("year_range", "Select Year Range:",
-                  min = 2000, max = 2040, value = c(2020, 2040), sep = "")
+                  min = 2000, max = 2040,
+                  value = c(2010, 2040), sep = "", step = 1),
+      checkboxGroupInput("edge_types", "Select Edge Types:",
+                         choices = c("InspiredBy", "InterpolatesFrom", "InStyleOf"),
+                         selected = c("InspiredBy", "InterpolatesFrom")),
+      checkboxInput("show_trend", "Show Trendline", value = TRUE),
+      actionButton("run_regression", "Run Trend Test")
     ),
     
     mainPanel(
-      tabsetPanel(
-        tabPanel("Bar Charts",
-                 plotOutput("songs_by_year"),
-                 plotOutput("genres_over_time")
-        ),
-        
-        tabPanel("Composition",
-                 plotOutput("node_composition")
-        ),
-        
-        tabPanel("Network Graph",
-                 visNetworkOutput("network_graph", height = "600px")
-        )
-      )
+      plotOutput("influence_trend"),
+      verbatimTextOutput("trend_summary")
     )
   )
 )
+
 server <- function(input, output, session) {
+  library(tidyverse)
+  library(jsonlite)
   
-  # Dynamic filtering based on genre and year
-  filtered_nodes <- reactive({
-    req(nodes)
-    nodes %>%
-      filter(is.na(genre) | genre %in% input$genre_selector) %>%
-      filter(is.na(release_date) | between(as.numeric(release_date), input$year_range[1], input$year_range[2]))
-  })
+  # Load data
+  graph <- fromJSON("data/MC1_graph.json")
+  nodes <- as_tibble(graph$nodes)
+  edges <- as_tibble(graph$links)
   
-  filtered_edges <- reactive({
-    req(edges)
+  # Clean and prepare
+  nodes <- janitor::clean_names(nodes)
+  edges <- janitor::clean_names(edges)
+  
+  # Oceanus Folk songs
+  of_songs <- nodes %>%
+    filter(node_type == "Song", genre == "Oceanus Folk", !is.na(release_date)) %>%
+    mutate(release_year = floor(as.numeric(release_date)))
+  
+  of_ids <- of_songs$id
+  
+  # Filter influence edges
+  influence_data <- reactive({
     edges %>%
-      filter(source %in% filtered_nodes()$id & target %in% filtered_nodes()$id)
+      filter(edge_type %in% input$edge_types, source %in% of_ids) %>%
+      left_join(of_songs %>% select(id, release_year), by = c("source" = "id")) %>%
+      filter(!is.na(release_year)) %>%
+      count(release_year, name = "count") %>%
+      filter(release_year >= input$year_range[1], release_year <= input$year_range[2])
   })
   
-  # Oceanus Folk Songs by Year
-  output$song_release_plot <- renderPlot({
-    oceanus_songs <- nodes %>%
-      filter(genre == "Oceanus Folk", !is.na(release_date)) %>%
-      mutate(year = as.integer(release_date)) %>%
-      count(year)
-    
-    ggplot(oceanus_songs, aes(x = year, y = n)) +
-      geom_col(fill = "#1f78b4") +
-      labs(title = "Oceanus Folk Songs Released by Year", x = "Year", y = "Number of Songs") +
+  # Trend plot
+  output$influence_trend <- renderPlot({
+    df <- influence_data()
+    p <- ggplot(df, aes(x = release_year, y = count)) +
+      geom_line(color = "#2C3E50") +
+      geom_point(color = "#18BC9C") +
+      labs(x = "Year", y = "Number of Influenced Songs", title = "Oceanus Folk Influence Over Time") +
       theme_minimal()
+    
+    if (input$show_trend) {
+      p <- p + geom_smooth(method = "lm", se = FALSE, linetype = "dashed", color = "#E74C3C")
+    }
+    p
   })
   
-  # Genre Distribution Over Time
-  output$genre_dist_plot <- renderPlot({
-    genre_dist <- nodes %>%
-      filter(!is.na(genre), !is.na(release_date)) %>%
-      mutate(year = as.integer(release_date)) %>%
-      count(year, genre)
-    
-    ggplot(genre_dist, aes(x = year, y = n, fill = genre)) +
-      geom_col() +
-      labs(title = "Genre Distribution Over Time", x = "Year", y = "Count") +
-      theme_minimal()
-  })
-  
-  # Node Type Composition Pie Chart
-  output$node_type_pie <- renderPlot({
-    node_type_count <- nodes %>%
-      count(node_type)
-    
-    ggplot(node_type_count, aes(x = "", y = n, fill = node_type)) +
-      geom_col(width = 1) +
-      coord_polar(theta = "y") +
-      theme_void() +
-      labs(title = "Node Type Composition")
-  })
-  
-  # Interactive visNetwork Graph
-  output$eda_network <- renderVisNetwork({
-    req(filtered_nodes(), filtered_edges())
-    
-    visNetwork(filtered_nodes(), filtered_edges()) %>%
-      visNodes(shape = "dot", size = 10) %>%
-      visEdges(arrows = "to") %>%
-      visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE) %>%
-      visLayout(randomSeed = 42)
+  # Linear regression test
+  output$trend_summary <- renderPrint({
+    input$run_regression
+    isolate({
+      df <- influence_data()
+      if (nrow(df) > 1) {
+        model <- lm(count ~ release_year, data = df)
+        summary(model)
+      } else {
+        "Not enough data points to perform regression."
+      }
+    })
   })
 }
 
 
-shinyApp(ui, server)
+
+shinyApp(ui=ui, server=server)
