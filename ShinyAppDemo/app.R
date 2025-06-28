@@ -7,26 +7,53 @@ library(DT)
 library(ggraph)
 library(visNetwork)
 
-ui <- fluidPage(
-  titlePanel("Temporal Trend of Oceanus Folk Influence"),
-  
-  sidebarLayout(
-    sidebarPanel(
-      sliderInput("year_range", "Select Year Range:",
-                  min = 2000, max = 2040,
-                  value = c(2010, 2040), sep = "", step = 1),
-      checkboxGroupInput("edge_types", "Select Edge Types:",
-                         choices = c("InspiredBy", "InterpolatesFrom", "InStyleOf"),
-                         selected = c("InspiredBy", "InterpolatesFrom")),
-      checkboxInput("show_trend", "Show Trendline", value = TRUE),
-      actionButton("run_regression", "Run Trend Test")
-    ),
-    
-    mainPanel(
-      plotOutput("influence_trend"),
-      verbatimTextOutput("trend_summary")
-    )
-  )
+ui <- navbarPage("Oceanus Folk Dashboard",
+                 
+                 tabPanel("Statistical Analysis",
+                          tabsetPanel(
+                            
+                            tabPanel("Temporal Trend of Oceanus Folk Influence",
+                                     sidebarLayout(
+                                       sidebarPanel(
+                                         sliderInput("year_range", "Select Year Range:",
+                                                     min = 2000, max = 2040,
+                                                     value = c(2010, 2040), sep = "", step = 1),
+                                         checkboxGroupInput("edge_types", "Select Edge Types:",
+                                                            choices = c("InspiredBy", "InterpolatesFrom", "InStyleOf"),
+                                                            selected = c("InspiredBy", "InterpolatesFrom")),
+                                         checkboxInput("show_trend", "Show Trendline", value = TRUE),
+                                         actionButton("run_regression", "Run Trend Test")
+                                       ),
+                                       
+                                       mainPanel(
+                                         plotOutput("influence_trend"),
+                                         verbatimTextOutput("trend_summary")
+                                       )
+                                     )
+                            ),
+                            
+                            tabPanel("Centrality Analysis",
+                                     fluidPage(
+                                       h3("Centrality Analysis Placeholder"),
+                                       p("Insert centrality explorer UI elements here.")
+                                     )
+                            ),
+                            
+                            tabPanel("Genre Chi-Square Test",
+                                     fluidPage(
+                                       h3("Chi-Square Test Placeholder"),
+                                       p("Add chi-square comparison UI elements here.")
+                                     )
+                            ),
+                            
+                            tabPanel("Group Differences (ANOVA/Kruskal-Wallis)",
+                                     fluidPage(
+                                       h3("Group Differences Placeholder"),
+                                       p("Add ANOVA or Kruskal-Wallis UI elements here.")
+                                     )
+                            )
+                          )
+                 )
 )
 
 server <- function(input, output, session) {
