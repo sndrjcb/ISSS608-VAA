@@ -31,25 +31,23 @@ ui <- navbarPage("Oceanus Folk Dashboard",
                                        )
                                      )
                             ),
-                            
-                            tabPanel("Centrality Analysis",
-                                     fluidPage(
-                                       h3("Centrality Analysis Placeholder"),
-                                       p("Insert centrality explorer UI elements here.")
-                                     )
-                            ),
-                            
-                            tabPanel("Genre Chi-Square Test",
-                                     fluidPage(
-                                       h3("Chi-Square Test Placeholder"),
-                                       p("Add chi-square comparison UI elements here.")
-                                     )
-                            ),
-                            
-                            tabPanel("Group Differences (ANOVA/Kruskal-Wallis)",
-                                     fluidPage(
-                                       h3("Group Differences Placeholder"),
-                                       p("Add ANOVA or Kruskal-Wallis UI elements here.")
+                          
+                              tabPanel("Group Differences (ANOVA/Kruskal-Wallis)",
+                                     sidebarLayout(
+                                       sidebarPanel(
+                                         selectInput("group_var", "Group By:",
+                                                     choices = c("genre", "node_type"),
+                                                     selected = "genre"),
+                                         radioButtons("test_type", "Choose Test:",
+                                                      choices = c("ANOVA", "Kruskal-Wallis"),
+                                                      selected = "ANOVA"),
+                                         actionButton("run_group_test", "Run Test")
+                                       ),
+                                       mainPanel(
+                                         plotOutput("group_boxplot"),
+                                         verbatimTextOutput("group_test_result"),
+                                         verbatimTextOutput("top_genres_output")
+                                       )
                                      )
                             )
                           )
@@ -114,6 +112,86 @@ server <- function(input, output, session) {
       }
     })
   })
+  
+  # Data reactive: create summary data grouped by selected variable
+  group_data <- reactive({
+    req(nodes)  # from your existing dataset
+    nodes %>%
+      filter(node_type == "Song", !is.na(release_date), !is.na(genre)) %>%
+      mutate(release_year = as.numeric(release_date)) %>%
+      group_by(!!sym(input$group_var)) %>%
+      summarise(mean_year = mean(release_year, na.rm = TRUE),
+                n = n()) %>%
+      ungroup()
+  })
+  
+  # Boxplot for groups
+  output$group_boxplot <- renderPlot({
+    df <- nodes %>%
+      filter(node_type == "Song", !is.na(release_date), !is.na(genre)) %>%
+      mutate(release_year = as.numeric(release_date))
+    
+    ggplot(df, aes_string(x = input$group_var, y = "release_year")) +
+      geom_boxplot(fill = "#2C3E50", alpha = 0.7) +
+      labs(x = input$group_var, y = "Release Year",
+           title = paste("Distribution of Release Years by", input$group_var)) +
+      theme_minimal()
+  })
+  
+  # Run statistical test
+  output$group_test_result <- renderPrint({
+    input$run_group_test  # re-run when button is clicked
+    isolate({
+      df <- nodes %>%
+        filter(node_type == "Song", !is.na(release_date), !is.na(genre)) %>%
+        mutate(release_year = as.numeric(release_date))
+      
+      if (input$test_type == "ANOVA") {
+        model <- aov(release_year ~ get(input$group_var), data = df)
+        summary(model)
+      } else {
+        kruskal.test(release_year ~ get(input$group_var), data = df)
+      }
+    })
+  })
+  
+  output$top_genres_output <- renderPrint({
+    # 1) Find Sailor Shift node
+    sailor_node <- nodes %>%
+      filter(str_to_lower(name) == "sailor shift") %>%
+      pull(id)
+    
+    if (length(sailor_node) == 0) {
+      return("Sailor Shift node not found in dataset.")
+    }
+    
+    # 2) Find Sailor Shift's songs
+    sailor_songs <- nodes %>%
+      filter(node_type == "Song", str_detect(str_to_lower(name), "sailor shift")) %>%
+      pull(id)
+    
+    if (length(sailor_songs) == 0) {
+      return("No songs associated with Sailor Shift found in dataset.")
+    }
+    
+    # 3) Get edges where Sailor's songs are the source of influence
+    influenced <- edges %>%
+      filter(source %in% sailor_songs) %>%
+      left_join(nodes, by = c("target" = "id")) %>%
+      filter(!is.na(genre)) %>%
+      count(genre, sort = TRUE)
+    
+    # 4) Display
+    if (nrow(influenced) == 0) {
+      "No influenced genres found from Sailor Shift's songs."
+    } else {
+      cat("Top Genres Influenced by Sailor Shift's Songs:\n")
+      print(head(influenced, 5))
+    }
+  })
+  
+  
+  
 }
 
 

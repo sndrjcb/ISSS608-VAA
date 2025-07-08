@@ -13,8 +13,8 @@ editor: visual
 ---
 
 ```{r}
-pacman::p_load(tidyverse,tidyquant,
-               timetk, plotly, glue)
+pacman:: p_load(tidyverse, tidyquant,
+                timetk, plotly, glue)
 ```
 
 ```{r}
@@ -27,12 +27,9 @@ daily_prices <- SGStock %>%
   tq_get(get = "stock.prices",
          from = "2025-01-01",
          to = Sys.Date())
-
 daily_prices <- daily_prices %>%
   left_join(SGStock)
-
 ```
-
 
 # DBS
 
@@ -41,51 +38,47 @@ start_date <- min(daily_prices$date)
 end_date <- max(daily_prices$date)
 ```
 
-## Row {height=20%}
+## Row {height = 20%}
 
 ```{r}
-daily_summary <- daily_prices %>%
-  filter(Symbol == "D05.S1" &
-           date == end_date)
+daily_summary <- daily_prices%>%
+  filter(Symbol == "D05.SI" &
+        date == end_date)
 ```
 
 ```{r}
-#|content: valuebox
-#|title: "Opening Price"
+#| content: valuebox
+#| title: "Opening Price"
 list(color = "primary",
      value = daily_summary$open
 )
-
 ```
 
 ```{r}
-#|content: valuebox
-#|title: "Closing Price"
+#| content: valuebox
+#| title: "Closing Price"
 list(color = "primary",
      value = daily_summary$close
 )
-
 ```
 
 ```{r}
-#|content: valuebox
-#|title: "Daily High"
+#| content: valuebox
+#| title: "Daily high"
 list(color = "primary",
      value = daily_summary$high
 )
-
 ```
 
 ```{r}
-#|content: valuebox
-#|title: "Daily Low"
+#| content: valuebox
+#| title: "Daily low"
 list(color = "primary",
      value = daily_summary$low
 )
-
 ```
 
-## Row
+## Vis
 
 ```{r}
 df <- daily_prices %>%
@@ -99,13 +92,13 @@ lcl <- mean_close - 1 * sd_close
 df <- df %>%
   mutate(flag = case_when(
     close > ucl ~ "Above UCL",
-    close < lcl ~ "Below LCL",
-    TRUE ~ "within limits"
+    close < lcl ~ "Below UCL",
+    TRUE ~ "Within Limits"
   ))
 
-mean_lbl <- paste0("Mean: ", round(mean_close,2))
-ucl_lbl <- paste0("UCL: ", round(ucl, 2))
-lcl_lbl <- paste0("LCL: ", round(lcl, 2))
+mean_lbl <- paste0 ("Mean: ",round(mean_close,2))
+ucl_lbl <- paste0 ("UCL: ",round(mean_close,2))
+lcl_lbl <- paste0 ("LCL: ",round(mean_close,2))
 
 start_lbl <- format(start_date, "%d %B %Y")
 end_lbl <- format(end_date, "%d %B %Y")
@@ -113,7 +106,6 @@ start_lbl <- sub("^0", "", start_lbl)
 end_lbl <- sub("^0", "", end_lbl)
 dynamic_title <- glue("DBS Stock Prices from {start_lbl} to {end_lbl}")
 ```
-
 
 ```{r}
 p <- ggplot (data = df, aes(x = date, y = close)) +
@@ -133,16 +125,8 @@ scale_color_manual(values = c("Above UCL" = "red", "Below LCL" = "red", "Within 
 ggplotly(p)
 ```
 
-
-
-
-# OCBC
-
-# UOB
-
-# Singtel
+# SingTel
 
 # SIA
 
 # CapitaLand Mall Trust
-
